@@ -51,8 +51,10 @@ int Day1::checkWordNumber(string &text, int i) {
 
 
 int Day1::day() {
+
     string text;
     fstream file("./inputs/day1input.txt");
+
     int sum1 = 0;
     while (getline(file, text)) { //gets a line from the file and puts it into text.
         int a = 0;
@@ -72,13 +74,13 @@ int Day1::day() {
         sum1 += a;
     }
 
-    //now do it again, but this time, words that are numbers count. ex) "one" == 1.
-    int sum2 = 0;
 
-    file.clear();   //resets the file flags
+    file.clear();   //resets the files flags
     file.seekg(0);  //sets place in file back to beginning
     int lines = 0;
 
+    //now do it again, but this time, words that are numbers count. ex) "one" == 1.
+    int sum2 = 0;
     while (getline(file, text)) {
         lines++;
         int a = 0;
@@ -104,6 +106,9 @@ int Day1::day() {
         }
         sum2 += a;
     }
+
+
+
     std::cout << "Day 1: " << sum1 << " and " << sum2 << endl;
     return lines;
 };
