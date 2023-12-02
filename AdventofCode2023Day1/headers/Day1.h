@@ -6,6 +6,6 @@ private:
 	int checkWordNumber(string text, int i);
 public:
 	//basically the main function of Day1
-	int v();
+	int day();
 };
 

@@ -54,7 +54,7 @@ int Day1::checkWordNumber(string text, int i) {
 }
 
 
-int Day1::v() {
+int Day1::day() {
     string text;
     fstream file("./inputs/day1input.txt");
     int sum1 = 0;

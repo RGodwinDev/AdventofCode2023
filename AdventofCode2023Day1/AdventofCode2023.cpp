@@ -18,7 +18,7 @@ int main()
     auto totalstart = std::chrono::high_resolution_clock::now();
 
     Day1 d1;
-    lines.push_back(d1. v());
+    lines.push_back(d1.day());
     auto onefinish = std::chrono::high_resolution_clock::now();
     Day2 d2;
     lines.push_back(d2.day());
