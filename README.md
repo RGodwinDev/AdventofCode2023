@@ -5,4 +5,5 @@ ignore the 'Day1', it's all days in this project.
 
 
 Day1 - Decode numbers from a string.
+
 Day2 - Counting colors
