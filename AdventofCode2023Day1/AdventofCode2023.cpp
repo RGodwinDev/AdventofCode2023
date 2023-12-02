@@ -7,6 +7,7 @@ using namespace std;
 #include "./headers/Day2.h"
 #include "./headers/Day3.h"
 #include "./headers/Day4.h"
+#include "./headers/Day5.h"
 #include <vector>
 
 
@@ -28,6 +29,9 @@ int main()
     Day4 d4;
     lines.push_back(d4.day());
     auto fourfinish = std::chrono::high_resolution_clock::now();
+    Day5 d5;
+    lines.push_back(d5.day());
+    auto fivefinish = std::chrono::high_resolution_clock::now();
 
     auto totalfinish = std::chrono::high_resolution_clock::now();
     
@@ -37,6 +41,7 @@ int main()
     durations.push_back(std::chrono::duration_cast<std::chrono::milliseconds>(twofinish - onefinish));
     durations.push_back(std::chrono::duration_cast<std::chrono::milliseconds>(threefinish - twofinish));
     durations.push_back(std::chrono::duration_cast<std::chrono::milliseconds>(fourfinish - threefinish));
+    durations.push_back(std::chrono::duration_cast<std::chrono::milliseconds>(fivefinish - fourfinish));
      
    
     std::cout << endl;

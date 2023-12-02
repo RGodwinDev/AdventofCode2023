@@ -33,32 +33,41 @@
     <ClCompile Include="Day4.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Day5.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="day1input.txt">
+    <Text Include="inputs\day1input.txt">
       <Filter>inputs</Filter>
     </Text>
-    <Text Include="day2input.txt">
+    <Text Include="inputs\day2input.txt">
       <Filter>inputs</Filter>
     </Text>
-    <Text Include="day3input.txt">
+    <Text Include="inputs\day3input.txt">
       <Filter>inputs</Filter>
     </Text>
-    <Text Include="day4input.txt">
+    <Text Include="inputs\day4input.txt">
+      <Filter>inputs</Filter>
+    </Text>
+    <Text Include="inputs\day5input.txt">
       <Filter>inputs</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Day1.h">
+    <ClInclude Include="headers\Day1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Day2.h">
+    <ClInclude Include="headers\Day2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Day3.h">
+    <ClInclude Include="headers\Day3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Day4.h">
+    <ClInclude Include="headers\Day4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\Day5.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
