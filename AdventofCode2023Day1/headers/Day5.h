@@ -1,5 +1,5 @@
 #pragma once
-class Day4
+class Day5
 {
 private:
 
