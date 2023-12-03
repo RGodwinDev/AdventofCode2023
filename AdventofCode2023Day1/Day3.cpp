@@ -77,8 +77,6 @@ int Day3::day() {
 	int lines = 0;
 	int sum1 = 0, sum2 = 0;
 
-	//read in the file and put into vector.
-	
 	vector<string> rows;
 	while (getline(file, line)) {
 		lines++;
@@ -107,9 +105,9 @@ int Day3::day() {
 				//advance j by size of x, so we don't repeat it
 				j += digits-1;
 
-			} //end if (isdigit(rows[i][j])) 
-		} //end for j
-	}// end for i
+			}
+		}
+	}
 
 	//add product of each gear to sum2
 	//a gear needs 2+ values

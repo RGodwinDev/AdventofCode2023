@@ -3,6 +3,7 @@ https://adventofcode.com/2023
 
 ignore the 'Day1', it's all days in this project.
 
+![alt text](https://github.com/FinalFlashLight/AdventofCode2023/blob/master/AdventofCode2023Day1/screenshots/ssday3.png)
 
 Day1 - Trebuchet?!
 
@@ -25,4 +26,3 @@ Day3 - Gear Ratios
 
 Day4 - ???
 
-![alt text](https://github.com/FinalFlashLight/AdventofCode2023/blob/master/AdventofCode2023Day1/screenshots/ssday3.png)
