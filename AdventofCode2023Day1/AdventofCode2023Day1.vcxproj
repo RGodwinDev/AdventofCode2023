@@ -164,6 +164,9 @@
     <ClInclude Include="headers\Day8.h" />
     <ClInclude Include="headers\Day9.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="screenshots\ssday3.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -24,4 +24,5 @@ Day3 - Gear Ratios
 	we multiply them together and add the product to sum2
 
 Day4 - ???
-		
+
+![alt text](./AdventOfCode2023Day1/screenshots/ssday3.png)
