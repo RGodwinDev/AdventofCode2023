@@ -130,24 +130,39 @@
   <ItemGroup>
     <ClCompile Include="AdventofCode2023.cpp" />
     <ClCompile Include="Day1.cpp" />
+    <ClCompile Include="Day10.cpp" />
     <ClCompile Include="Day2.cpp" />
     <ClCompile Include="Day3.cpp" />
     <ClCompile Include="Day4.cpp" />
     <ClCompile Include="Day5.cpp" />
+    <ClCompile Include="Day6.cpp" />
+    <ClCompile Include="Day7.cpp" />
+    <ClCompile Include="Day8.cpp" />
+    <ClCompile Include="Day9.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="inputs\day10input.txt" />
     <Text Include="inputs\day1input.txt" />
     <Text Include="inputs\day2input.txt" />
     <Text Include="inputs\day3input.txt" />
     <Text Include="inputs\day4input.txt" />
     <Text Include="inputs\day5input.txt" />
+    <Text Include="inputs\day6input.txt" />
+    <Text Include="inputs\day7input.txt" />
+    <Text Include="inputs\day8input.txt" />
+    <Text Include="inputs\day9input.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\Day1.h" />
+    <ClInclude Include="headers\Day10.h" />
     <ClInclude Include="headers\Day2.h" />
     <ClInclude Include="headers\Day3.h" />
     <ClInclude Include="headers\Day4.h" />
     <ClInclude Include="headers\Day5.h" />
+    <ClInclude Include="headers\Day6.h" />
+    <ClInclude Include="headers\Day7.h" />
+    <ClInclude Include="headers\Day8.h" />
+    <ClInclude Include="headers\Day9.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

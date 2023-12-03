@@ -36,6 +36,21 @@
     <ClCompile Include="Day5.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Day6.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Day7.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Day8.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Day9.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Day10.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="inputs\day1input.txt">
@@ -53,6 +68,21 @@
     <Text Include="inputs\day5input.txt">
       <Filter>inputs</Filter>
     </Text>
+    <Text Include="inputs\day6input.txt">
+      <Filter>inputs</Filter>
+    </Text>
+    <Text Include="inputs\day7input.txt">
+      <Filter>inputs</Filter>
+    </Text>
+    <Text Include="inputs\day8input.txt">
+      <Filter>inputs</Filter>
+    </Text>
+    <Text Include="inputs\day9input.txt">
+      <Filter>inputs</Filter>
+    </Text>
+    <Text Include="inputs\day10input.txt">
+      <Filter>inputs</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\Day1.h">
@@ -68,6 +98,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="headers\Day5.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\Day6.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\Day7.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\Day8.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\Day9.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\Day10.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

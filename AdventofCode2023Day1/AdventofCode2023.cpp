@@ -8,6 +8,11 @@ using namespace std;
 #include "./headers/Day3.h"
 #include "./headers/Day4.h"
 #include "./headers/Day5.h"
+#include "./headers/Day6.h"
+#include "./headers/Day7.h"
+#include "./headers/Day8.h"
+#include "./headers/Day9.h"
+#include "./headers/Day10.h"
 #include <vector>
 
 
@@ -32,6 +37,21 @@ int main()
     Day5 d5;
     lines.push_back(d5.day());
     auto fivefinish = std::chrono::high_resolution_clock::now();
+    Day6 d6;
+    lines.push_back(d6.day());
+    auto sixfinish = std::chrono::high_resolution_clock::now();
+    Day7 d7;
+    lines.push_back(d7.day());
+    auto sevenfinish = std::chrono::high_resolution_clock::now();
+    Day8 d8;
+    lines.push_back(d8.day());
+    auto eightfinish = std::chrono::high_resolution_clock::now();
+    Day9 d9;
+    lines.push_back(d9.day());
+    auto ninefinish = std::chrono::high_resolution_clock::now();
+    Day10 d10;
+    lines.push_back(d10.day());
+    auto tenfinish = std::chrono::high_resolution_clock::now();
 
     auto totalfinish = std::chrono::high_resolution_clock::now();
     
@@ -42,6 +62,12 @@ int main()
     durations.push_back(std::chrono::duration_cast<std::chrono::milliseconds>(threefinish - twofinish));
     durations.push_back(std::chrono::duration_cast<std::chrono::milliseconds>(fourfinish - threefinish));
     durations.push_back(std::chrono::duration_cast<std::chrono::milliseconds>(fivefinish - fourfinish));
+    durations.push_back(std::chrono::duration_cast<std::chrono::milliseconds>(sixfinish - fivefinish));
+    durations.push_back(std::chrono::duration_cast<std::chrono::milliseconds>(sevenfinish - sixfinish));
+    durations.push_back(std::chrono::duration_cast<std::chrono::milliseconds>(eightfinish - sevenfinish));
+    durations.push_back(std::chrono::duration_cast<std::chrono::milliseconds>(ninefinish - eightfinish));
+    durations.push_back(std::chrono::duration_cast<std::chrono::milliseconds>(tenfinish - ninefinish));
+
      
    
     std::cout << endl;

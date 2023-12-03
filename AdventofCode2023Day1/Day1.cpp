@@ -109,7 +109,7 @@ int Day1::day() {
 
 
 
-    std::cout << "Day 1: " << sum1 << " and " << sum2 << endl;
+    std::cout << "Day 1:\t" << sum1 << "\tand " << sum2 << endl;
     return lines;
 };
 

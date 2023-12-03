@@ -19,6 +19,6 @@ int Day5::day() {
 	}
 
 
-	std::cout << "Day 5: " << sum1 << " and " << sum2 << endl;
+	std::cout << "Day 5:\t" << sum1 << "\tand " << sum2 << endl;
 	return lines;
 }

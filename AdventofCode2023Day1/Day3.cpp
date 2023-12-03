@@ -22,7 +22,7 @@ int Day3::day() {
 		rows.push_back(line);
 	}
 
-	//we store positions of gears '*' as a pair, and ints adjacent to the gears in the vector.
+	//store positions of gears '*' as a pair, and ints adjacent to the gears in the vector.
 	map<pair<int, int>, vector<int>> gears;
 
 
@@ -63,9 +63,7 @@ int Day3::day() {
 				if (j > 0) {
 					if (!isdigit(rows[i][j - 1]) && rows[i][j - 1] != '.') { 
 						nextToSymbol = true; 
-						if (rows[i][j - 1] == '*') {
-							gears[{i, j - 1}].push_back(x);
-						}
+						if (rows[i][j - 1] == '*') { gears[{i, j - 1}].push_back(x); }
 					}
 				}
 
@@ -73,9 +71,7 @@ int Day3::day() {
 				if (j + digits < rows[i].size()) {
 					if (!isdigit(rows[i][j + digits]) && rows[i][j + digits] != '.') { 
 						nextToSymbol = true; 
-						if (rows[i][j + digits] == '*') {
-							gears[{i, j + digits}].push_back(x);
-						}
+						if (rows[i][j + digits] == '*') { gears[{i, j + digits}].push_back(x); }
 					}
 				}
 				
@@ -117,6 +113,6 @@ int Day3::day() {
 		}
 	}
 
-	std::cout << "Day 3: " << sum1 << " and " << sum2 << endl;
+	std::cout << "Day 3:\t" << sum1 << "\tand " << sum2 << endl;
 	return lines;
 }
