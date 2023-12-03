@@ -7,6 +7,69 @@ using namespace std;
 #include <map>
 
 
+bool Day3::isNextToSymbol(map<pair<int, int>, vector<int>>* gears, vector<string>* rows, int i, int j, int x, int digits) {
+
+	//tracks if the number is next to a symbol.
+	bool nextToSymbol = false;
+
+	//check row above for a symbol
+	if (i > 0) {
+		string sub;
+		if (j > 0 && j + digits + 1 < rows->at(i - 1).size()) { sub = rows->at(i - 1).substr(j - 1, digits + 2); }
+		else if (j + digits + 1 < rows->at(i - 1).size()) { sub = rows->at(i - 1).substr(j, digits + 1); }
+		else { sub = rows->at(i - 1).substr(j - 1, digits + 1); }
+
+		for (int k = 0; k < sub.size(); ++k) {
+			if (!isdigit(sub[k]) && sub[k] != '.') {
+				nextToSymbol = true;
+				if (sub[k] == '*') {
+					//the number is on left edge
+					if (j == 0) { gears->operator[]({i - 1, j + k}).push_back(x); }
+					else { gears->operator[]({i - 1, j + k - 1}).push_back(x); }
+				} //we dont break here because it's possible a * comes after another symbol.
+			}
+		}
+	}
+
+	//check current row left side
+	if (j > 0) {
+		if (!isdigit(rows->at(i)[j - 1]) && rows->at(i)[j - 1] != '.') {
+			nextToSymbol = true;
+			if (rows->at(i)[j - 1] == '*') { gears->operator[]({i, j - 1}).push_back(x); }
+		}
+	}
+
+	//check current row right side
+	if (j + digits < rows->at(i).size()) {
+		if (!isdigit(rows->at(i)[j + digits]) && rows->at(i)[j + digits] != '.') {
+			nextToSymbol = true;
+			if (rows->at(i)[j + digits] == '*') { gears->operator[]({i, j + digits}).push_back(x); }
+		}
+	}
+
+	//check row below
+	if (i < rows->size() - 1) {
+		string sub;
+
+		if (j > 0 && j + digits < rows->at(i + 1).size()) { sub = rows->at(i + 1).substr(j - 1, digits + 2); }
+		else if (j + digits < rows->at(i + 1).size()) { sub = rows->at(i + 1).substr(j, digits + 1); }
+		else { sub = rows->at(i + 1).substr(j - 1, digits + 1); }
+
+		for (int k = 0; k < sub.size(); ++k) {
+			if (!isdigit(sub[k]) && sub[k] != '.') {
+				nextToSymbol = true;
+				if (sub[k] == '*') {
+					//if on left edge
+					if (j == 0) { gears->operator[]({i + 1, j + k}).push_back(x); }
+					else { gears->operator[]({i + 1, j + k - 1}).push_back(x); }
+				}
+			}
+		}
+	}
+
+	return nextToSymbol;
+}
+
 
 int Day3::day() {
 	string line;
@@ -30,78 +93,23 @@ int Day3::day() {
 	for (int i = 0; i < rows.size(); ++i) {
 		for (int j = 0; j < rows[i].size(); ++j) { //check each pos j in row i if it's a number
 			if (isdigit(rows[i][j])) {
-
+				
 				//the number starting at pos j in row i
 				int x = atoi(&rows[i][j]);
 				int temp = x;
 				int digits = 0;
 				while (temp > 0) { digits++; temp /= 10; } //calc how many digits x has.
+
+				bool nextToSymbol = isNextToSymbol(&gears, &rows, i, j, x, digits);
 				
-				//check if there is a symbol anywhere around x.
-				bool nextToSymbol = false;
-
-				//check previous row for a symbol
-				if (i > 0) {
-					string sub;
-					if (j > 0 && j + digits + 1 < rows[i - 1].size()) { sub = rows[i - 1].substr(j - 1, digits+2); }
-					else if(j + digits + 1 < rows[i - 1].size()){ sub = rows[i - 1].substr(j, digits+1); }
-					else { sub = rows[i - 1].substr(j - 1, digits+1); }
-					
-					for (int k = 0; k < sub.size(); ++k) {
-						if (!isdigit(sub[k]) && sub[k] != '.') {
-							nextToSymbol = true;
-							if (sub[k] == '*') {
-								//the number is on left edge
-								if (j == 0) { gears[{i - 1, j + k}].push_back(x); }
-								else { gears[{i - 1, j + k - 1}].push_back(x); }
-							} //we dont break here because it's possible a * comes after another symbol.
-						}
-					}
-				}
-
-				//check current row left side
-				if (j > 0) {
-					if (!isdigit(rows[i][j - 1]) && rows[i][j - 1] != '.') { 
-						nextToSymbol = true; 
-						if (rows[i][j - 1] == '*') { gears[{i, j - 1}].push_back(x); }
-					}
-				}
-
-				//check current row right side
-				if (j + digits < rows[i].size()) {
-					if (!isdigit(rows[i][j + digits]) && rows[i][j + digits] != '.') { 
-						nextToSymbol = true; 
-						if (rows[i][j + digits] == '*') { gears[{i, j + digits}].push_back(x); }
-					}
-				}
-				
-				//check next row
-				if (i < rows.size() - 1) {
-					string sub;
-
-					if (j > 0 && j + digits < rows[i+1].size()) { sub = rows[i + 1].substr(j - 1, digits+2); }
-					else if(j + digits < rows[i + 1].size()) { sub = rows[i + 1].substr(j, digits+1); }
-					else { sub = rows[i + 1].substr(j - 1, digits+1); }
-					
-					for (int k = 0; k < sub.size(); ++k) {
-						if (!isdigit(sub[k]) && sub[k] != '.') {
-							nextToSymbol = true; 
-							if (sub[k] == '*') {
-								//if on left edge
-								if (j == 0) { gears[{i + 1, j + k}].push_back(x); }
-								else { gears[{i + 1, j + k - 1}].push_back(x); }
-							}
-						}
-					}
-				}
-
 				//if x is next to a symbol, add x to sum1
 				if (nextToSymbol) { sum1 += x; }
 				//advance j by size of x, so we don't repeat it
 				j += digits-1;
-			}
-		}
-	}
+
+			} //end if (isdigit(rows[i][j])) 
+		} //end for j
+	}// end for i
 
 	//add product of each gear to sum2
 	//a gear needs 2+ values
