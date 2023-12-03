@@ -25,4 +25,4 @@ Day3 - Gear Ratios
 
 Day4 - ???
 
-![alt text](./AdventOfCode2023Day1/screenshots/ssday3.png)
+![alt text](https://github.com/FinalFlashLight/AdventofCode2023/blob/master/AdventofCode2023Day1/screenshots/ssday3.png)
