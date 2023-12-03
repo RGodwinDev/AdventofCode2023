@@ -3,7 +3,7 @@
 using namespace std;
 #include <chrono>
 #include <iostream>
-#include "./headers/Day1.h" // ./ starts at the project start, not where this file is in the project.
+#include "./headers/Day1.h" 
 #include "./headers/Day2.h"
 #include "./headers/Day3.h"
 #include "./headers/Day4.h"
@@ -53,6 +53,7 @@ int main()
     auto totalmilliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(totalfinish - totalstart);
     std::cout << "all days in total: " << totalmilliseconds.count() << "ms" << endl;
 
+    system("pause");
 }
 
 

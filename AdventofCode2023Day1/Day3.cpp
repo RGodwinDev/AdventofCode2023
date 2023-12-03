@@ -3,6 +3,8 @@ using namespace std;
 #include <fstream>
 #include "./headers/Day3.h"
 #include <string>
+#include <vector>
+#include <map>
 
 
 
@@ -10,9 +12,111 @@ int Day3::day() {
 	string line;
 	fstream file("./inputs/day3input.txt");
 	int lines = 0;
+	int sum1 = 0, sum2 = 0;
+
+	//read in the file and put into vector.
+	
+	vector<string> rows;
 	while (getline(file, line)) {
 		lines++;
+		rows.push_back(line);
 	}
-	std::cout << "Day 3: " << "----" << " and " << "----" << endl;
+
+	//we store positions of gears '*' as a pair, and ints adjacent to the gears in the vector.
+	map<pair<int, int>, vector<int>> gears;
+
+
+	//search for numbers in each row, when we find a number, check if its next to a symbol.
+	for (int i = 0; i < rows.size(); ++i) {
+		for (int j = 0; j < rows[i].size(); ++j) { //check each pos j in row i if it's a number
+			if (isdigit(rows[i][j])) {
+
+				//the number starting at pos j in row i
+				int x = atoi(&rows[i][j]);
+				int temp = x;
+				int digits = 0;
+				while (temp > 0) { digits++; temp /= 10; } //calc how many digits x has.
+				
+				//check if there is a symbol anywhere around x.
+				bool nextToSymbol = false;
+
+				//check previous row for a symbol
+				if (i > 0) {
+					string sub;
+					if (j > 0 && j + digits + 1 < rows[i - 1].size()) { sub = rows[i - 1].substr(j - 1, digits+2); }
+					else if(j + digits + 1 < rows[i - 1].size()){ sub = rows[i - 1].substr(j, digits+1); }
+					else { sub = rows[i - 1].substr(j - 1, digits+1); }
+					
+					for (int k = 0; k < sub.size(); ++k) {
+						if (!isdigit(sub[k]) && sub[k] != '.') {
+							nextToSymbol = true;
+							if (sub[k] == '*') {
+								//the number is on left edge
+								if (j == 0) { gears[{i - 1, j + k}].push_back(x); }
+								else { gears[{i - 1, j + k - 1}].push_back(x); }
+							} //we dont break here because it's possible a * comes after another symbol.
+						}
+					}
+				}
+
+				//check current row left side
+				if (j > 0) {
+					if (!isdigit(rows[i][j - 1]) && rows[i][j - 1] != '.') { 
+						nextToSymbol = true; 
+						if (rows[i][j - 1] == '*') {
+							gears[{i, j - 1}].push_back(x);
+						}
+					}
+				}
+
+				//check current row right side
+				if (j + digits < rows[i].size()) {
+					if (!isdigit(rows[i][j + digits]) && rows[i][j + digits] != '.') { 
+						nextToSymbol = true; 
+						if (rows[i][j + digits] == '*') {
+							gears[{i, j + digits}].push_back(x);
+						}
+					}
+				}
+				
+				//check next row
+				if (i < rows.size() - 1) {
+					string sub;
+
+					if (j > 0 && j + digits < rows[i+1].size()) { sub = rows[i + 1].substr(j - 1, digits+2); }
+					else if(j + digits < rows[i + 1].size()) { sub = rows[i + 1].substr(j, digits+1); }
+					else { sub = rows[i + 1].substr(j - 1, digits+1); }
+					
+					for (int k = 0; k < sub.size(); ++k) {
+						if (!isdigit(sub[k]) && sub[k] != '.') {
+							nextToSymbol = true; 
+							if (sub[k] == '*') {
+								//if on left edge
+								if (j == 0) { gears[{i + 1, j + k}].push_back(x); }
+								else { gears[{i + 1, j + k - 1}].push_back(x); }
+							}
+						}
+					}
+				}
+
+				//if x is next to a symbol, add x to sum1
+				if (nextToSymbol) { sum1 += x; }
+				//advance j by size of x, so we don't repeat it
+				j += digits-1;
+			}
+		}
+	}
+
+	//add product of each gear to sum2
+	//a gear needs 2+ values
+	for (auto it = gears.begin(); it != gears.end(); it++) {
+		if (it->second.size() > 1) {
+			int y = 1;
+			for (int n : it->second) { y *= n; }
+			sum2 += y;
+		}
+	}
+
+	std::cout << "Day 3: " << sum1 << " and " << sum2 << endl;
 	return lines;
 }
