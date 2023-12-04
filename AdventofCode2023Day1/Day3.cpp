@@ -68,10 +68,15 @@ bool Day3::isNextToSymbol(map<pair<int, int>, vector<int>>* gears, vector<string
 	//check row above for a symbol
 	if (i > 0) {
 		string sub;
-		//the if/else if/else is needed for edgecases
+		//doesnt run into an edge
 		if (j > 0 && j + digits + 1 < rows->at(i - 1).size()) { sub = rows->at(i - 1).substr(j - 1, digits + 2); }
+		//hitting both edges? just use the whole row. //with the current data, this shouldnt be true.
+		else if (j == 0 && j + digits + 1 >= rows->at(i - 1).size()) { cout << "row above hit both edges somehow" << endl;  sub = rows->at(i - 1); }
+		//hitting just left edge
 		else if (j + digits + 1 < rows->at(i - 1).size()) { sub = rows->at(i - 1).substr(j, digits + 1); }
-		else { sub = rows->at(i - 1).substr(j - 1, digits + 1); }
+		//hitting just right edge, go from j-1 -> end of row
+		else if (j > 0){ sub = rows->at(i - 1).substr(j - 1, (rows->at(i-1).end() - rows->at(i-1).begin()) - j-1); }
+		
 
 		for (int k = 0; k < sub.size(); ++k) {
 			if (!isdigit(sub[k]) && sub[k] != '.') {
@@ -86,16 +91,16 @@ bool Day3::isNextToSymbol(map<pair<int, int>, vector<int>>* gears, vector<string
 	}
 
 	//check current row left side
-	if (j > 0) {
-		if (!isdigit(rows->at(i)[j - 1]) && rows->at(i)[j - 1] != '.') {
+	if (j > 0) { //num isnt on the left edge
+		if (!isdigit(rows->at(i)[j - 1]) && rows->at(i)[j - 1] != '.') { //it's a symbol
 			nextToSymbol = true;
 			if (rows->at(i)[j - 1] == '*') { gears->operator[]({ i, j - 1 }).push_back(x); }
 		}
 	}
 
 	//check current row right side
-	if (j + digits < rows->at(i).size()) {
-		if (!isdigit(rows->at(i)[j + digits]) && rows->at(i)[j + digits] != '.') {
+	if (j + digits < rows->at(i).size()) { //num isnt on the right edge
+		if (!isdigit(rows->at(i)[j + digits]) && rows->at(i)[j + digits] != '.') { //it's a symbol
 			nextToSymbol = true;
 			if (rows->at(i)[j + digits] == '*') { gears->operator[]({ i, j + digits }).push_back(x); }
 		}
@@ -104,10 +109,14 @@ bool Day3::isNextToSymbol(map<pair<int, int>, vector<int>>* gears, vector<string
 	//check row below
 	if (i < rows->size() - 1) {
 		string sub;
-
+		//not hitting any edges
 		if (j > 0 && j + digits < rows->at(i + 1).size()) { sub = rows->at(i + 1).substr(j - 1, digits + 2); }
+		//hitting both edges, just use the whole row
+		else if (j == 0 && j + digits >= rows->at(i + 1).size()) { cout << "row below hit both edges somehow" << endl;  sub = rows->at(i + 1); }
+		//hitting just left edge
 		else if (j + digits < rows->at(i + 1).size()) { sub = rows->at(i + 1).substr(j, digits + 1); }
-		else { sub = rows->at(i + 1).substr(j - 1, digits + 1); }
+		//hitting just right edge
+		else if (j > 0) { sub = rows->at(i + 1).substr(j - 1, (rows->at(i + 1).end() - rows->at(i + 1).begin()) - j - 1); }
 
 		for (int k = 0; k < sub.size(); ++k) {
 			if (!isdigit(sub[k]) && sub[k] != '.') {

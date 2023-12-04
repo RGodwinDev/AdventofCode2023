@@ -26,11 +26,14 @@ int Day4::day() {
 		//get the card number
 		int card = stoi(line.substr(5, 4));
 
+		//get the position of the colon ':'
+		int colpos = std::find(line.begin(), line.end(), ':') - line.begin();
 		//get the position of the pole '|'
 		int polepos = std::find(line.begin(), line.end(), '|') - line.begin();
 
+
 		//put left substring into left vector<int>
-		string leftsub = line.substr(10, polepos - 11);
+		string leftsub = line.substr(colpos+2, polepos - (colpos+3));
 		vector<int> left;
 		stringstream leftss(leftsub);
 		string leftword;
