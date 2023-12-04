@@ -101,6 +101,21 @@
     <Text Include="inputs\day10input.txt">
       <Filter>inputs</Filter>
     </Text>
+    <Text Include="inputs\day11input.txt">
+      <Filter>inputs</Filter>
+    </Text>
+    <Text Include="inputs\day12input.txt">
+      <Filter>inputs</Filter>
+    </Text>
+    <Text Include="inputs\day13input.txt">
+      <Filter>inputs</Filter>
+    </Text>
+    <Text Include="inputs\day14input.txt">
+      <Filter>inputs</Filter>
+    </Text>
+    <Text Include="inputs\day15input.txt">
+      <Filter>inputs</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\Day1.h">

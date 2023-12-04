@@ -148,6 +148,11 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="inputs\day10input.txt" />
+    <Text Include="inputs\day11input.txt" />
+    <Text Include="inputs\day12input.txt" />
+    <Text Include="inputs\day13input.txt" />
+    <Text Include="inputs\day14input.txt" />
+    <Text Include="inputs\day15input.txt" />
     <Text Include="inputs\day1input.txt" />
     <Text Include="inputs\day2input.txt" />
     <Text Include="inputs\day3input.txt" />

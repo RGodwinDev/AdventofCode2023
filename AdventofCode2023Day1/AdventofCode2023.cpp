@@ -14,6 +14,11 @@ using namespace std;
 #include "./headers/Day8.h"
 #include "./headers/Day9.h"
 #include "./headers/Day10.h"
+#include "./headers/Day11.h" 
+#include "./headers/Day12.h"
+#include "./headers/Day13.h"
+#include "./headers/Day14.h"
+#include "./headers/Day15.h"
 
 #include <vector>
 
@@ -32,6 +37,11 @@ int main()
     days.push_back( new Day8() );
     days.push_back( new Day9() );
     days.push_back( new Day10() );
+    days.push_back(new Day11());
+    days.push_back(new Day12());
+    days.push_back(new Day13());
+    days.push_back(new Day14());
+    days.push_back(new Day15());
 
 
 
@@ -57,7 +67,7 @@ int main()
    
     std::cout << endl << "-------Times for each day in milliseconds -------" << endl;
     for (int i = 0; i < durations.size(); ++i) {
-        std::cout << "day "<< (i+1) << ": " << durations[i].count() << "ms \t input size: " << lines[i] << " lines." << endl;
+        std::cout << "day "<< (i+1) << ":\t" << durations[i].count() << "ms \t input size: " << lines[i] << " lines." << endl;
     }
 
     
