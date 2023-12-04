@@ -35,6 +35,7 @@ Day4 - Scratchcards
 	Part 2
 		The cards actually act different now. The amount of times you win gets you copies of cards below it.
 		if you win 4 times on card 1, you get 1 copy each of card 2,3,4,5.
+		if you have 4 copies of card 1, you get 4 copies of each card 2,3,4,5.
 		We need to keep track of how many copies of each card we win.
 		Copied cards are scored exactly the same as original cards.
 		Add up how many cards we end up with TOTAL.
