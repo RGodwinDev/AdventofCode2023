@@ -105,6 +105,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -153,7 +154,17 @@
     <Text Include="inputs\day13input.txt" />
     <Text Include="inputs\day14input.txt" />
     <Text Include="inputs\day15input.txt" />
+    <Text Include="inputs\day16input.txt" />
+    <Text Include="inputs\day17input.txt" />
+    <Text Include="inputs\day18input.txt" />
+    <Text Include="inputs\day19input.txt" />
     <Text Include="inputs\day1input.txt" />
+    <Text Include="inputs\day20input.txt" />
+    <Text Include="inputs\day21input.txt" />
+    <Text Include="inputs\day22input.txt" />
+    <Text Include="inputs\day23input.txt" />
+    <Text Include="inputs\day24input.txt" />
+    <Text Include="inputs\day25input.txt" />
     <Text Include="inputs\day2input.txt" />
     <Text Include="inputs\day3input.txt" />
     <Text Include="inputs\day4input.txt" />

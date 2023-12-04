@@ -14,8 +14,6 @@ int Day4::day() {
 
 	while (getline(file, line)) {
 		lines++;
-
-
 	}
 
 

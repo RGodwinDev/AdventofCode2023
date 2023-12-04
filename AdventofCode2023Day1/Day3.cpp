@@ -7,70 +7,6 @@ using namespace std;
 #include <map>
 
 
-bool Day3::isNextToSymbol(map<pair<int, int>, vector<int>>* gears, vector<string>* rows, int i, int j, int x, int digits) {
-
-	//tracks if the number is next to a symbol.
-	bool nextToSymbol = false;
-
-	//check row above for a symbol
-	if (i > 0) {
-		string sub;
-		if (j > 0 && j + digits + 1 < rows->at(i - 1).size()) { sub = rows->at(i - 1).substr(j - 1, digits + 2); }
-		else if (j + digits + 1 < rows->at(i - 1).size()) { sub = rows->at(i - 1).substr(j, digits + 1); }
-		else { sub = rows->at(i - 1).substr(j - 1, digits + 1); }
-
-		for (int k = 0; k < sub.size(); ++k) {
-			if (!isdigit(sub[k]) && sub[k] != '.') {
-				nextToSymbol = true;
-				if (sub[k] == '*') {
-					//the number is on left edge
-					if (j == 0) { gears->operator[]({i - 1, j + k}).push_back(x); }
-					else { gears->operator[]({i - 1, j + k - 1}).push_back(x); }
-				} //we dont break here because it's possible a * comes after another symbol.
-			}
-		}
-	}
-
-	//check current row left side
-	if (j > 0) {
-		if (!isdigit(rows->at(i)[j - 1]) && rows->at(i)[j - 1] != '.') {
-			nextToSymbol = true;
-			if (rows->at(i)[j - 1] == '*') { gears->operator[]({i, j - 1}).push_back(x); }
-		}
-	}
-
-	//check current row right side
-	if (j + digits < rows->at(i).size()) {
-		if (!isdigit(rows->at(i)[j + digits]) && rows->at(i)[j + digits] != '.') {
-			nextToSymbol = true;
-			if (rows->at(i)[j + digits] == '*') { gears->operator[]({i, j + digits}).push_back(x); }
-		}
-	}
-
-	//check row below
-	if (i < rows->size() - 1) {
-		string sub;
-
-		if (j > 0 && j + digits < rows->at(i + 1).size()) { sub = rows->at(i + 1).substr(j - 1, digits + 2); }
-		else if (j + digits < rows->at(i + 1).size()) { sub = rows->at(i + 1).substr(j, digits + 1); }
-		else { sub = rows->at(i + 1).substr(j - 1, digits + 1); }
-
-		for (int k = 0; k < sub.size(); ++k) {
-			if (!isdigit(sub[k]) && sub[k] != '.') {
-				nextToSymbol = true;
-				if (sub[k] == '*') {
-					//if on left edge
-					if (j == 0) { gears->operator[]({i + 1, j + k}).push_back(x); }
-					else { gears->operator[]({i + 1, j + k - 1}).push_back(x); }
-				}
-			}
-		}
-	}
-
-	return nextToSymbol;
-}
-
-
 int Day3::day() {
 	string line;
 	fstream file("./inputs/day3input.txt");
@@ -121,4 +57,69 @@ int Day3::day() {
 
 	std::cout << "Day 3:\t" << sum1 << "\tand " << sum2 << endl;
 	return lines;
+}
+
+
+bool Day3::isNextToSymbol(map<pair<int, int>, vector<int>>* gears, vector<string>* rows, int i, int j, int x, int digits) {
+
+	//tracks if the number is next to a symbol.
+	bool nextToSymbol = false;
+
+	//check row above for a symbol
+	if (i > 0) {
+		string sub;
+		//the if/else if/else is needed for edgecases
+		if (j > 0 && j + digits + 1 < rows->at(i - 1).size()) { sub = rows->at(i - 1).substr(j - 1, digits + 2); }
+		else if (j + digits + 1 < rows->at(i - 1).size()) { sub = rows->at(i - 1).substr(j, digits + 1); }
+		else { sub = rows->at(i - 1).substr(j - 1, digits + 1); }
+
+		for (int k = 0; k < sub.size(); ++k) {
+			if (!isdigit(sub[k]) && sub[k] != '.') {
+				nextToSymbol = true;
+				if (sub[k] == '*') {
+					//if the number is on left edge
+					if (j == 0) { gears->operator[]({ i - 1, j + k }).push_back(x); }
+					else { gears->operator[]({ i - 1, j + k - 1 }).push_back(x); }
+				} //we dont break here because it's possible a * comes after another symbol.
+			}
+		}
+	}
+
+	//check current row left side
+	if (j > 0) {
+		if (!isdigit(rows->at(i)[j - 1]) && rows->at(i)[j - 1] != '.') {
+			nextToSymbol = true;
+			if (rows->at(i)[j - 1] == '*') { gears->operator[]({ i, j - 1 }).push_back(x); }
+		}
+	}
+
+	//check current row right side
+	if (j + digits < rows->at(i).size()) {
+		if (!isdigit(rows->at(i)[j + digits]) && rows->at(i)[j + digits] != '.') {
+			nextToSymbol = true;
+			if (rows->at(i)[j + digits] == '*') { gears->operator[]({ i, j + digits }).push_back(x); }
+		}
+	}
+
+	//check row below
+	if (i < rows->size() - 1) {
+		string sub;
+
+		if (j > 0 && j + digits < rows->at(i + 1).size()) { sub = rows->at(i + 1).substr(j - 1, digits + 2); }
+		else if (j + digits < rows->at(i + 1).size()) { sub = rows->at(i + 1).substr(j, digits + 1); }
+		else { sub = rows->at(i + 1).substr(j - 1, digits + 1); }
+
+		for (int k = 0; k < sub.size(); ++k) {
+			if (!isdigit(sub[k]) && sub[k] != '.') {
+				nextToSymbol = true;
+				if (sub[k] == '*') {
+					//if on left edge
+					if (j == 0) { gears->operator[]({ i + 1, j + k }).push_back(x); }
+					else { gears->operator[]({ i + 1, j + k - 1 }).push_back(x); }
+				}
+			}
+		}
+	}
+
+	return nextToSymbol;
 }

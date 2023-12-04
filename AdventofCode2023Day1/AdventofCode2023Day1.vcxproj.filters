@@ -16,58 +16,61 @@
     <Filter Include="inputs">
       <UniqueIdentifier>{7796222d-832f-4dc3-9925-57f483296684}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Days">
+      <UniqueIdentifier>{f3bcc336-8add-4f9e-aba3-5ece17f4ec34}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AdventofCode2023.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Day1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Day2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Day3.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Day4.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Day5.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Day6.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Day7.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Day8.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Day9.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Day10.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Day.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Day1.cpp">
+      <Filter>Source Files\Days</Filter>
+    </ClCompile>
+    <ClCompile Include="Day2.cpp">
+      <Filter>Source Files\Days</Filter>
+    </ClCompile>
+    <ClCompile Include="Day3.cpp">
+      <Filter>Source Files\Days</Filter>
+    </ClCompile>
+    <ClCompile Include="Day4.cpp">
+      <Filter>Source Files\Days</Filter>
+    </ClCompile>
+    <ClCompile Include="Day5.cpp">
+      <Filter>Source Files\Days</Filter>
+    </ClCompile>
+    <ClCompile Include="Day6.cpp">
+      <Filter>Source Files\Days</Filter>
+    </ClCompile>
+    <ClCompile Include="Day7.cpp">
+      <Filter>Source Files\Days</Filter>
+    </ClCompile>
+    <ClCompile Include="Day8.cpp">
+      <Filter>Source Files\Days</Filter>
+    </ClCompile>
+    <ClCompile Include="Day9.cpp">
+      <Filter>Source Files\Days</Filter>
+    </ClCompile>
+    <ClCompile Include="Day10.cpp">
+      <Filter>Source Files\Days</Filter>
+    </ClCompile>
     <ClCompile Include="Day11.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Days</Filter>
     </ClCompile>
     <ClCompile Include="Day12.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Days</Filter>
     </ClCompile>
     <ClCompile Include="Day13.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Days</Filter>
     </ClCompile>
     <ClCompile Include="Day14.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Days</Filter>
     </ClCompile>
     <ClCompile Include="Day15.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Days</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -114,6 +117,36 @@
       <Filter>inputs</Filter>
     </Text>
     <Text Include="inputs\day15input.txt">
+      <Filter>inputs</Filter>
+    </Text>
+    <Text Include="inputs\day16input.txt">
+      <Filter>inputs</Filter>
+    </Text>
+    <Text Include="inputs\day17input.txt">
+      <Filter>inputs</Filter>
+    </Text>
+    <Text Include="inputs\day18input.txt">
+      <Filter>inputs</Filter>
+    </Text>
+    <Text Include="inputs\day19input.txt">
+      <Filter>inputs</Filter>
+    </Text>
+    <Text Include="inputs\day20input.txt">
+      <Filter>inputs</Filter>
+    </Text>
+    <Text Include="inputs\day21input.txt">
+      <Filter>inputs</Filter>
+    </Text>
+    <Text Include="inputs\day22input.txt">
+      <Filter>inputs</Filter>
+    </Text>
+    <Text Include="inputs\day23input.txt">
+      <Filter>inputs</Filter>
+    </Text>
+    <Text Include="inputs\day24input.txt">
+      <Filter>inputs</Filter>
+    </Text>
+    <Text Include="inputs\day25input.txt">
       <Filter>inputs</Filter>
     </Text>
   </ItemGroup>

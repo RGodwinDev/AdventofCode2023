@@ -1,5 +1,5 @@
 // AdventofCode2023Day1.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+
 using namespace std;
 #include <chrono>
 #include <iostream>
@@ -31,18 +31,29 @@ int main()
     days.push_back( new Day2() );
     days.push_back( new Day3() );
     days.push_back( new Day4() );
+    /*
     days.push_back( new Day5() );
     days.push_back( new Day6() );
     days.push_back( new Day7() );
     days.push_back( new Day8() );
     days.push_back( new Day9() );
     days.push_back( new Day10() );
-    days.push_back(new Day11());
-    days.push_back(new Day12());
-    days.push_back(new Day13());
-    days.push_back(new Day14());
-    days.push_back(new Day15());
-
+    days.push_back( new Day11() );
+    days.push_back( new Day12() );
+    days.push_back( new Day13() );
+    days.push_back( new Day14() );
+    days.push_back( new Day15() );
+    days.push_back( new Day16() );
+    days.push_back( new Day17() );
+    days.push_back( new Day18() );
+    days.push_back( new Day19() );
+    days.push_back( new Day20() );
+    days.push_back( new Day21() );
+    days.push_back( new Day22() );
+    days.push_back( new Day23() );
+    days.push_back( new Day24() );
+    days.push_back( new Day25() );
+    */
 
 
     cout << "-------- results for each day --------" << endl;
