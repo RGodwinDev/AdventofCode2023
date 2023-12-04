@@ -5,7 +5,7 @@
 #include <vector>
 #include <sstream>
 #include <algorithm>
-#include <Windows.h> //if not on windows, comment this out
+//#include <Windows.h> //if not on windows, comment this out
 
 /* example card from input
 Card   1: 30 48 49 69  1 86 94 68 12 85 | 86 57 89  8 81 85 82 68  1 22 90  2 74 12 30 45 69 92 62  4 94 48 47 64 49
@@ -16,7 +16,7 @@ Card   1: 30 48 49 69  1 86 94 68 12 85 | 86 57 89  8 81 85 82 68  1 22 90  2 74
 
 //Scratchcards
 int Day4::day() {
-	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //THIS DOESNT WORK IF YOURE NOT ON WINDOWS, comment this and anything to do with hConsole out.
+	//HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //THIS DOESNT WORK IF YOURE NOT ON WINDOWS, comment this and anything to do with hConsole out.
 
 	std::string line;
 	std::fstream file("./inputs/day4input.txt");
@@ -61,20 +61,26 @@ int Day4::day() {
 		//check if each number in right is a winning number, matches == wins.
 		int wins = 0;
 		for (int num :right) { //O(rightlogleft) //old method was O(left * right)
-			bool won = false;
+			//bool won = false; //only used for the colors.
 			if (binary_search(left.begin(), left.end(), num)) { 
-				won = true;
+				//won = true;
 				wins++; 
 			}
+
+			/* fun with colors :), but it makes the program from under 30ms to 1500ms.
 			if(won){
+				//I had this set color to num value, but it looked bad. 
+				//color can be anything between 0 and 255 and all nums were under 100.
 				SetConsoleTextAttribute(hConsole, 10);				//COMMENT OUT if not windows
 			}
 			std::cout << num;
 			SetConsoleTextAttribute(hConsole, 7);					//COMMENT OUT if not windows
 
 			std::cout << " ";
+			*/
+
 		}
-		std::cout << std::endl;
+		//std::cout << std::endl;
 		
 		//points from wins on each card = 2^(wins-1)
 		sum1 += (int)pow(2, wins - 1);
