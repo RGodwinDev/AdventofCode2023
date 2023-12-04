@@ -5,6 +5,7 @@ using namespace std;
 #include "./headers/Day4.h"
 #include <vector>
 #include <sstream>
+#include <algorithm>
 
 /* example card from input
 Card   1: 30 48 49 69  1 86 94 68 12 85 | 86 57 89  8 81 85 82 68  1 22 90  2 74 12 30 45 69 92 62  4 94 48 47 64 49
@@ -26,6 +27,8 @@ int Day4::day() {
 		//get the card number
 		int card = stoi(line.substr(5, 4));
 
+		sum2 += cardcopies[card - 1];
+
 		//get the position of the colon ':'
 		int colpos = std::find(line.begin(), line.end(), ':') - line.begin();
 		//get the position of the pole '|'
@@ -41,7 +44,7 @@ int Day4::day() {
 		while (getline(leftss, leftword, ' ')) {
 			if (leftword.size() > 0) { left.push_back(stoi(leftword)); }
 		}
-
+		std::sort(left.begin(), left.end()); //make left binary searchable O(leftlogleft)
 		
 		//put right substring into right vector<int>
 		string rightsub = line.substr(polepos + 2, line.size() - polepos + 2);
@@ -54,11 +57,11 @@ int Day4::day() {
 		}
 
 
-		//search right vector with left vector, matches == wins.
+		//check if each number in right is a winning number, matches == wins.
 		int wins = 0;
-		for (int i = 0; i < left.size(); ++i) {
-			for (int j = 0; j < right.size(); ++j) {
-				if (left[i] == right[j]) { wins++; }
+		for (int num :right) { //O(rightlogleft) //old method was O(left * right)
+			if (binary_search(left.begin(), left.end(), num)) { 
+				wins++; 
 			}
 		}
 		
@@ -72,11 +75,6 @@ int Day4::day() {
 				cardcopies[card + wins] += cardcopies[card - 1];
 			}
 		}
-	}
-
-	//add up all the copies of cards you have at the end.
-	for (int i = 0; i < cardcopies.size(); ++i) {
-		sum2 += cardcopies[i];
 	}
 
 	std::cout << "Day 4:\t" << sum1 << "\tand " << sum2 << endl;
