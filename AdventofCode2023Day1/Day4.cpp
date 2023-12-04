@@ -19,14 +19,13 @@ int Day4::day() {
 	fstream file("./inputs/day4input.txt");
 	int lines = 0;
 	int sum1 = 0, sum2 = 0;
-	vector<int> cardcopies(201, 1); //we have 1 copy of every card to start with, the original card.
+	vector<int> cardcopies(1, 1); //we have 1 copy of every card to start with, the original card.
 
 	while (getline(file, line)) {
 		lines++;
 
 		//get the card number
 		int card = stoi(line.substr(5, 4));
-
 		sum2 += cardcopies[card - 1];
 
 		//get the position of the colon ':'
@@ -68,6 +67,10 @@ int Day4::day() {
 		//points from wins on each card = 2^(wins-1)
 		sum1 += (int)pow(2, wins - 1);
 
+		//grow cardcopies vector if it needs more space.
+		while (card + wins >= cardcopies.size()) {
+			cardcopies.push_back(1);
+		} //only issue is it'll give us copies of cards that dont exist.
 
 		//the next (wins)amount of cards increase by the number of copies of the current card.
 		while (--wins >= 0) {
