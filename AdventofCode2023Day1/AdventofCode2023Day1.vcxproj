@@ -129,8 +129,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AdventofCode2023.cpp" />
+    <ClCompile Include="Day.cpp" />
     <ClCompile Include="Day1.cpp" />
     <ClCompile Include="Day10.cpp" />
+    <ClCompile Include="Day11.cpp" />
+    <ClCompile Include="Day12.cpp" />
+    <ClCompile Include="Day13.cpp" />
+    <ClCompile Include="Day14.cpp" />
+    <ClCompile Include="Day15.cpp" />
     <ClCompile Include="Day2.cpp" />
     <ClCompile Include="Day3.cpp" />
     <ClCompile Include="Day4.cpp" />
@@ -153,8 +159,14 @@
     <Text Include="inputs\day9input.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="headers\Day.h" />
     <ClInclude Include="headers\Day1.h" />
     <ClInclude Include="headers\Day10.h" />
+    <ClInclude Include="headers\Day11.h" />
+    <ClInclude Include="headers\Day12.h" />
+    <ClInclude Include="headers\Day13.h" />
+    <ClInclude Include="headers\Day14.h" />
+    <ClInclude Include="headers\Day15.h" />
     <ClInclude Include="headers\Day2.h" />
     <ClInclude Include="headers\Day3.h" />
     <ClInclude Include="headers\Day4.h" />

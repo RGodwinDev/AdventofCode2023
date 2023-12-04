@@ -1,7 +1,7 @@
 #pragma once
-
+#include "./Day.h"
 //Trebuchet?!
-class Day1
+class Day1 : public Day
 {
 private:
 	//checks if a substring in text, starting at pos i, is a number.

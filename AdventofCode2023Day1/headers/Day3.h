@@ -2,9 +2,9 @@
 #include <map>
 #include <vector>
 #include <string>
-
+#include "./Day.h"
 //Gear Ratios
-class Day3
+class Day3 : public Day
 {
 private:
 	/*

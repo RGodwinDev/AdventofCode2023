@@ -1,6 +1,6 @@
 #pragma once
 #include "./Day.h"
-class Day7 : public Day
+class Day14 : public Day
 {
 private:
 

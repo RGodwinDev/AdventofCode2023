@@ -1,5 +1,6 @@
 #pragma once
-class Day5
+#include "./Day.h"
+class Day5 : public Day
 {
 private:
 
