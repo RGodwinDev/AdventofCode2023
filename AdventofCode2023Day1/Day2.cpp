@@ -1,4 +1,3 @@
-using namespace std;
 #include<fstream>
 #include<string>
 #include<iostream>
@@ -7,8 +6,8 @@ using namespace std;
 
 int Day2::day() {
 
-	string line;
-	fstream file("./inputs/day2input.txt");
+	std::string line;
+	std::fstream file("./inputs/day2input.txt");
 
 	int ids = 0, sum = 0;
 	int maxreds = 12, maxgreens = 13, maxblues = 14;
@@ -31,15 +30,15 @@ int Day2::day() {
 			if (pos2 >= line.size()){ pos2 = line.size() - 1; } 
 
 			//get a hand, put into stringstream
-			stringstream ss(line.substr(pos+1, (pos2 - pos) - 1));
+			std::stringstream ss(line.substr(pos+1, (pos2 - pos) - 1));
 
-			string word;
+			std::string word;
 			while (ss >> word) {
 				int n = stoi(word); //first word is a number
 				ss >> word;			//second word is a color
-				if (word[0] == 'r') { reds = max(reds, n); }
-				else if (word[0] == 'g') { greens = max(greens, n); }
-				else if (word[0] == 'b') { blues = max(blues, n); }
+				if (word[0] == 'r') { reds = std::max(reds, n); }
+				else if (word[0] == 'g') { greens = std::max(greens, n); }
+				else if (word[0] == 'b') { blues = std::max(blues, n); }
 			}
 
 			//move positions to next.
@@ -54,6 +53,6 @@ int Day2::day() {
 	}
 
 
-	std::cout << "Day 2:\t" << ids << " \tand " << sum << endl;
+	std::cout << "Day 2:\t" << ids << " \tand " << sum << std::endl;
 	return lines;
 }

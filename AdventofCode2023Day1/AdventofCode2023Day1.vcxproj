@@ -138,7 +138,17 @@
     <ClCompile Include="Day13.cpp" />
     <ClCompile Include="Day14.cpp" />
     <ClCompile Include="Day15.cpp" />
+    <ClCompile Include="Day16.cpp" />
+    <ClCompile Include="Day17.cpp" />
+    <ClCompile Include="Day18.cpp" />
+    <ClCompile Include="Day19.cpp" />
     <ClCompile Include="Day2.cpp" />
+    <ClCompile Include="Day20.cpp" />
+    <ClCompile Include="Day21.cpp" />
+    <ClCompile Include="Day22.cpp" />
+    <ClCompile Include="Day23.cpp" />
+    <ClCompile Include="Day24.cpp" />
+    <ClCompile Include="Day25.cpp" />
     <ClCompile Include="Day3.cpp" />
     <ClCompile Include="Day4.cpp" />
     <ClCompile Include="Day5.cpp" />
@@ -183,7 +193,17 @@
     <ClInclude Include="headers\Day13.h" />
     <ClInclude Include="headers\Day14.h" />
     <ClInclude Include="headers\Day15.h" />
+    <ClInclude Include="headers\Day16.h" />
+    <ClInclude Include="headers\Day17.h" />
+    <ClInclude Include="headers\Day18.h" />
+    <ClInclude Include="headers\Day19.h" />
     <ClInclude Include="headers\Day2.h" />
+    <ClInclude Include="headers\Day20.h" />
+    <ClInclude Include="headers\Day21.h" />
+    <ClInclude Include="headers\Day22.h" />
+    <ClInclude Include="headers\Day23.h" />
+    <ClInclude Include="headers\Day24.h" />
+    <ClInclude Include="headers\Day25.h" />
     <ClInclude Include="headers\Day3.h" />
     <ClInclude Include="headers\Day4.h" />
     <ClInclude Include="headers\Day5.h" />
@@ -194,6 +214,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="screenshots\ssday3.png" />
+    <Image Include="screenshots\ssday4.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

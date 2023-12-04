@@ -1,4 +1,3 @@
-using namespace std;
 #include <iostream>
 #include <fstream>
 #include "./headers/Day3.h"
@@ -8,19 +7,19 @@ using namespace std;
 
 
 int Day3::day() {
-	string line;
-	fstream file("./inputs/day3input.txt");
+	std::string line;
+	std::fstream file("./inputs/day3input.txt");
 	int lines = 0;
 	int sum1 = 0, sum2 = 0;
 
-	vector<string> rows;
+	std::vector<std::string> rows;
 	while (getline(file, line)) {
 		lines++;
 		rows.push_back(line);
 	}
 
 	//store positions of gears '*' as a pair, and ints adjacent to the gears in the vector.
-	map<pair<int, int>, vector<int>> gears;
+	std::map<std::pair<int, int>, std::vector<int>> gears;
 
 
 	//search for numbers in each row, when we find a number, check if its next to a symbol.
@@ -55,23 +54,23 @@ int Day3::day() {
 		}
 	}
 
-	std::cout << "Day 3:\t" << sum1 << "\tand " << sum2 << endl;
+	std::cout << "Day 3:\t" << sum1 << "\tand " << sum2 << std::endl;
 	return lines;
 }
 
 
-bool Day3::isNextToSymbol(map<pair<int, int>, vector<int>>* gears, vector<string>* rows, int i, int j, int x, int digits) {
+bool Day3::isNextToSymbol(std::map<std::pair<int, int>, std::vector<int>>* gears, std::vector<std::string>* rows, int i, int j, int x, int digits) {
 
 	//tracks if the number is next to a symbol.
 	bool nextToSymbol = false;
 
 	//check row above for a symbol
 	if (i > 0) {
-		string sub;
+		std::string sub;
 		//doesnt run into an edge
 		if (j > 0 && j + digits + 1 < rows->at(i - 1).size()) { sub = rows->at(i - 1).substr(j - 1, digits + 2); }
 		//hitting both edges? just use the whole row. //with the current data, this shouldnt be true.
-		else if (j == 0 && j + digits + 1 >= rows->at(i - 1).size()) { cout << "row above hit both edges somehow" << endl;  sub = rows->at(i - 1); }
+		else if (j == 0 && j + digits + 1 >= rows->at(i - 1).size()) { std::cout << "row above hit both edges somehow" << std::endl;  sub = rows->at(i - 1); }
 		//hitting just left edge
 		else if (j + digits + 1 < rows->at(i - 1).size()) { sub = rows->at(i - 1).substr(j, digits + 1); }
 		//hitting just right edge, go from j-1 -> end of row
@@ -108,11 +107,11 @@ bool Day3::isNextToSymbol(map<pair<int, int>, vector<int>>* gears, vector<string
 
 	//check row below
 	if (i < rows->size() - 1) {
-		string sub;
+		std::string sub;
 		//not hitting any edges
 		if (j > 0 && j + digits < rows->at(i + 1).size()) { sub = rows->at(i + 1).substr(j - 1, digits + 2); }
 		//hitting both edges, just use the whole row
-		else if (j == 0 && j + digits >= rows->at(i + 1).size()) { cout << "row below hit both edges somehow" << endl;  sub = rows->at(i + 1); }
+		else if (j == 0 && j + digits >= rows->at(i + 1).size()) { std::cout << "row below hit both edges somehow" << std::endl;  sub = rows->at(i + 1); }
 		//hitting just left edge
 		else if (j + digits < rows->at(i + 1).size()) { sub = rows->at(i + 1).substr(j, digits + 1); }
 		//hitting just right edge

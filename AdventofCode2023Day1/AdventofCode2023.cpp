@@ -1,6 +1,5 @@
 // AdventofCode2023Day1.cpp : This file contains the 'main' function. Program execution begins and ends there.
 
-using namespace std;
 #include <chrono>
 #include <iostream>
 #include "./headers/Day.h"
@@ -19,11 +18,22 @@ using namespace std;
 #include "./headers/Day13.h"
 #include "./headers/Day14.h"
 #include "./headers/Day15.h"
+#include "./headers/Day16.h"
+#include "./headers/Day17.h"
+#include "./headers/Day18.h"
+#include "./headers/Day19.h"
+#include "./headers/Day20.h"
+#include "./headers/Day21.h" 
+#include "./headers/Day22.h"
+#include "./headers/Day23.h"
+#include "./headers/Day24.h"
+#include "./headers/Day25.h"
 
 #include <vector>
 
 int main()
 {
+    std::cout << "Advent of code 2023 :)" << std::endl;
     std::vector<int> lines;
     std::vector<Day*> days;
     
@@ -31,8 +41,8 @@ int main()
     days.push_back( new Day2() );
     days.push_back( new Day3() );
     days.push_back( new Day4() );
-    /*
     days.push_back( new Day5() );
+    /*
     days.push_back( new Day6() );
     days.push_back( new Day7() );
     days.push_back( new Day8() );
@@ -56,13 +66,13 @@ int main()
     */
 
 
-    cout << "-------- results for each day --------" << endl;
+    std::cout << "-------- results for each day --------" << std::endl;
 
     std::vector<std::chrono::milliseconds> durations;
 
     auto totalstart = std::chrono::high_resolution_clock::now();
 
-    //loop thru the days and time how long it takes to call each one.
+    //loop thru the days and call their respective day().
     for (int i = 0; i < days.size(); ++i) {
         auto start = std::chrono::high_resolution_clock::now();
 
@@ -76,14 +86,14 @@ int main()
      
 
    
-    std::cout << endl << "-------Times for each day in milliseconds -------" << endl;
+    std::cout << std::endl << "-------Times for each day in milliseconds -------" << std::endl;
     for (int i = 0; i < durations.size(); ++i) {
-        std::cout << "day "<< (i+1) << ":\t" << durations[i].count() << "ms \t input size: " << lines[i] << " lines." << endl;
+        std::cout << "day "<< (i+1) << ":\t" << durations[i].count() << "ms \t input size: " << lines[i] << " lines." << std::endl;
     }
 
     
     auto totalmilliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(totalfinish - totalstart);
-    std::cout << "all days total: " << totalmilliseconds.count() << "ms" << endl;
+    std::cout << "all days total: " << totalmilliseconds.count() << "ms" << std::endl;
 
     system("pause");
 }

@@ -1,4 +1,3 @@
-using namespace std;
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -6,6 +5,7 @@ using namespace std;
 #include <vector>
 #include <sstream>
 #include <algorithm>
+#include <Windows.h> //if not on windows, comment this out
 
 /* example card from input
 Card   1: 30 48 49 69  1 86 94 68 12 85 | 86 57 89  8 81 85 82 68  1 22 90  2 74 12 30 45 69 92 62  4 94 48 47 64 49
@@ -14,12 +14,15 @@ Card   1: 30 48 49 69  1 86 94 68 12 85 | 86 57 89  8 81 85 82 68  1 22 90  2 74
 		add up how much all the cards are worth
 */
 
+//Scratchcards
 int Day4::day() {
-	string line;
-	fstream file("./inputs/day4input.txt");
+	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE); //THIS DOESNT WORK IF YOURE NOT ON WINDOWS, comment this and anything to do with hConsole out.
+
+	std::string line;
+	std::fstream file("./inputs/day4input.txt");
 	int lines = 0;
 	int sum1 = 0, sum2 = 0;
-	vector<int> cardcopies(1, 1); //we have 1 copy of every card to start with, the original card.
+	std::vector<int> cardcopies(1, 1); //we have 1 copy of every card to start with, the original card.
 
 	while (getline(file, line)) {
 		lines++;
@@ -28,17 +31,16 @@ int Day4::day() {
 		int card = stoi(line.substr(5, 4));
 		sum2 += cardcopies[card - 1];
 
-		//get the position of the colon ':'
+		//get positions for colon ':' and pole '|'
 		int colpos = std::find(line.begin(), line.end(), ':') - line.begin();
-		//get the position of the pole '|'
 		int polepos = std::find(line.begin(), line.end(), '|') - line.begin();
 
 
 		//put left substring into left vector<int>
-		string leftsub = line.substr(colpos+2, polepos - (colpos+3));
-		vector<int> left;
-		stringstream leftss(leftsub);
-		string leftword;
+		std::string leftsub = line.substr(colpos+2, polepos - (colpos+3));
+		std::vector<int> left;
+		std::stringstream leftss(leftsub);
+		std::string leftword;
 
 		while (getline(leftss, leftword, ' ')) {
 			if (leftword.size() > 0) { left.push_back(stoi(leftword)); }
@@ -46,10 +48,10 @@ int Day4::day() {
 		std::sort(left.begin(), left.end()); //make left binary searchable O(leftlogleft)
 		
 		//put right substring into right vector<int>
-		string rightsub = line.substr(polepos + 2, line.size() - polepos + 2);
-		vector<int> right;
-		stringstream rightss(rightsub);
-		string rightword;
+		std::string rightsub = line.substr(polepos + 2, line.size() - polepos + 2);
+		std::vector<int> right;
+		std::stringstream rightss(rightsub);
+		std::string rightword;
 
 		while (getline(rightss, rightword, ' ')) {
 			if (rightword.size() > 0) { right.push_back(stoi(rightword)); }
@@ -59,10 +61,20 @@ int Day4::day() {
 		//check if each number in right is a winning number, matches == wins.
 		int wins = 0;
 		for (int num :right) { //O(rightlogleft) //old method was O(left * right)
+			bool won = false;
 			if (binary_search(left.begin(), left.end(), num)) { 
+				won = true;
 				wins++; 
 			}
+			if(won){
+				SetConsoleTextAttribute(hConsole, 10);				//COMMENT OUT if not windows
+			}
+			std::cout << num;
+			SetConsoleTextAttribute(hConsole, 7);					//COMMENT OUT if not windows
+
+			std::cout << " ";
 		}
+		std::cout << std::endl;
 		
 		//points from wins on each card = 2^(wins-1)
 		sum1 += (int)pow(2, wins - 1);
@@ -80,6 +92,6 @@ int Day4::day() {
 		}
 	}
 
-	std::cout << "Day 4:\t" << sum1 << "\tand " << sum2 << endl;
+	std::cout << "Day 4:\t" << sum1 << "\tand " << sum2 << std::endl;
 	return lines;
 }

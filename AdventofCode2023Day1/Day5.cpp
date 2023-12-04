@@ -1,4 +1,3 @@
-using namespace std;
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -7,8 +6,8 @@ using namespace std;
 
 
 int Day5::day() {
-	string line;
-	fstream file("./inputs/day5input.txt");
+	std::string line;
+	std::fstream file("./inputs/day5input.txt");
 	int lines = 0;
 	int sum1 = 0, sum2 = 0;
 
@@ -19,6 +18,6 @@ int Day5::day() {
 	}
 
 
-	std::cout << "Day 5:\t" << sum1 << "\tand " << sum2 << endl;
+	std::cout << "Day 5:\t" << sum1 << "\tand " << sum2 << std::endl;
 	return lines;
 }

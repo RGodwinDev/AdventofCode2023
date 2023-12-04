@@ -1,48 +1,47 @@
-using namespace std;
 #include<fstream>
 #include<string>
 #include<iostream>
 #include "./headers/Day1.h"
 
-int Day1::checkWordNumber(string &text, int i) {
-    string sub = "";
+int Day1::checkWordNumber(std::string &text, int i) {
+    std::string sub = "";
     if (text[i] == 'o') { //one
         try { sub = text.substr(i, 3); }
-        catch (exception e) {} //trycatch should only trigger if substring goes out of bounds.
+        catch (std::exception e) {} //trycatch should only trigger if substring goes out of bounds.
         if (sub == "one") { return 1; }
     }
     else if (text[i] == 't') { //two or three
         try { sub = text.substr(i, 3); }
-        catch (exception e) {}
+        catch (std::exception e) {}
         if (sub == "two") { return 2; }
         try { sub = text.substr(i, 5); }
-        catch (exception e) {}
+        catch (std::exception e) {}
         if (sub == "three") { return 3; }
     }
     else if (text[i] == 'f') { // four or five
         try { sub = text.substr(i, 4); }
-        catch (exception e) {}
+        catch (std::exception e) {}
         if (sub == "four") { return 4; }
         try { sub = text.substr(i, 4); }
-        catch (exception e) {}
+        catch (std::exception e) {}
         if (sub == "five") { return 5; }
     }
     else if (text[i] == 's') { // six or seven
         try { sub = text.substr(i, 3); }
-        catch (exception e) {}
+        catch (std::exception e) {}
         if (sub == "six") { return 6; }
         try { sub = text.substr(i, 5); }
-        catch (exception e) {}
+        catch (std::exception e) {}
         if (sub == "seven") { return 7; }
     }
     else if (text[i] == 'e') { // eight
         try { sub = text.substr(i, 5); }
-        catch (exception e) {}
+        catch (std::exception e) {}
         if (sub == "eight") { return 8; }
     }
     else if (text[i] == 'n') { // nine
         try { sub = text.substr(i, 4); }
-        catch (exception e) {}
+        catch (std::exception e) {}
         if (sub == "nine") { return 9; }
     }
     return 0;
@@ -51,8 +50,8 @@ int Day1::checkWordNumber(string &text, int i) {
 
 int Day1::day() {
 
-    string text;
-    fstream file("./inputs/day1input.txt");
+    std::string text;
+    std::fstream file("./inputs/day1input.txt");
     int lines = 0;
 
     int sum1 = 0;
@@ -100,7 +99,7 @@ int Day1::day() {
 
 
 
-    std::cout << "Day 1:\t" << sum1 << "\tand " << sum2 << endl;
+    std::cout << "Day 1:\t" << sum1 << "\tand " << sum2 << std::endl;
     return lines;
 };
 
