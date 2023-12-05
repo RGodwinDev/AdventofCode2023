@@ -5,7 +5,7 @@ The main() is in AdventofCode2023Day1/AdventofCode2023.cpp
 
 ignore the 'Day1', all of the days are in this project.
 
-![alt text](https://github.com/FinalFlashLight/AdventofCode2023/blob/master/AdventofCode2023Day1/screenshots/ssday4.png)
+![alt text](https://github.com/FinalFlashLight/AdventofCode2023/blob/master/AdventofCode2023Day1/screenshots/ssday5.png)
 
 Day1 - Trebuchet?!
 
@@ -42,6 +42,38 @@ Day4 - Scratchcards
 		Copied cards are scored exactly the same as original cards.
 		Add up how many cards we end up with TOTAL.
 
-Day5 - ???
+Day5 - If You Give A Seed A Fertilizer
+
+	Part 1
+		transform a seed thru several filters, and return the smallest one after transforming.
+		I put the seeds into a vector<__int64> and made tuples from the filter inputs.
+		(destination, source, range)
+		I then went thru each filter with each seed, 
+		seeing if that filter applying to the seed, and transforming if it did.
+		At the end, just loop thru the seeds and see which one ended up the smallest.
+
+
+	Part 2
+		transform ranges of seeds thru ranges of filters and return the smallest seed.
+		This one was significantly harder than the previous 4 days.
+		This time I put the seeds into a vector<pair<__int64, __int64>>,
+		first is starting seed of the range, second is size of the range of seeds
 		
-	
+		use the same filter tuples.
+		sort the filter tuples in each filter step.
+
+		for each filter step
+			for each seedrange
+				for each individual filter in a filter step
+
+					if seedrange completely covers filter
+					if seedrange is completely inside filter
+					if just start of seedrange
+					if just end of seedrange
+
+					adjust current seedrange and add new seedranges as needed
+			after each filterstep
+			sort seedrange
+
+		at the end, get the smallest seed in seedrange!
+		because we sorted, it should be the first one.

@@ -267,5 +267,8 @@
     <Image Include="screenshots\ssday4.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="screenshots\ssday5.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
