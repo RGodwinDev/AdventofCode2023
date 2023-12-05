@@ -38,13 +38,12 @@ int Day4::day() {
 
 		//get positions for colon ':' and pole '|'
 		int colpos = std::find(line.begin(), line.end(), ':') - line.begin();
-		int polepos = std::find(line.begin(), line.end(), '|') - line.begin();
+		int polepos = std::find(line.begin()+colpos, line.end(), '|') - line.begin();
 
 
 		//put left substring into left vector<int>
-		std::string leftsub = line.substr(colpos+2, polepos - (colpos+3));
 		std::vector<int> left;
-		std::stringstream leftss(leftsub);
+		std::stringstream leftss(line.substr(colpos + 2, polepos - (colpos + 3)));
 		std::string leftword;
 
 		while (getline(leftss, leftword, ' ')) {
@@ -53,9 +52,8 @@ int Day4::day() {
 		std::sort(left.begin(), left.end()); //make left binary searchable O(leftlogleft)
 		
 		//put right substring into right vector<int>
-		std::string rightsub = line.substr(polepos + 2, line.size() - polepos + 2);
 		std::vector<int> right;
-		std::stringstream rightss(rightsub);
+		std::stringstream rightss(line.substr(polepos + 2, line.size() - polepos + 2));
 		std::string rightword;
 
 		while (getline(rightss, rightword, ' ')) {
