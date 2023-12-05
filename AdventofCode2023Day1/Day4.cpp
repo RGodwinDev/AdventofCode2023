@@ -22,6 +22,11 @@ int Day4::day() {
 	std::fstream file("./inputs/day4input.txt");
 	int lines = 0;
 	int sum1 = 0, sum2 = 0;
+
+	//grows when needed, BUT theres a bug.
+	//when we win x times over the # of cards that actually exist, it'll say we have copys of nonexistent cards.
+	//fix: save the card rows to a vector<string> in the while loop,
+	//then outside the while loop we would be able to know how many cards actually exist.
 	std::vector<int> cardcopies(1, 1); //we have 1 copy of every card to start with, the original card.
 
 	while (getline(file, line)) {
@@ -67,14 +72,15 @@ int Day4::day() {
 				wins++; 
 			}
 
+			//ONLY USEABLE ON WINDOWS
 			/* fun with colors :), but it makes the program from under 30ms to 1500ms.
 			if(won){
 				//I had this set color to num value, but it looked bad. 
 				//color can be anything between 0 and 255 and all nums were under 100.
-				SetConsoleTextAttribute(hConsole, 10);				//COMMENT OUT if not windows
+				SetConsoleTextAttribute(hConsole, 10);				
 			}
 			std::cout << num;
-			SetConsoleTextAttribute(hConsole, 7);					//COMMENT OUT if not windows
+			SetConsoleTextAttribute(hConsole, 7);					
 
 			std::cout << " ";
 			*/
