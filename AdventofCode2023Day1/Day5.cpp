@@ -6,18 +6,6 @@
 #include <sstream>
 #include <algorithm>
 
-//part 2, seeds row is different. 
-// seeds is actually ##a ##b, ##a ##b, ##a ##b
-// ##a is start of range of seeds
-// ##b is size of the range
-
-// the other ranges are still the same, store in a tuple
-// (##dest, ##source, ##rangesize)
-
-// for each range of seeds, we check if source is in range.
-// if it is we convert the curseed into 1 2 or 3 new seed ranges
-
-
 int Day5::day() {
 	std::string line;
 	std::fstream file("./inputs/day5input.txt");
@@ -94,14 +82,14 @@ int Day5::day() {
 				__int64 source = get<1>(filters[i][j]);
 				__int64 range = get<2>(filters[i][j]);
 								
-				__int64 a = seeds[k];
-				if (a >= source && a <= source + range - 1) {				
-					a = (a - source) + destination;
-					seeds[k] = a;
+				__int64 seed = seeds[k];
+				if (seed >= source && seed <= source + range - 1) {				
+					seed = (seed - source) + destination;
+					seeds[k] = seed;
 					break;
 				}
 			}
-			//if there wasnt a match, the seed stays the same. ez.
+			//if there wasnt a match, the seed stays the same.
 		}
 	}
 
@@ -114,7 +102,8 @@ int Day5::day() {
 		for (int j = 0; seedranges.size() > j; j++) { //check each seedrange
 			__int64 seedstart = seedranges[j].first;
 			__int64 seedrange = seedranges[j].second;
-			//then we check if the seedrange hits a filter somewhere.
+
+			//then we check if the seedrange hits a individual filter.
 			for (int k = 0; k < filters[i].size(); ++k) { //each individual filter of a step
 				__int64 destination = get<0>(filters[i][k]);
 				__int64 source = get<1>(filters[i][k]);
@@ -123,9 +112,7 @@ int Day5::day() {
 
 				//filter is fully inside the seedrange.
 				if (seedstart < source && seedstart + seedrange > source + filterRange) {
-					//std::cout << "filter fully inside, +2 ranges" << std::endl;
 					//seedstart is unaffected
-					//seedrange should be moved to start of filter
 					
 					//new seedrange, end of filter -> end of original seedrange put back into original vector to check for more filters.
 					__int64 afterFilterBegin = source + filterRange+1;
@@ -134,13 +121,14 @@ int Day5::day() {
 					if (j == seedranges.size() - 1) { //at end of seedranges
 						seedranges.push_back(std::make_pair(afterFilterBegin, afterFilterEnd));
 					} 
-					else { //otherwise, insert
+					else { //otherwise insert
 						seedranges.insert(seedranges.begin() + j + 1, std::make_pair(afterFilterBegin, afterFilterEnd));
 					}
 
 					//new seedrange, entire filter, put into newSeedRanges
 					newSeedRanges.push_back(std::make_pair(destination, filterRange));
 
+					//seedrange should be moved to start of filter
 					seedranges[j].second = abs(startdiff);
 					break;
 				}
@@ -148,16 +136,13 @@ int Day5::day() {
 				//start and end are inside filter, just adjust the start and move on :)
 				else if (seedstart >= source && seedstart <= source + filterRange
 					&& seedstart + seedrange >= source && seedstart + seedrange <= source + filterRange) {
-					//std::cout << "start and end inside, no additional ranges" << std::endl;
 
 					//startdiff should be positive
-					//seedstart = destination + startdiff;
 					seedranges[j].first = destination + startdiff;
 					break;
 				}
+				//just start is inside filter, end isnt
 				else if(seedstart >= source && seedstart <= source + filterRange){
-					//std::cout << "just start is inside, +1 ranges" << std::endl;
-					//just start is inside filter, end isnt
 					//add another seedrange, starting at end of filter to end of seedrange
 					//adjust current seedrange to end of filter, and seedstart = destination + startdiff
 					
@@ -165,32 +150,18 @@ int Day5::day() {
 					__int64 afterFilterRange = abs(seedrange - filterRange);
 					seedranges.insert(seedranges.begin() + j + 1, std::make_pair(afterFilterStart, afterFilterRange));
 
-
 					seedranges[j].first = destination + startdiff;
 					seedranges[j].second = destination + filterRange - seedranges[j].first;
-
-
 					break;
 				}
+				//just end is in filter, start isnt
 				else if (seedstart + seedrange >= source && seedstart + seedrange <= source + filterRange) {
-					//std::cout << "just end is inside, +1 ranges" << std::endl;
-					//just end is in filter
-					//we need to calc a new start at start of filter and adjust the ranges
-					//seedstart stays the same
-					//startdiff = source - seedstart
-					//new seedrange = startdiff
-					
-					//new in filter, start = source
-					//range = seedrange - startdiff, ez
 					__int64 inFilterStart = source;
 					__int64 inFilterRange = seedrange - startdiff;
 					newSeedRanges.push_back(std::make_pair(source, inFilterRange));
 					seedranges[j].second = startdiff;
-
-
 					break;
 				}
-
 			}
 		}
 
@@ -199,8 +170,7 @@ int Day5::day() {
 		std::vector<std::pair<__int64, __int64>> mergevec;
 		mergevec.reserve(seedranges.size() + newSeedRanges.size());
 		merge(seedranges.begin(), seedranges.end(), newSeedRanges.begin(), newSeedRanges.end(), back_inserter(mergevec));
-		seedranges = mergevec; //should be sorted :)
-		
+		seedranges = mergevec;
 	}
 
 
@@ -209,17 +179,13 @@ int Day5::day() {
 	for (__int64 seed : seeds) {
 		lowest1 = std::min(lowest1, seed);
 	}
-	//std::cout << "seedranges at the end: " << seedranges.size() << std::endl;
+	
 	lowest2 = seedranges[0].first;
 	int i = 0;
 	while (seedranges[i].first == 0) {
 		i++;
 	}
 	lowest2 = seedranges[i].first;
-
-	//for(int i = 0; i < seedranges.size(); ++i){
-	//	std::cout << seedranges[i].first << std::endl;
-	//}
 
 	std::cout << "Day 5:\t" << lowest1 << "\tand " << lowest2 << std::endl;
 	return lines;
