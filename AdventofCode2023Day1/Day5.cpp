@@ -106,13 +106,11 @@ int Day5::day() {
 	}
 
 	/*
-	* PART 2
-	*
+	* PART 2 also finishes super fast :)
 	*/
 	for (int i = 0; i < filters.size(); ++i) { //for each filter step
-		std::cout << "NEW FILTER " << i << std::endl;
 		std::vector<std::pair<__int64, __int64>> newSeedRanges;
-		std::cout << "seed ranges to filter: " << seedranges.size() << std::endl;
+
 		for (int j = 0; seedranges.size() > j; j++) { //check each seedrange
 			__int64 seedstart = seedranges[j].first;
 			__int64 seedrange = seedranges[j].second;
@@ -213,6 +211,12 @@ int Day5::day() {
 	}
 	//std::cout << "seedranges at the end: " << seedranges.size() << std::endl;
 	lowest2 = seedranges[0].first;
+	int i = 0;
+	while (seedranges[i].first == 0) {
+		i++;
+	}
+	lowest2 = seedranges[i].first;
+
 	//for(int i = 0; i < seedranges.size(); ++i){
 	//	std::cout << seedranges[i].first << std::endl;
 	//}
