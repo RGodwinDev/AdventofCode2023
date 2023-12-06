@@ -90,6 +90,7 @@ Day5 - If You Give A Seed A Fertilizer
 		Other people on the advent of code subreddit complained about the same issue.
 
 Day 6 - Wait For It
+	
 	significantly easier than yesterday.
 	Part 1
 		You enter a boat race! But the boats have a ramp up time.

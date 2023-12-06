@@ -18,7 +18,6 @@ int Day6::day() {
 	
 	for (int i = 0; i < time.size(); ++i) {
 		int count = 0;
-		//brute force it lol
 		for (int timeheld = 0; timeheld < time[i]; timeheld++) {
 			if (timeheld * (time[i] - timeheld) > distance[i]) {
 				count++;
@@ -28,7 +27,6 @@ int Day6::day() {
 			}
 		}
 		sum1 *= count;
-		
 	}
 	
 	/*
