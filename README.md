@@ -63,23 +63,21 @@ Day5 - If You Give A Seed A Fertilizer
 		sort the filter tuples in each filter step.
 
 		for each filter step
-			for each seedrange
+			for each seedrange in seedranges
 				for each individual filter in a filter step
 
 					if seedrange completely covers filter
 					if seedrange is completely inside filter
-					if just start of seedrange
-					if just end of seedrange
+					if just start of seedrange is in filter
+					if just end of seedrange is in filter
 
-					~~adjust current seedrange and add new seedranges as needed~~
 					put before filter and inside filter ranges in newSeedRange
 					put after filter range back into seedrange vector to be processed later
 				if the seedrange wasnt filtered at all, put into newSeedRange as is	
 					
 			after each filterstep
 			sort newSeedRange
-			clear seedrange vector
-			put unique seedranges from newSeedRange into seedrange //this gets rid of duplicates
+			seedranges = newSeedRange
 			sort seedrange //probably not needed
 
 		at the end, get the smallest seed in seedrange!
