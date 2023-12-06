@@ -94,7 +94,7 @@ int Day5::day() {
 	}
 
 	/*
-	* PART 2 doesnt work correctly, I got the right answer by coincidence
+	* PART 2 seems to work now. The real answer seems like it was actually just 0.
 	* new approach, all changes go to newSeedRanges
 	* replace old seedranges at the end
 	* ONLY ranges that go OVER the filter get put back into seedranges to be processed
@@ -176,15 +176,20 @@ int Day5::day() {
 		std::pair<__int64,__int64> prevPair = std::make_pair(-1, -1);
 		sort(newSeedRanges.begin(), newSeedRanges.end());
 		seedranges.clear();
+
+		//only pass in non duplicates.
 		for (std::pair<__int64, __int64> curPair : newSeedRanges) {
 			if (curPair.first != prevPair.first || curPair.second != prevPair.second) {
 				seedranges.push_back(curPair);
 			}
 			prevPair = curPair;
 		}
-		sort(seedranges.begin(), seedranges.end()); //shouldnt need to sort again but it feels good.
-	}
 
+		//sort(seedranges.begin(), seedranges.end()); //shouldnt need to sort again but it feels good.
+	}
+	//for (int i = 0; i < seedranges.size(); ++i) {
+	//	std::cout << seedranges[i].first << " " << seedranges[i].second << std::endl;
+	//}
 
 	__int64 lowest1 = INT64_MAX, lowest2 = INT64_MAX;
 	
@@ -192,8 +197,7 @@ int Day5::day() {
 		lowest1 = std::min(lowest1, seed);
 	}
 	
-	lowest2 = seedranges[0].second;
-	
+	lowest2 = seedranges[0].first != 0 ? seedranges[0].first : seedranges[0].second;
 
 	std::cout << "Day 5:\t" << lowest1 << "\tand " << lowest2 << std::endl;
 	return lines;

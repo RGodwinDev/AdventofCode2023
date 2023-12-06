@@ -71,9 +71,22 @@ Day5 - If You Give A Seed A Fertilizer
 					if just start of seedrange
 					if just end of seedrange
 
-					adjust current seedrange and add new seedranges as needed
+					~~adjust current seedrange and add new seedranges as needed~~
+					put before filter and inside filter ranges in newSeedRange
+					put after filter range back into seedrange vector to be processed later
+				if the seedrange wasnt filtered at all, put into newSeedRange as is	
+					
 			after each filterstep
-			sort seedrange
+			sort newSeedRange
+			clear seedrange vector
+			put unique seedranges from newSeedRange into seedrange //this gets rid of duplicates
+			sort seedrange //probably not needed
 
 		at the end, get the smallest seed in seedrange!
 		because we sorted, it should be the first one.
+
+		I think my dataset got mixed wrong or something. No matter how I cut it, the answer is 0.
+		Interestingly, if I print out my vector and choose first number that isnt 0, it's the correct answer.
+		Other people on the advent of code subreddit complained about the same issue.
+
+	
