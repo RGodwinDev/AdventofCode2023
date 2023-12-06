@@ -98,10 +98,12 @@ int Day5::day() {
 	* new approach, all changes go to newSeedRanges
 	* replace old seedranges at the end
 	* ONLY ranges that go OVER the filter get put back into seedranges to be processed
+	* FIXED THE BUG WOW
 	*/
 	for (int i = 0; i < filters.size(); ++i) { //for each filter step
 		std::vector<std::pair<__int64, __int64>> newSeedRanges;
 		for (int j = 0; seedranges.size() > j; j++) { //check each seedrange
+			
 			__int64 seedstart = seedranges[j].first;
 			__int64 seedrange = seedranges[j].second;
 			bool filtered = false;
@@ -112,7 +114,9 @@ int Day5::day() {
 				__int64 filterRange = get<2>(filters[i][k]);
 				__int64 startdiff = seedstart - source; //if startdiff is negative, seedstart < source
 
-				//filter is fully inside the seedrange.
+				/*
+				* FILTER IS FULLY INSIDE THE SEEDRANGE.
+				*/
 				if (seedstart < source && seedstart + seedrange > source + filterRange) {
 					//seedstart is unaffected
 					filtered = true;
@@ -135,15 +139,21 @@ int Day5::day() {
 					break;
 				}
 
-				//start and end are inside filter, just adjust the start and move on :)
+				/*
+				* SEEDRANGE IS FULLY INSIDE FILTER
+				*/
 				else if (seedstart >= source && seedstart < source + filterRange 
 					&& seedstart + seedrange > source && seedstart + seedrange <= source + filterRange) {
+
 					filtered = true;
 					//startdiff should be positive
-					seedranges[j].first = destination + startdiff;
+					newSeedRanges.push_back(std::make_pair(destination + startdiff, seedrange));
 					break;
 				}
-				//just start is inside filter, end isnt
+
+				/*
+				* START IS INSIDE FILTER, END IS NOT
+				*/
 				else if(seedstart >= source && seedstart < source + filterRange){
 					//add another seedrange, starting at end of filter to end of seedrange
 					//adjust current seedrange to end of filter, and seedstart = destination + startdiff
@@ -161,43 +171,37 @@ int Day5::day() {
 					newSeedRanges.push_back(std::make_pair(destination + startdiff, filterRange - startdiff));
 					break;
 				}
-				//just end is in filter, start isnt
-				else if (seedstart < source && seedstart + seedrange <= source + filterRange) {
+
+				/*
+				* END IS INSIDE FILTER, START IS NOT
+				*/
+				else if (seedstart < source && seedstart + seedrange <= source + filterRange && seedstart + seedrange > source) {
 					filtered = true;
 					__int64 inFilterRange = seedrange - startdiff;
+					
 					newSeedRanges.push_back(std::make_pair(destination, inFilterRange));
+
+					//start is before source, add range.first, and startdiff
 					newSeedRanges.push_back(std::make_pair(seedranges[j].first, abs(startdiff)));
 					break;
 				}
 			}
-			//if it wasn't filtered at all, put it into newSeedRanges
+			/*
+			* SEEDRANGE DID NOT GET FILTERED AT ALL
+			*/
 			if (!filtered) { newSeedRanges.push_back(seedranges[j]); }
 		}
 		std::pair<__int64,__int64> prevPair = std::make_pair(-1, -1);
 		sort(newSeedRanges.begin(), newSeedRanges.end());
-		seedranges.clear();
-
-		//only pass in non duplicates.
-		for (std::pair<__int64, __int64> curPair : newSeedRanges) {
-			if (curPair.first != prevPair.first || curPair.second != prevPair.second) {
-				seedranges.push_back(curPair);
-			}
-			prevPair = curPair;
-		}
-
-		//sort(seedranges.begin(), seedranges.end()); //shouldnt need to sort again but it feels good.
+		seedranges = newSeedRanges;
+		//dont need to check for dupes anymore :)
 	}
-	//for (int i = 0; i < seedranges.size(); ++i) {
-	//	std::cout << seedranges[i].first << " " << seedranges[i].second << std::endl;
-	//}
-
 	__int64 lowest1 = INT64_MAX, lowest2 = INT64_MAX;
 	
-	for (__int64 seed : seeds) {
+	for (__int64 seed : seeds) { //faster to just search for lowest than sorting it.
 		lowest1 = std::min(lowest1, seed);
 	}
-	
-	lowest2 = seedranges[0].first != 0 ? seedranges[0].first : seedranges[0].second;
+	lowest2 = seedranges[0].first != 0 ? seedranges[0].first : seedranges[1].first;
 
 	std::cout << "Day 5:\t" << lowest1 << "\tand " << lowest2 << std::endl;
 	return lines;

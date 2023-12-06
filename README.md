@@ -5,7 +5,7 @@ The main() is in AdventofCode2023Day1/AdventofCode2023.cpp
 
 ignore the 'Day1', all of the days are in this project.
 
-![alt text](https://github.com/FinalFlashLight/AdventofCode2023/blob/master/AdventofCode2023Day1/screenshots/ssday5.png)
+![alt text](https://github.com/FinalFlashLight/AdventofCode2023/blob/master/AdventofCode2023Day1/screenshots/ssday6.png)
 
 Day1 - Trebuchet?!
 
@@ -89,4 +89,19 @@ Day5 - If You Give A Seed A Fertilizer
 		Interestingly, if I print out my vector and choose first number that isnt 0, it's the correct answer.
 		Other people on the advent of code subreddit complained about the same issue.
 
-	
+Day 6 - Wait For It
+	significantly easier than yesterday.
+	Part 1
+		You enter a boat race! But the boats have a ramp up time.
+		Every millisecond you wait to launch your boat, 
+		your boat will go faster by 1 millimeter per millisecond!
+
+		The goal of the race is to go as far as possible in the time given.
+		Youre given a paper with times for each race, and the best distance someones gotten in that race.
+		Count how many ways you can beat each race, and multiply them together.
+
+	Part 2
+		Jokes on you! The times and distances on the paper was actually a single race!
+		Calculate the ways to win that one race.
+
+		I just brute forced both part1 and part2, although I know there is an O(1) solution out there.
