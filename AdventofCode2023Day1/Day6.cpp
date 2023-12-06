@@ -1,6 +1,4 @@
-#include <iostream>
 #include "./headers/Day6.h"
-#include <vector>
 
 int Day6::day() {	
 	int sum1 = 1, sum2 = 0;

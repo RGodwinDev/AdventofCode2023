@@ -1,5 +1,9 @@
 #pragma once
 #include "./Day.h"
+#include<fstream>
+#include<string>
+#include<iostream>
+
 //Trebuchet?!
 class Day1 : public Day
 {

@@ -1,10 +1,4 @@
-#include <iostream>
-#include <fstream>
-#include <string>
 #include "./headers/Day5.h"
-#include <vector>
-#include <sstream>
-#include <algorithm>
 
 int Day5::day() {
 	std::string line;

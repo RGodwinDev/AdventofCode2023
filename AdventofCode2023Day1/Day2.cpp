@@ -1,7 +1,3 @@
-#include<fstream>
-#include<string>
-#include<iostream>
-#include<sstream>
 #include "./headers/Day2.h"
 
 int Day2::day() {

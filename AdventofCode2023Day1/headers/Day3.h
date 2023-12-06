@@ -1,8 +1,11 @@
 #pragma once
+#include "./Day.h"
+#include <iostream>
+#include <fstream>
 #include <map>
 #include <vector>
 #include <string>
-#include "./Day.h"
+
 //Gear Ratios
 class Day3 : public Day
 {

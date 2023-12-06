@@ -1,6 +1,3 @@
-#include<fstream>
-#include<string>
-#include<iostream>
 #include "./headers/Day1.h"
 
 int Day1::checkWordNumber(std::string &text, int i) {

@@ -1,10 +1,4 @@
-#include <iostream>
-#include <fstream>
 #include "./headers/Day3.h"
-#include <string>
-#include <vector>
-#include <map>
-
 
 int Day3::day() {
 	std::string line;
