@@ -112,3 +112,9 @@ Day 6 - Wait For It
 		Calculate the ways to win that one race.
 
 		I just brute forced both part1 and part2, although I know there is an O(1) solution out there.
+
+	I changed from bruteforce to descriminant of a quadratic trinomial.
+		answer = sqrt(pow(time,2) - 4 * distance);
+		if(distance%2 == 1){ answer++ }
+
+		It now runs < 1ms instead of ~125ms.
