@@ -87,6 +87,14 @@ Day5 - If You Give A Seed A Fertilizer
 		Interestingly, if I print out my vector and choose first number that isnt 0, it's the correct answer.
 		Other people on the advent of code subreddit complained about the same issue.
 
+		I think I've fixed the major bugs :O
+
+	Ways I could make part1 and part2 faster
+		binary search the filters
+		For part1 that would be pretty easy. Would change it from O(seed*filters) to O(seedlogfilters)
+		For part2 it would probably be significantly more complicated
+		because we're dealing with ranges instead of single numbers. 
+
 Day 6 - Wait For It
 	
 	significantly easier than yesterday.
