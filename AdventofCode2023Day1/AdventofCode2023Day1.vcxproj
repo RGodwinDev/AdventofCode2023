@@ -185,6 +185,7 @@
     <Text Include="inputs\day9input.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="headers\AdventofCode2023.h" />
     <ClInclude Include="headers\Day.h" />
     <ClInclude Include="headers\Day1.h" />
     <ClInclude Include="headers\Day10.h" />

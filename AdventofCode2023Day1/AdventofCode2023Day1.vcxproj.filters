@@ -259,6 +259,9 @@
     <ClInclude Include="headers\Day25.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="headers\AdventofCode2023.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="screenshots\ssday3.png">
