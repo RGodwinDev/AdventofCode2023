@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include <mutex>
 
 class Day
@@ -7,6 +8,6 @@ private:
 
 public:
 	virtual int day();
-	std::mutex cout_mutex;
+	static std::mutex cout_mutex;
 };
 

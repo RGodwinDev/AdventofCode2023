@@ -8,20 +8,14 @@ int main()
     concurrency::concurrent_vector<int> lines;
     concurrency::concurrent_vector<Day*> days;
 
-    for (int i = 0; i < 100; ++i) {
-        days.push_back(new Day1());
-        days.push_back(new Day2());
-        days.push_back(new Day3());
-        days.push_back(new Day4());
-        days.push_back(new Day5());
-        days.push_back(new Day6());
-        days.push_back(new Day7());
-    }
-    
+    days.push_back(new Day1());
+    days.push_back(new Day2());
+    days.push_back(new Day3());
+    days.push_back(new Day4());
+    days.push_back(new Day5());
+    days.push_back(new Day6());
+    days.push_back(new Day7());
 
-    //for (int i = 0; i < 10; i++) {
-    //    days.push_back(new Day7());
-    //}
     /*
     days.push_back( new Day8() );
     days.push_back( new Day9() );
@@ -53,7 +47,7 @@ int main()
     //SECTION I'M TRYING TO PARALLEL PROCESS
     //loop thru the days and call their respective day().
     //works perfectly when i take out the execution::par policy, just not parallel lol.
-    std::for_each(std::execution::par, days.begin(), days.end(), [&](Day* day) {  //[] is where the lambda function captures, by doing & it captures all local variables by reference.
+    std::for_each(/*std::execution::par, */ days.begin(), days.end(), [&](Day* day) {  //[] is where the lambda function captures, by doing & it captures all local variables by reference.
         auto start = std::chrono::high_resolution_clock::now();
 
         //lines is a concurrent_vector<int>, it just counts the lines parsed from input file by the day.
