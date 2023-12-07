@@ -48,9 +48,14 @@ int Day6::day() {
 	for (int i = 0; i < time.size(); ++i) {
 
 		//O(1) method
-		int count = sqrt(pow(time[i], 2) - 4 * distance[i]);
-		if (distance[i] % 2 == 1) { count++; }
+		
+		double d = sqrt((time[i] * time[i]) - (4 * distance[i]));
+		int count = (floor((time[i] + d) / 2) - ceil((time[i] - d)/2)) + 1;
 		sum1 *= count;
+
+
+
+
 
 		//bruteforce method
 		//for (int timeheld = 0; timeheld < time[i]; timeheld++) {
@@ -95,8 +100,8 @@ int Day6::day() {
 	}
 
 	//trying the O(1) way I found. descriminant of a quadratic trinomial.
-	sum2 = sqrt(pow(time2, 2) - 4 * distance2);
-	if (distance2 % 2 == 1) { sum2++; } //if distance is odd, add one.
+	double d = sqrt((time2 * time2) - (4 * distance2));
+	sum2 = (floor((time2 + d) / 2) - ceil((time2 - d) / 2)) + 1;
 
 	/*
 	//surely we can just brute force it again Kappa

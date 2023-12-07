@@ -5,7 +5,7 @@ The main() is in AdventofCode2023Day1/AdventofCode2023.cpp
 
 ignore the 'Day1', all of the days are in this project.
 
-![alt text](https://github.com/FinalFlashLight/AdventofCode2023/blob/master/AdventofCode2023Day1/screenshots/ssday6.png)
+![alt text](https://github.com/FinalFlashLight/AdventofCode2023/blob/master/AdventofCode2023Day1/screenshots/ssday7.png)
 
 Day1 - Trebuchet?!
 
@@ -113,8 +113,38 @@ Day 6 - Wait For It
 
 		I just brute forced both part1 and part2, although I know there is an O(1) solution out there.
 
-	I changed from bruteforce to descriminant of a quadratic trinomial.
-		answer = sqrt(pow(time,2) - 4 * distance);
-		if(distance%2 == 1){ answer++ }
+	I changed from bruteforce to using the quadratic formula everyone else was using.
+	It now runs < 1ms instead of ~125ms.
+	I also implemented parsing from a file instead of hard coding the numbers in.
 
-		It now runs < 1ms instead of ~125ms.
+Day 7 - Camel Cards
+
+	Part 1
+		This one has a few parts to it. First is the obvious, parse the file.
+		We need to give each hand of cards a type based on the combinations of cards in the hand.
+
+		7 ranks of hands:
+
+		5 of a kind
+		4 of a kind
+		Full House, 3 of a kind and a pair
+		3 of a kind
+		2 pairs
+		1 pair				
+		All cards unique
+
+		Then we sort the hands by rank, and then by highest card in the hand from left to right.
+		It's important to know that we do NOT sort the individual cards in the hands themselves.
+
+		I had to write a customHandCompare function to handle this. 
+		Getting sort() to accept it was the worst part.
+		Turned out all I had to do was declare it a static function in the header.
+
+	Part 2
+		'J' is now a joker instead of jack. When choosing the type of the hand,
+		the joker can act as any card it wants to.
+		This lead to me making about 20 if statements all relating to the jokers.
+		Also while sorting, 'J' only counts for 1 point. Any other card will beat it.
+
+		Besides that tho the logic is basically the same from Part1.
+		We do have to make another vector of hands though to run Part1 and Part2 at the same time.
