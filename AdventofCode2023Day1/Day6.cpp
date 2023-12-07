@@ -116,7 +116,7 @@ int Day6::day() {
 	*/
 	//wait... that worked. BUT I know there is an O(1) approach out there.
 
-
+	std::lock_guard<std::mutex> guard(cout_mutex);
 	std::cout << "Day 6:\t" << sum1 << "\tand " << sum2 << std::endl;
 	return lines;
 }

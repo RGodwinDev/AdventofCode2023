@@ -80,6 +80,7 @@ int Day4::day() {
 		}
 	}
 
+	std::lock_guard<std::mutex> guard(cout_mutex);
 	std::cout << "Day 4:\t" << sum1 << "\tand " << sum2 << std::endl;
 	return lines;
 }

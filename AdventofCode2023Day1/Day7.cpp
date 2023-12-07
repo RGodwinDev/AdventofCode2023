@@ -73,8 +73,9 @@ int Day7::day() {
 		sum2 += (get<2>(hands2[i]) * (i + 1));
 	}
 
-
+	std::lock_guard<std::mutex> guard(cout_mutex);
 	std::cout << "Day 7:\t" << sum1 << "\tand " << sum2 << std::endl;
+
 	return lines;
 }
 
@@ -169,26 +170,23 @@ int Day7::getHandType2(std::vector<int>* hand) {
 	* for part1 change 'J' to 11 in the parsing.
 	* no jokers == none of these will do anything.
 	*/
-	if (type == 1) {
-		if (jokers == 1) { type = 2; }
-		if (jokers == 2) { type = 4; }
-		if (jokers == 3) { type = 6; }
+	if (type == 1) { //5 possible jokers
+		if (jokers <= 3) { type = jokers*2; }
 		if (jokers >= 4) { type = 7; }
 	}
-	else if (type == 2) {
-		if (jokers == 3) { type = 7; }
-		if (jokers == 2) { type = 6; }
-		if (jokers == 1) { type = 4; }
+	else if (type == 2) { //1 pair, 3 jokers possible
+		if (jokers >= 2) { type += 2+jokers; }
+		else if (jokers == 1) { type = 4; }
 	}
-	else if (type == 3) {
-		if (jokers == 1) { type = 5; }
+	else if (type == 3) { //two pair, 1 joker possible
+		if (jokers) { type = 5; }
 	}
-	else if (type == 4) {
-		if (jokers == 1) { type = 6; }
-		if (jokers == 2) { type = 7; }
+	else if (type == 4) { //three of a kind, 2 jokers possible
+		if (jokers) { type += jokers+1; }
 	}
-	else if (type == 6) {
-		if (jokers == 1) { type = 7; }
+	//type 5 = full house, no jokers possible, skip
+	else if (type == 6) { //four of a kind, only 1 joker possible
+		if (jokers) { type++; }
 	}
 
 	return type;
