@@ -5,7 +5,7 @@ The main() is in AdventofCode2023Day1/AdventofCode2023.cpp
 
 ignore the 'Day1', all of the days are in this project.
 
-![alt text](https://github.com/FinalFlashLight/AdventofCode2023/blob/master/AdventofCode2023Day1/screenshots/ssday7.png)
+![alt text](https://github.com/FinalFlashLight/AdventofCode2023/blob/master/AdventofCode2023Day1/screenshots/ssday8.png)
 
 Day1 - Trebuchet?!
 
