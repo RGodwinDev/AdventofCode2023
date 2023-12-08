@@ -219,6 +219,7 @@
     <Image Include="screenshots\ssday5.png" />
     <Image Include="screenshots\ssday6.png" />
     <Image Include="screenshots\ssday7.png" />
+    <Image Include="screenshots\ssday8.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

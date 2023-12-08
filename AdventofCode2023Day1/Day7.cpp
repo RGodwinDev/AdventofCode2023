@@ -144,66 +144,53 @@ int Day7::getHandType2(std::vector<int>* hand) {
 
 	int jokers = handFreq[1];
 
-	//five of a kind
+	//five of a kind, no possible jokers
 	if(handCount[4] == 1){ type = 7; }
 
-	//four of a kind
-	else if (handCount[3] == 1) { type = 6; } 
+	//four of a kind, 1 possible joker
+	else if (handCount[3] == 1) { type = 6 + jokers; } 
 
-	//Full house
+	//Full house, no possible jokers
 	else if (handCount[2] == 1 && handCount[1] == 1) { type = 5; }
 
-	//three of a kind
-	else if (handCount[2] == 1) { type = 4; }
+	//three of a kind, 2 possible jokers
+	else if (handCount[2] == 1) { 
+		type = 4;
+		if (jokers) { type += jokers + 1; }
+	}
 
-	//two pair
-	else if (handCount[1] == 2) { type = 3; }
+	//two pair, one possible joker -> upgrades to full house
+	else if (handCount[1] == 2) { type = 3 + (jokers*2); }
 
 	//one pair
-	else if (handCount[1] == 1) { type = 2; }
+	else if (handCount[1] == 1) { 
+		type = 2;
+		if (jokers >= 2) { type += 2 + jokers; } //2 jokers = 4 of a kind, 3 jokers = 5 of a kind
+		else if (jokers == 1) { type = 4; } //1 joker = 3 of a kind
+	}
 
 	//cards are all unique or all jokers
-	else { type = 1; }
-
-	/*
-	* everything after here is for part2
-	* for part1 change 'J' to 11 in the parsing.
-	* no jokers == none of these will do anything.
-	*/
-	if (type == 1) { //5 possible jokers
-		if (jokers <= 3) { type = jokers*2; }
-		if (jokers >= 4) { type = 7; }
+	else { 
+		type = 1;
+		if (jokers <= 3 && jokers > 0) { type = jokers * 2; } //1-3 jokers
+		else if (jokers >= 4) { type = 7; }  //4+ jokers = 5 of a kind
 	}
-	else if (type == 2) { //1 pair, 3 jokers possible
-		if (jokers >= 2) { type += 2+jokers; }
-		else if (jokers == 1) { type = 4; }
-	}
-	else if (type == 3) { //two pair, 1 joker possible
-		if (jokers) { type = 5; }
-	}
-	else if (type == 4) { //three of a kind, 2 jokers possible
-		if (jokers) { type += jokers+1; }
-	}
-	//type 5 = full house, no jokers possible, skip
-	else if (type == 6) { //four of a kind, only 1 joker possible
-		if (jokers) { type++; }
-	}
-
+	
 	return type;
 }
 
+
+
 bool Day7::customHandCompare(std::tuple<int, std::vector<int>, int>& handA, std::tuple<int, std::vector<int>, int>& handB) {
-	if (get<0>(handA) < get<0>(handB)) {
-		return true;
+
+	//if theyre the same type of hand
+	if (get<0>(handA) == get<0>(handB)) {
+		int i = 0;
+		//while card[i] in both hands match, go to next card
+		while (i < 4 && get<1>(handA)[i] == get<1>(handB)[i]) { i++; }
+		//compare card[i] of both hands
+		return get<1>(handA)[i] < get<1>(handB)[i];
 	}
-	else if (get<0>(handA) > get<0>(handB)) {
-		return false;
-	}
-	//hand types are the same, check the card values
-	int i = 0;
-	
-	while (i < 4 && get<1>(handA)[i] == get<1>(handB)[i] ) {
-		i++; 
-	}
-	return get<1>(handA)[i] < get<1>(handB)[i];
+	//not same type of hand
+	return get<0>(handA) < get<0>(handB);	
 }
