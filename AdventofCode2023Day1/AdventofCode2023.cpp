@@ -17,8 +17,8 @@ int main()
     days.push_back( new Day6() );
     days.push_back( new Day7() );
     days.push_back( new Day8() );
-    /*
     days.push_back( new Day9() );
+    /*
     days.push_back( new Day10() );
     days.push_back( new Day11() );
     days.push_back( new Day12() );

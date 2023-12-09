@@ -1,7 +1,8 @@
 #include "./headers/Day5b.h"
 
-//trying to redo day5, but this time put the filters in a binary search tree.
-//if filters overlap at all -> priority given to lower filter
+//trying to redo day5, but this time put the filters in a Red Black Binary search tree.
+//Part1 worked flawlessly :) very slightly faster on average than normal day5, but that might be a problem size issue.
+//would probably see bigger benefits on a larger dataset.
 
 int Day5b::day() {
 	std::string line;
@@ -88,8 +89,8 @@ int Day5b::day() {
 	* Part 1
 	*/
 	for (int i = 0; i < filters.size(); ++i) { //for each filter
-		for (int j = 0; j < seeds.size(); ++j) {
-			seeds[j] = filters[i].part1Filter(seeds[j]);
+		for (int j = 0; j < seeds.size(); ++j) { //for each seed
+			seeds[j] = filters[i].part1Filter(seeds[j]); //run the seed thru the filter
 		}
 	}
 
