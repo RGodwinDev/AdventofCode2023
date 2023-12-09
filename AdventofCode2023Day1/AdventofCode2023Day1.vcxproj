@@ -130,6 +130,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AdventofCode2023.cpp" />
+    <ClCompile Include="d5RBTree.cpp" />
+    <ClCompile Include="d5RBtreeNode.cpp" />
     <ClCompile Include="Day.cpp" />
     <ClCompile Include="Day1.cpp" />
     <ClCompile Include="Day10.cpp" />
@@ -152,6 +154,7 @@
     <ClCompile Include="Day3.cpp" />
     <ClCompile Include="Day4.cpp" />
     <ClCompile Include="Day5.cpp" />
+    <ClCompile Include="Day5b.cpp" />
     <ClCompile Include="Day6.cpp" />
     <ClCompile Include="Day7.cpp" />
     <ClCompile Include="Day8.cpp" />
@@ -186,6 +189,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\AdventofCode2023.h" />
+    <ClInclude Include="headers\d5RBTree.h" />
+    <ClInclude Include="headers\d5RBtreeNode.h" />
     <ClInclude Include="headers\Day.h" />
     <ClInclude Include="headers\Day1.h" />
     <ClInclude Include="headers\Day10.h" />
@@ -208,6 +213,7 @@
     <ClInclude Include="headers\Day3.h" />
     <ClInclude Include="headers\Day4.h" />
     <ClInclude Include="headers\Day5.h" />
+    <ClInclude Include="headers\Day5b.h" />
     <ClInclude Include="headers\Day6.h" />
     <ClInclude Include="headers\Day7.h" />
     <ClInclude Include="headers\Day8.h" />

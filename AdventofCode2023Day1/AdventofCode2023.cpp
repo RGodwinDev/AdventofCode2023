@@ -8,13 +8,14 @@ int main()
     concurrency::concurrent_vector<int> lines;
     concurrency::concurrent_vector<Day*> days;
 
-    days.push_back(new Day1());
-    days.push_back(new Day2());
-    days.push_back(new Day3());
-    days.push_back(new Day4());
-    days.push_back(new Day5());
-    days.push_back(new Day6());
-    days.push_back(new Day7());
+    days.push_back( new Day1() );
+    days.push_back( new Day2() );
+    days.push_back( new Day3() );
+    days.push_back( new Day4() );
+    days.push_back( new Day5() );
+    days.push_back( new Day5b() );
+    days.push_back( new Day6() );
+    days.push_back( new Day7() );
     days.push_back( new Day8() );
     /*
     days.push_back( new Day9() );

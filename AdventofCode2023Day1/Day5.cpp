@@ -12,7 +12,7 @@ int Day5::day() {
 	//seed -> soil -> fertilizer -> water -> light -> temp -> humidity -> location
 	std::vector<__int64> seeds; //part1 vec
 	std::vector<std::pair<__int64, __int64>> seedranges; //part2 vec
-	std::vector<std::vector<std::tuple<__int64, __int64, __int64>>> filters(7); //used in both p1 and p2
+	std::vector<std::vector<std::tuple<__int64, __int64, __int64>>> filters(1); //used in both p1 and p2
 
 
 	//get seeds
@@ -41,7 +41,12 @@ int Day5::day() {
 	while (getline(file, line)) {
 		lines++;
 		//blank line -> skip this line and next line.
-		if (line.size() == 0) { filterToFill++; getline(file, line); continue; }
+		if (line.size() == 0) { 
+			filters.push_back({}); //add a new empty vector to filters
+			filterToFill++; 
+			getline(file, line); 
+			continue; 
+		}
 		std::stringstream linestream(line);
 		std::string convert;
 		__int64 filterNumA = 0;
@@ -95,6 +100,7 @@ int Day5::day() {
 	* ranges that are right of filter get put back into seedranges to be processed
 	* ranges that dont touch a single filter go straight to newSeedRanges
 	*/
+
 	for (int i = 0; i < filters.size(); ++i) { //for each filter step
 		std::vector<std::pair<__int64, __int64>> newSeedRanges;
 		for (int j = 0; seedranges.size() > j; j++) { //check each seedrange
@@ -194,6 +200,8 @@ int Day5::day() {
 		seedranges = newSeedRanges;
 		//dont need to check for dupes anymore :)
 	}
+	
+
 	__int64 lowest1 = INT64_MAX, lowest2 = INT64_MAX;
 	
 	for (__int64 seed : seeds) { //faster to just search for lowest than sorting it.
@@ -203,8 +211,8 @@ int Day5::day() {
 
 
 	std::lock_guard<std::mutex> guard(cout_mutex);
-	std::cout << "Day 5:\t" << lowest1 << "\tand " << lowest2 << std::endl;
-	//Day::cout_mutex.unlock();
+	std::cout << "Day 5:\t" << lowest1 << "\tand " << lowest2 << "\t\tnote: day5 uses a vector<vector<tuple>> for the filters" << std::endl;
+
 
 	return lines;
 }

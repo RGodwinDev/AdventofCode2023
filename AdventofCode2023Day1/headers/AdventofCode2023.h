@@ -6,6 +6,7 @@
 #include "./headers/Day3.h"
 #include "./headers/Day4.h"
 #include "./headers/Day5.h"
+#include "./headers/Day5b.h"
 #include "./headers/Day6.h"
 #include "./headers/Day7.h"
 #include "./headers/Day8.h"

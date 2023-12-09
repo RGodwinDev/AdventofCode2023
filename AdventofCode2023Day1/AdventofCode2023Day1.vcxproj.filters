@@ -19,6 +19,9 @@
     <Filter Include="Source Files\Days">
       <UniqueIdentifier>{f3bcc336-8add-4f9e-aba3-5ece17f4ec34}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\RBTree">
+      <UniqueIdentifier>{24c2a7bd-ed54-408e-be59-76344f79864e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AdventofCode2023.cpp">
@@ -101,6 +104,15 @@
     </ClCompile>
     <ClCompile Include="Day25.cpp">
       <Filter>Source Files\Days</Filter>
+    </ClCompile>
+    <ClCompile Include="Day5b.cpp">
+      <Filter>Source Files\Days</Filter>
+    </ClCompile>
+    <ClCompile Include="d5RBtreeNode.cpp">
+      <Filter>Source Files\RBTree</Filter>
+    </ClCompile>
+    <ClCompile Include="d5RBTree.cpp">
+      <Filter>Source Files\RBTree</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -260,6 +272,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="headers\AdventofCode2023.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\Day5b.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\d5RBtreeNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\d5RBTree.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
