@@ -66,7 +66,7 @@ int Day5b::day() {
 		//insert into the RBTree
 		filters[filterToFill].insertNode(new d5RBtreeNode(nullptr, true, nullptr, nullptr, std::make_tuple(filterNumA, filterNumB, filterNumC)));
 	}
-
+	file.close();
 	/*
 	* END OF PARSING
 	*/
@@ -79,9 +79,9 @@ int Day5b::day() {
 
 
 	//only bug i can forsee atm, filters overlapping on each layer.
-	//possible fix, when entering filters, into the tree, check sizes and adjust each node thats overlapping as we go.
+	//possible fix, when entering filters into the tree, check sizes and adjust each node thats overlapping as we go.
 	//left node gets priority over right node.
-	//if left overlaps by 5, right adjusts destination, source and range size to 5 less.
+	//ex) if left overlaps by 5, right adjusts destination, source, and range size to 5 less.
 	//that's only IF they overlap, idk if they do
 
 
@@ -98,14 +98,11 @@ int Day5b::day() {
 
 
 
-
-
-	__int64 lowest1 = LLONG_MAX, lowest2 = LLONG_MAX;
-	for (__int64 seed : seeds) {
-		lowest1 = std::min(seed, lowest1);
-	}
-
+	//min_element makes an iterator to the minimum element
+	//we can get the element by just pointing to it
+	std::vector<long long>::iterator lowest1 = std::min_element(seeds.begin(), seeds.end());
+	
 	std::lock_guard<std::mutex> guard(cout_mutex);
-	std::cout << "Day 5b:\t" << lowest1 << "\tand " << lowest2 << "\t\tnote: day5b uses a vector<redblacktree> for the filters" << std::endl;
+	std::cout << "Day 5b:\t" << *lowest1 << "\t\tnote: day5b uses a vector<redblacktree> for the filters. Only part1 is done so far." << std::endl;
 	return lines;
 }

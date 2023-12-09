@@ -6,7 +6,10 @@
 #include <vector>
 #include <string>
 
-//Gear Ratios
+/*
+Gear Ratios
+https://adventofcode.com/2023/day/3
+*/
 class Day3 : public Day
 {
 private:

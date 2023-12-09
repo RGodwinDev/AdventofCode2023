@@ -1,4 +1,5 @@
 #include "./headers/Day7.h"
+#include <execution>
 
 
 int Day7::day() {
@@ -55,14 +56,16 @@ int Day7::day() {
 		hands1.push_back(make_tuple(type1, hand1, value));
 		hands2.push_back(make_tuple(type2, hand2, value));
 	}
-
+	file.close();
 	/*
 	* FINISHED PARSING WOO
 	*/
+
 	//DO NOT SORT THE INDIVIDUAL HANDS, IT MATTERS
 	sort(hands1.begin(), hands1.end(), &Day7::customHandCompare);
 	sort(hands2.begin(), hands2.end(), &Day7::customHandCompare);
 	
+
 	for (int i = 0; i < hands1.size(); ++i) {
 		//value * position+1
 		sum1 += (get<2>(hands1[i]) * (i + 1));

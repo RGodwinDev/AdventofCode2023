@@ -6,7 +6,11 @@
 #include <unordered_map>
 #include <numeric>
 
-//Haunted Wasteland
+/*
+Haunted Wasteland
+https://adventofcode.com/2023/day/8
+
+*/
 class Day8 : public Day
 {
 private:

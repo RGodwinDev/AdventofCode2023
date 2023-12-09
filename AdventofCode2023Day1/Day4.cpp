@@ -78,7 +78,9 @@ int Day4::day() {
 				cardcopies[card + wins] += cardcopies[card - 1];
 			}
 		}
-	}
+	} 
+	//I should seperate out parsing and the logic
+	file.close();
 
 	std::lock_guard<std::mutex> guard(cout_mutex);
 	std::cout << "Day 4:\t" << sum1 << "\tand " << sum2 << std::endl;

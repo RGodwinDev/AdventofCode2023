@@ -11,6 +11,7 @@ int Day3::day() {
 		lines++;
 		rows.push_back(line);
 	}
+	file.close();
 
 	//store positions of gears '*' as a pair, and ints adjacent to the gears in the vector.
 	std::map<std::pair<int, int>, std::vector<int>> gears;

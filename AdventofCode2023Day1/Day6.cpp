@@ -33,6 +33,7 @@ int Day6::day() {
 
 		}
 	}
+	file.close();
 
 	/*
 	* PARSING FINISHED

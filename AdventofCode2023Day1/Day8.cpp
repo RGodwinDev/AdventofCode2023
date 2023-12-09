@@ -29,6 +29,7 @@ int Day8::day() {
 			endInA.push_back(line.substr(0, 3));
 		}
 	}
+	file.close();
 	/*
 	* END PARSING
 	*/

@@ -4,7 +4,10 @@
 #include<string>
 #include<iostream>
 
-//Trebuchet?!
+/*
+Trebuchet?!
+https://adventofcode.com/2023/day/1
+*/
 class Day1 : public Day
 {
 private:

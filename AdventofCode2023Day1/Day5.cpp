@@ -61,15 +61,15 @@ int Day5::day() {
 		}
 		filters[filterToFill].push_back(std::make_tuple(filterNumA, filterNumB, filterNumC));
 	}
+	file.close();
+	/*
+	* END OF PARSING
+	*/
+
 	//sort each of the filter steps
 	for (int i = 0; i < filters.size(); ++i) {
 		sort(filters[i].begin(), filters[i].end());
 	}
-	
-	/*
-	* END OF PARSING
-	*/
-	
 	
 	/*
 	* PART 1 works flawlessly finishes in 5ms :)

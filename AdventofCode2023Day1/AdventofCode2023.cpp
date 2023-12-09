@@ -44,9 +44,8 @@ int main()
 
     auto totalstart = std::chrono::high_resolution_clock::now();
 
-    //SECTION I'M TRYING TO PARALLEL PROCESS
-    //loop thru the days and call their respective day().
-    //works perfectly when i take out the execution::par policy, just not parallel lol.
+
+    //running the days in parallel makes it slower T-T
     std::for_each(/*std::execution::par, */ days.begin(), days.end(), [&](Day* day) {  //[] is where the lambda function captures, by doing & it captures all local variables by reference.
         auto start = std::chrono::high_resolution_clock::now();
 

@@ -5,7 +5,10 @@
 #include<iostream>
 #include<sstream>
 
-//Cube Conundrum
+/*
+Cube Conundrum
+https://adventofcode.com/2023/day/2
+*/
 class Day2 : public Day
 {
 private:

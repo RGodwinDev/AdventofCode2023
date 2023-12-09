@@ -6,8 +6,10 @@
 #include <vector>
 #include <map>
 #include <algorithm>
-
-//Camel Cards
+/*
+Camel Cards
+https://adventofcode.com/2023/day/7
+*/
 class Day7 : public Day
 {
 private:

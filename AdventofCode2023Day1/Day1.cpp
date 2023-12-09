@@ -93,6 +93,8 @@ int Day1::day() {
         sum1 += tempsum1;
         sum2 += tempsum2;
     }
+    //should seperate the logic from the parsing
+    file.close();
 
 
     std::lock_guard<std::mutex> guard(cout_mutex);

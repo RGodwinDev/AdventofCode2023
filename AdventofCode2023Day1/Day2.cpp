@@ -47,6 +47,8 @@ int Day2::day() {
 		//sum of powerset of all games.
 		sum += reds * greens * blues;
 	}
+	//should seperate the parsing from the logic
+	file.close();
 
 	std::lock_guard<std::mutex> guard(cout_mutex);
 	std::cout << "Day 2:\t" << ids << " \tand " << sum << std::endl;

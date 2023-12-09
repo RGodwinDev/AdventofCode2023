@@ -7,7 +7,10 @@
 #include <fstream>
 #include <string>
 
-//Scratchcards
+/*
+Scratchcards
+https://adventofcode.com/2023/day/4
+*/
 class Day4 : public Day
 {
 private:

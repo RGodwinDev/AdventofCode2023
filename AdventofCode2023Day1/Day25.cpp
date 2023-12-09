@@ -4,7 +4,10 @@
 #include "./headers/Day25.h"
 
 
+/*
 
+https://adventofcode.com/2023/day/25
+*/
 int Day25::day() {
 	std::string line;
 	std::fstream file("./inputs/day25input.txt");
