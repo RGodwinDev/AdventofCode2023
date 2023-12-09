@@ -7,7 +7,7 @@ int main()
     std::cout << "Advent of code 2023 :)" << std::endl;
     concurrency::concurrent_vector<int> lines;
     concurrency::concurrent_vector<Day*> days;
-
+    
     days.push_back( new Day1() );
     days.push_back( new Day2() );
     days.push_back( new Day3() );
@@ -17,7 +17,8 @@ int main()
     days.push_back( new Day6() );
     days.push_back( new Day7() );
     days.push_back( new Day8() );
-    days.push_back( new Day9() );
+    days.push_back(new Day9());
+    
     /*
     days.push_back( new Day10() );
     days.push_back( new Day11() );
@@ -44,7 +45,7 @@ int main()
 
     auto totalstart = std::chrono::high_resolution_clock::now();
 
-
+        
     //running the days in parallel makes it slower T-T
     std::for_each(/*std::execution::par, */ days.begin(), days.end(), [&](Day* day) {  //[] is where the lambda function captures, by doing & it captures all local variables by reference.
         auto start = std::chrono::high_resolution_clock::now();

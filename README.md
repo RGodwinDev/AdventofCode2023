@@ -5,7 +5,7 @@ The main() is in AdventofCode2023Day1/AdventofCode2023.cpp
 
 ignore the 'Day1', all of the days are in this project.
 
-![alt text](https://github.com/FinalFlashLight/AdventofCode2023/blob/master/AdventofCode2023Day1/screenshots/ssday8.png)
+![alt text](https://github.com/FinalFlashLight/AdventofCode2023/blob/master/AdventofCode2023Day1/screenshots/ssday9.png)
 
 Day1 - Trebuchet?!
 
@@ -95,6 +95,24 @@ Day5 - If You Give A Seed A Fertilizer
 		For part2 it would probably be significantly more complicated
 		because we're dealing with ranges instead of single numbers. 
 
+Day 5b - If you Give A Seed A Fertilizer (RBTree edition)
+
+	Part 1b
+		I've written a red black tree to handle the filters.
+		But only the necessary parts for part 1 to work.
+		Now when the seeds get filtered, it's just a binary search instead of linear searching the filters.
+		I had a bug for a good hour where a grandparent node mysteriously didn't existing when it should have.
+		In the d5RBtreeNode::setChild method, I had somehow mixed up the left/right and was setting the wrong child.
+
+	Part 2b has yet to be implemented
+		Things I would need to do: 
+		find out if filters overlap at all, if they do:
+			update the RBTree.insert to adjust filters based on overlapping filters
+			finish the RBTree remove functions, we really only have insert and balancing.
+		write a new RBTree.part2Filter() that handles the seed ranges.
+		seed range merging after all the ranges ran thru a filter.
+
+
 Day 6 - Wait For It
 	
 	significantly easier than yesterday.
@@ -114,7 +132,7 @@ Day 6 - Wait For It
 		I just brute forced both part1 and part2, although I know there is an O(1) solution out there.
 
 	I changed from bruteforce to using the quadratic formula everyone else was using.
-	It now runs < 1ms instead of ~125ms.
+	It now runs about 1ms instead of ~125ms.
 	I also implemented parsing from a file instead of hard coding the numbers in.
 
 Day 7 - Camel Cards
@@ -148,3 +166,7 @@ Day 7 - Camel Cards
 
 		Besides that tho the logic is basically the same from Part1.
 		We do have to make another vector of hands though to run Part1 and Part2 at the same time.
+
+Day 8 - Haunted Wasteland
+
+Day 9 - Mirage Maintenance
