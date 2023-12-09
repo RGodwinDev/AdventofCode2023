@@ -170,3 +170,15 @@ Day 7 - Camel Cards
 Day 8 - Haunted Wasteland
 
 Day 9 - Mirage Maintenance
+
+	Part 1
+		We have several sequences of numbers, 
+		and want to know the next number in each of the sequences.
+
+		This problem has just a couple steps.
+		Generate the differences and predict the next number.
+		Answer is the sum of the predicted 1st next numbers from all the sequences.
+
+	Part 2
+		While looking forward is nice, we want to predict what has already happened!
+		Most of the logic is already done in part 1, we can just use it
