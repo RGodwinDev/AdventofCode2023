@@ -102,6 +102,10 @@ int Day10::part1Traverse(std::pair<int, int> startPos,
 	if (curPos.first == -1) { return 0; } //no pipes connected to animals start position
 
 
+
+	/*
+	* MAIN TRAVERSAL LOOP
+	*/
 	std::pair<int,int> prev = startPos;
 
 	int stepsCount = 0;
@@ -171,12 +175,17 @@ int Day10::part1Traverse(std::pair<int, int> startPos,
 			}
 		}
 	}
+	/*
+	* end of Traversal
+	*/
+
 	if (stepsCount % 2 == 1) {
 		stepsCount += 1;
 	}
 	
 	return stepsCount/2;
 }
+
 
 int Day10::part2Traverse(std::vector<std::string>* pipeMap, 
 	std::vector<std::pair<int, int>>* pipePositions, 
@@ -241,11 +250,13 @@ int Day10::part2Traverse(std::vector<std::string>* pipeMap,
 	}
 
 
+	/*
+	* MAIN TRAVERSAL
+	*/
 	//loop thru the rest of the pipe, only pipe forms we care about {-, J, L, S}
 	//and ONLY if they are moving west.
 	int curPos = (posInPipe + 1) % pipePositions->size();
-
-	while (curPos != posInPipe) { //traverse the whole pipe :)
+	while (curPos != posInPipe) { //traverse the whole rest of the pipe :)
 
 		//if - or L, if prev = east of cur, we moving west
 		if (pipeMap->at(pipePositions->at(curPos).first)
@@ -256,49 +267,49 @@ int Day10::part2Traverse(std::vector<std::string>* pipeMap,
 			//get prev
 			int prev = curPos - 1;
 			if (prev == -1) { prev = pipePositions->size() - 1; }
+
 			//check that prev was east of curPos
 			if (pipePositions->at(prev).second - 1 == 
 				pipePositions->at(curPos).second) {
+
 				//we are moving west
-				int count = 0;
 				for (int i = pipePositions->at(curPos).first+1; 
 					i < pipeMap->size(); i++) {
 					if (pipeMap->at(i)[pipePositions->at(curPos).second] != '.') {
+
 						//binary search pipe possible pipes, if -1 its not a piece of the pipe.
 						int a = pairBinarySearch(sortedPipePos,
 							std::make_pair(i, pipePositions->at(curPos).second));
-						if (a == -1) { count++; }
+
+						if (a == -1) { inside++; }
 						else { break; } //piece of pipe found
 					}
-					else { count++; } //if it's a '.', count it.
+					else { inside++; } //if it's a '.', count it.
 				}
-				inside += count;
 			}
 		}
+		//If J, if prev = north of cur, we moving west
 		if (pipeMap->at(pipePositions->at(curPos).first)
 			[pipePositions->at(curPos).second] == 'J') {
+
 			//check that previousPos was north of curPos
 			int prev = curPos - 1;
 			if (prev == -1) { prev = pipePositions->size() - 1; }
 
 			if (pipePositions->at(prev).first + 1 ==
 				pipePositions->at(curPos).first) {
+
 				//we are moving west
-				int count = 0;
 				for (int i = pipePositions->at(curPos).first + 1;
 					i < pipeMap->size(); i++) {
 					if (pipeMap->at(i)[pipePositions->at(curPos).second] != '.') {
 						int a = pairBinarySearch(sortedPipePos,
 							std::make_pair(i, pipePositions->at(curPos).second));
-						if (a == -1) { count++; }
+						if (a == -1) { inside++; }
 						else { break; } //piece of pipe found
 					}
-					else { count++; }
+					else { inside++; }
 				}
-				inside += count;
-				//west moving - can NOT hit south edge 
-				//because it's a closed loop
-				//it's just not possible
 			}
 		}
 		
@@ -312,19 +323,18 @@ int Day10::part2Traverse(std::vector<std::string>* pipeMap,
 
 			if (pipePositions->at(prev).second - 1 ==
 				pipePositions->at(curPos).second) {
+
 				//we are moving west :)
-				int count = 0;
 				for (int i = pipePositions->at(curPos).first+1;
 					i < pipeMap->size(); i++) {
 					if (pipeMap->at(i)[pipePositions->at(curPos).second] != '.') {
 						int a = pairBinarySearch(sortedPipePos,
 							std::make_pair(i, pipePositions->at(curPos).second));
-						if (a == -1) { count++; }
+						if (a == -1) { inside++; }
 						else { break; } //piece of pipe found
 					}
-					else { count++; }
+					else { inside++; }
 				}
-				inside += count;
 				//west moving S can't hit south edge of map 
 				//without running into another pipe
 			}
