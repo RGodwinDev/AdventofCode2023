@@ -15,7 +15,7 @@ int Day5b::day() {
 	*/
 	//seed -> soil -> fertilizer -> water -> light -> temp -> humidity -> location
 	std::vector<__int64> seeds; //part1 vec
-	std::vector<std::pair<__int64, __int64>> seedranges; //part2 vec
+	std::vector<std::pair<__int64, __int64>> seedRanges; //part2 vec
 	std::vector<d5RBTree> filters(1); //used in both p1 and p2
 
 
@@ -28,13 +28,13 @@ int Day5b::day() {
 		if (seedword.size() > 0) {
 			seeds.push_back(_strtoui64(&seedword[0], NULL, 10));
 			if (oddseed % 2 == 1) {
-				seedranges.push_back(std::make_pair(seeds[oddseed - 1], seeds[oddseed]));
+				seedRanges.push_back(std::make_pair(seeds[oddseed - 1], seeds[oddseed]));
 			}
 			oddseed++;
 		}
 	}
 	sort(seeds.begin(), seeds.end());
-	sort(seedranges.begin(), seedranges.end());
+	sort(seedRanges.begin(), seedRanges.end());
 
 	int filterToFill = 0;
 	getline(file, line); // skip the first blank line

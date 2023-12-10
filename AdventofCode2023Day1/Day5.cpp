@@ -62,6 +62,7 @@ int Day5::day() {
 		filters[filterToFill].push_back(std::make_tuple(filterNumA, filterNumB, filterNumC));
 	}
 	file.close();
+
 	/*
 	* END OF PARSING
 	*/
@@ -211,7 +212,7 @@ int Day5::day() {
 
 
 	std::lock_guard<std::mutex> guard(cout_mutex);
-	std::cout << "Day 5:\t" << lowest1 << "\tand " << lowest2 << "\t\tnote: day5 uses a vector<vector<tuple>> for the filters and a linear search" << std::endl;
+	std::cout << "Day 5:\t" << lowest1 << "\tand " << lowest2 << "\tnote: day5 uses a vector<vector<tuple>> for the filters and a linear search" << std::endl;
 
 
 	return lines;

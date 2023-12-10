@@ -18,27 +18,28 @@ private:
 	void rotateRight(d5RBtreeNode* node);
 
 	//prepares the tree to remove the node
-	bool prepareForRemoval(d5RBtreeNode* node);
+	void prepareForRemoval(d5RBtreeNode* node);
 
-	//called from remove
-	void removeNode(d5RBtreeNode* node);
+	//called from removeNode
+	void BSTRemove(d5RBtreeNode* node);
+
+	//called from BSTRemove only
+	void rightSuccessorRemove(d5RBtreeNode* rightSuccessor);
 
 	//called from insertNode
 	void customTupleInsert(d5RBtreeNode* newNode);
 
-	//called from customTupleRemove
-	void customTupleRemoveNode(d5RBtreeNode* node);
 
 	/*
 	* tryCases are helpers for prepareForRemoval()
 	*/
 
-	static bool tryCase1(d5RBtreeNode* node);
-	static bool tryCase2(d5RBtreeNode* node, d5RBtreeNode* sibling);
-	static bool tryCase3(d5RBtreeNode* node, d5RBtreeNode* sibling);
-	static bool tryCase4(d5RBtreeNode* node, d5RBtreeNode* sibling);
-	static bool tryCase5(d5RBtreeNode* node, d5RBtreeNode* sibling);
-	static bool tryCase6(d5RBtreeNode* node, d5RBtreeNode* sibling);
+	bool tryCase1(d5RBtreeNode* node);
+	bool tryCase2(d5RBtreeNode* node, d5RBtreeNode* sibling);
+	bool tryCase3(d5RBtreeNode* node, d5RBtreeNode* sibling);
+	bool tryCase4(d5RBtreeNode* node, d5RBtreeNode* sibling);
+	bool tryCase5(d5RBtreeNode* node, d5RBtreeNode* sibling);
+	bool tryCase6(d5RBtreeNode* node, d5RBtreeNode* sibling);
 
 	
 
@@ -54,11 +55,6 @@ public:
 	//insert a new node into the tree
 	void insertNode(d5RBtreeNode* newNode);
 
-	//removes the node with the matching tuple
-	//standard bstremove, but for the tuple
-	void customTupleRemove(std::tuple<__int64, __int64, __int64> key);
-
-
 	//true if the node is null or black
 	bool isNullOrBlack(d5RBtreeNode* node);
 
@@ -67,6 +63,9 @@ public:
 
 	//another remove
 	bool remove(std::tuple<__int64, __int64, __int64> key);
+
+	//called from remove
+	void removeNode(d5RBtreeNode* node);
 
 	//searches the tree for the tuple
 	d5RBtreeNode* search(std::tuple<__int64, __int64, __int64> key);

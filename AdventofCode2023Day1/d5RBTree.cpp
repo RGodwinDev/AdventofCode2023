@@ -57,13 +57,6 @@ void d5RBTree::customTupleInsert(d5RBtreeNode* node) {
 }
 
 
-//i dont think we need a custom remove
-//once node is found, its just a simple bst remove
-void d5RBTree::customTupleRemove(std::tuple<__int64, __int64, __int64> key) {
-
-}
-
-
 //true if the node is null or black
 bool d5RBTree::isNullOrBlack(d5RBtreeNode* node) {
 	if (node) { return node->isBlack(); }
@@ -76,10 +69,8 @@ bool d5RBTree::isNotNullAndRed(d5RBtreeNode* node) {
 	return false;
 }
 
-//another remove
-bool d5RBTree::remove(std::tuple<__int64, __int64, __int64> key) {
-	return false;
-}
+
+
 
 //searches the tree for the tuple
 d5RBtreeNode* d5RBTree::search(std::tuple<__int64, __int64, __int64> key) {
@@ -176,30 +167,175 @@ void d5RBTree::rotateRight(d5RBtreeNode* node) {
 	node->setChild("left", leftRightChild);
 }
 
+
+
+
+//removes a node with the key
+bool d5RBTree::remove(std::tuple<__int64, __int64, __int64> key) {
+	d5RBtreeNode* node = this->search(key);
+	if (node) {
+		this->removeNode(node);
+		return true;
+	}
+	return false; //no node got removed
+}
+
+//do not call this with a nullptr
+void d5RBTree::removeNode(d5RBtreeNode* node) {
+	//if the node has 2 children 
+	//copy the nodes predecessor to a temp value
+	//recursively remove the predecessor from the tree
+	//replace the nodes key with the temp value
+	//return
+	if (node->left != nullptr && node->right != nullptr) {
+		d5RBtreeNode* predNode = node->getPredecessor();
+		std::tuple<__int64, __int64, __int64> predKey = predNode->vals;
+		this->removeNode(predNode);
+		node->vals = predKey;
+		return;
+	}
+
+	//black node, prepare the tree for removing the node
+	if (node->color == "black") {
+		this->prepareForRemoval(node);
+	}
+	
+	//remove the node
+	this->BSTRemove(node);
+}
+
+void d5RBTree::BSTRemove(d5RBtreeNode* node) {
+	if (node) { //node exists
+		if (node->left == nullptr && node->right == nullptr) { //it's a leaf
+			if (node->parent == nullptr) { this->root = nullptr; } //it's also root, tree is donezo
+			else if (node->parent->left == node) { node->parent->left = nullptr; } //node is parents left
+			else { node->parent->right = nullptr; } //node is parents right
+		}
+		else if (node->right == nullptr) { //node has left child only
+			if (node->parent == nullptr) { this->root = node->right; } //node is root, root = node->right
+			else if (node->parent->left == node) { node->parent->left = node->left; } //node is left child
+			else { node->parent->right = node->left; } //node is right child
+		}
+		else if (node->left == nullptr) { //node has right child only
+			if (node->parent == nullptr) { this->root = node->left; } //node is root, root = node->left
+			else if (node->parent->left == node) { node->parent->left = node->right; } //node is left child
+			else { node->parent->right = node->right; } //node is right child
+		}
+		else { //node has 2 children
+			d5RBtreeNode* successor = node->right;
+			while (successor->left) { successor = successor->left; }
+			node->vals = successor->vals;
+			this->BSTRemove(successor);
+		}
+	}
+}
+
+
+void d5RBTree::rightSuccessorRemove(d5RBtreeNode* rightSuccessor) {
+	if (rightSuccessor) { //node exists
+		if (rightSuccessor->parent->left == rightSuccessor) {
+			rightSuccessor->parent->left = rightSuccessor->right;
+		}
+		else {
+			rightSuccessor->parent->right = rightSuccessor->right;
+		}
+	}
+}
+
+
 /*
 * BALANCING FOR A REMOVAL
 */
-bool d5RBTree::prepareForRemoval(d5RBtreeNode* node) {
-	return false;
+void d5RBTree::prepareForRemoval(d5RBtreeNode* node) {
+	if (this->tryCase1(node)) { return; } //node is red or the root, return
+	//we know node is black
+	d5RBtreeNode* sibling = node->getSibling();
+	if(this->tryCase2(node, sibling)){ //sibling was red
+		//we rotated in trycase2, re get sibling
+		sibling = node->getSibling();
+	}
+	if (this->tryCase3(node, sibling)) { return; }
+	if (this->tryCase4(node, sibling)) { return; }
+	if (this->tryCase5(node, sibling)) {
+		sibling = node->getSibling();
+	}
+	if (this->tryCase6(node, sibling)) {
+		sibling = node->getSibling();
+	}
+	sibling->color = node->parent->color;
+	node->parent->color = "black";
+	if (node == node->parent->left) {
+		sibling->right->color = "black";
+		this->rotateLeft(node->parent);
+	}
+	else {
+		sibling->left->color = "black";
+		this->rotateRight(node->parent);
+	}
 }
 
-void d5RBTree::removeNode(d5RBtreeNode* node) {
-
-}
-
-void d5RBTree::customTupleRemoveNode(d5RBtreeNode* node) {
-
-}
 
 /*
 * ALL TRYCASE ARE HELPERS FOR prepareForRemoval
 */
-bool d5RBTree::tryCase1(d5RBtreeNode* node) { return false; }
-bool d5RBTree::tryCase2(d5RBtreeNode* node, d5RBtreeNode* sibling) { return false; }
-bool d5RBTree::tryCase3(d5RBtreeNode* node, d5RBtreeNode* sibling) { return false; }
-bool d5RBTree::tryCase4(d5RBtreeNode* node, d5RBtreeNode* sibling) { return false; }
-bool d5RBTree::tryCase5(d5RBtreeNode* node, d5RBtreeNode* sibling) { return false; }
-bool d5RBTree::tryCase6(d5RBtreeNode* node, d5RBtreeNode* sibling) { return false; }
+bool d5RBTree::tryCase1(d5RBtreeNode* node) { return node->color == "red" || node->parent == nullptr; }
+bool d5RBTree::tryCase2(d5RBtreeNode* node, d5RBtreeNode* sibling) { 
+	if (sibling->color == "red") {
+		//if sibling is red,
+		//color parent red
+		//color sibling black
+		node->parent->color = "red";
+		sibling->color = "black";
+
+		//rotate at the parent
+		if (node == node->parent->left) {
+			this->rotateLeft(node->parent);
+		}
+		else { 
+			this->rotateRight(node->parent);
+		}
+		return true;
+	}
+	return false; //sibling was black
+}
+bool d5RBTree::tryCase3(d5RBtreeNode* node, d5RBtreeNode* sibling) { 
+	if (node->parent->color == "black" && sibling->areBothChildrenBlack()) {
+		sibling->color = "red";
+		this->prepareForRemoval(node->parent);
+		return true;
+	}
+	return false; //parent was red or one of siblings children was red
+}
+bool d5RBTree::tryCase4(d5RBtreeNode* node, d5RBtreeNode* sibling) { 
+	if (node->parent->color == "red" && sibling->areBothChildrenBlack()) {
+		node->parent->color = "black";
+		sibling->color = "red";
+		return true;
+	}
+	return false;
+}
+bool d5RBTree::tryCase5(d5RBtreeNode* node, d5RBtreeNode* sibling) { 
+	if (this->isNotNullAndRed(sibling->left) && 
+		this->isNullOrBlack(sibling->right) && 
+		node == node->parent->left) {
+		sibling->color = "red";
+		sibling->left->color = "black";
+		this->rotateRight(sibling);
+		return true;
+	}
+	return false;
+}
+bool d5RBTree::tryCase6(d5RBtreeNode* node, d5RBtreeNode* sibling) { 
+	if (this->isNullOrBlack(sibling->left) &&
+		this->isNotNullAndRed(sibling->right) &&
+		node == node->parent->right) {
+		sibling->color = "red";
+		sibling->right->color = "black";
+		this->rotateLeft(sibling);
+		return true;
+	}
+	return false;
+}
 
 
 
@@ -227,8 +363,9 @@ __int64 d5RBTree::part1Filter(__int64 key) {
 	return key;
 }
 
+//called by part1Filter
 d5RBtreeNode* d5RBTree::part1Search(__int64 key) {
-	//ez binary search on get<2>(cur->vals)
+	//ez binary search on get<2>(cur->vals) (the source value)
 	d5RBtreeNode* cur = this->root;
 
 	while (cur != nullptr) {

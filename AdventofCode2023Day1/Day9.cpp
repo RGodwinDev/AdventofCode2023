@@ -83,6 +83,6 @@ int Day9::day() {
 	long sum1 = std::reduce(std::execution::par, predictedValues.begin(), predictedValues.end(), 0);
 	long sum2 = std::reduce(std::execution::par, backPredictionValues.begin(), backPredictionValues.end(), 0);
 
-	//std::cout << "Day 9:\t" << sum1 << "\tand " << sum2 << std::endl;
+	std::cout << "Day 9:\t" << sum1 << "\tand " << sum2 << std::endl;
 	return lines;
 }
