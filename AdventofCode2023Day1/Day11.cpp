@@ -6,13 +6,15 @@ int Day11::day() {
 	int lines = 0;
 	long long sum1 = 0, sum2 = 0;
 
+	//read in file
 	std::vector<std::string> cosmos;
 	while (getline(file, line)) {
 		lines++;
 		cosmos.push_back(line);
 	}
-	file.close();
+	file.close(); 
 	//file read in done
+	
 
 
 	/*
@@ -20,17 +22,19 @@ int Day11::day() {
 	*/
 	std::vector<std::pair<int, int>> galaxyLocations; 
 
-	std::vector<int> emptyRow; //vector because we dont go over a row more than once.
-	std::set<int> notEmptyCol; //set because we only need to know it once, and are going over all the columns on each pass.
+	std::vector<int> emptyRow;	//vector because we dont go over a row more than once.
+	std::set<int> notEmptyCol;	//set because we only need to know it once, and are going over all the columns on each pass.
 
 	//O(n*m), size of the cosmos
 	for (int i = 0; i < cosmos.size(); i++) {
 		int galCount = 0;
-		for (int j = 0; j < cosmos[i].size(); j++) { //work rows first, then columns
+		for (int j = 0; j < cosmos[i].size(); j++) {	//work rows first, then columns
 			if (cosmos[i][j] == '#') {
+				
+				galaxyLocations.push_back(std::make_pair(i, j));	//i is row, j is column
+				notEmptyCol.insert(j);								//column j is NOT empty
 				galCount++;
-				galaxyLocations.push_back(std::make_pair(i, j)); //i is row, j is column
-				notEmptyCol.insert(j); //column j is NOT empty
+
 			}
 		}
 		if (galCount == 0) { emptyRow.push_back(i); }//row was empty
@@ -66,10 +70,7 @@ int Day11::day() {
 		std::pair<int, int> a = galaxyLocations[i];
 
 		for (int j = i+1; j < galaxyLocations.size(); ++j) {
-
-			
 			std::pair<int, int> b = galaxyLocations[j];
-
 			std::pair<int, int> y = emptySearch(a, b, &emptyCol, &emptyRow);
 
 			sum1 += abs(a.first - b.first) + abs(a.second - b.second) + y.first + y.second;
@@ -89,7 +90,8 @@ int Day11::day() {
 std::pair<int, int> Day11::emptySearch(std::pair<int, int> a, std::pair<int, int> b, std::vector<int>* emptyCol, std::vector<int>* emptyRow) {
 	
 	//enforce that a is less than b
-	//if (a.first > b.first) {
+	
+	//if (a.first > b.first) {		//not needed
 	//	int c = a.first;
 	//	a.first = b.first;
 	//	b.first = c;
@@ -120,12 +122,8 @@ int Day11::binarySearch(int a, std::vector<int>* empty) {
 	int l = 0; int r = empty->size()-1;
 	while (l <= r) {
 		int m = l + ((r - l) / 2);
-		if (empty->at(m) > a) {
-			r = m - 1;
-		}
-		else {
-			l = m + 1;
-		}
+		if (empty->at(m) > a) { r = m - 1; }
+		else { l = m + 1; }
 	}
 	return r+1;
 }
@@ -134,12 +132,8 @@ int Day11::rbinarySearch(int a, std::vector<int>* empty) {
 	int l = 0; int r = empty->size()-1;
 	while (l <= r) {
 		int m = l + ((r - l) / 2);
-		if (empty->at(m) >= a) {
-			r = m-1;
-		}
-		else {
-			l = m+1;
-		}
+		if (empty->at(m) >= a) { r = m-1; }
+		else { l = m+1; }
 	}
 	return l;
 }
