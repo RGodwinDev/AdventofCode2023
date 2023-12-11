@@ -61,11 +61,13 @@ int Day11::day() {
 	*/
 
 	//shortest path between 2 galaxys = |y1 - y2| + |x1 - x2|works, but also need to add the warp distances
-	//O(n^2 * (log x + log y)) where n is # of galaxys, x is number of emptyRows, y is number of emptyColumns
+	//O((g^2 / 2) * (log x + log y)) where g is # of galaxys, x is number of emptyRows, y is number of emptyColumns
 	for (int i = 0; i < galaxyLocations.size(); ++i) {
+		std::pair<int, int> a = galaxyLocations[i];
+
 		for (int j = i+1; j < galaxyLocations.size(); ++j) {
 
-			std::pair<int, int> a = galaxyLocations[i];
+			
 			std::pair<int, int> b = galaxyLocations[j];
 
 			std::pair<int, int> y = emptySearch(a, b, &emptyCol, &emptyRow);
@@ -87,11 +89,11 @@ int Day11::day() {
 std::pair<int, int> Day11::emptySearch(std::pair<int, int> a, std::pair<int, int> b, std::vector<int>* emptyCol, std::vector<int>* emptyRow) {
 	
 	//enforce that a is less than b
-	if (a.first > b.first) {
-		int c = a.first;
-		a.first = b.first;
-		b.first = c;
-	}
+	//if (a.first > b.first) {
+	//	int c = a.first;
+	//	a.first = b.first;
+	//	b.first = c;
+	//}
 
 	if (a.second > b.second) {
 		int c = a.second;
