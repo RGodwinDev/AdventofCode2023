@@ -114,6 +114,9 @@
     <ClCompile Include="d5RBTree.cpp">
       <Filter>Source Files\RBTree</Filter>
     </ClCompile>
+    <ClCompile Include="Day10b.cpp">
+      <Filter>Source Files\Days</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="inputs\day1input.txt">
@@ -281,6 +284,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="headers\d5RBTree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\Day10b.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

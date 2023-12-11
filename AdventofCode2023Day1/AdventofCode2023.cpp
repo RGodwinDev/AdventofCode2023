@@ -19,9 +19,10 @@ int main()
     days.push_back( new Day8() );
     days.push_back( new Day9() );
     days.push_back(new Day10());
-    
-    /*
+    //days.push_back(new Day10b());
     days.push_back( new Day11() );
+
+    /*
     days.push_back( new Day12() );
     days.push_back( new Day13() );
     days.push_back( new Day14() );
@@ -63,6 +64,7 @@ int main()
     auto totalfinish = std::chrono::high_resolution_clock::now();
 
     std::cout << std::endl << "-------Times for each day in milliseconds -------" << std::endl;
+    std::cout << "these times include reading from the input and running the algo." << std::endl << std::endl;
     for (int i = 0; i < durations.size(); ++i) {
         std::cout << durations[i].first.substr(6) << ":\t" << durations[i].second.count() << "ms \t input size: " << lines[i] << " lines." << std::endl;
     }

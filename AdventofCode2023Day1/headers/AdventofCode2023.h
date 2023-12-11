@@ -12,6 +12,7 @@
 #include "./headers/Day8.h"
 #include "./headers/Day9.h"
 #include "./headers/Day10.h"
+#include "./headers/Day10b.h"
 #include "./headers/Day11.h" 
 #include "./headers/Day12.h"
 #include "./headers/Day13.h"
