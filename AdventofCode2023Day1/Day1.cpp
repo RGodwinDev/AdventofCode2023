@@ -1,5 +1,22 @@
 #include "./headers/Day1.h"
 
+//not used, trying to figure out enums
+enum numWords {
+    one = 1,
+    two = 2,
+    three = 3,
+    four = 4,
+    five = 5,
+    six = 6,
+    seven = 7,
+    eight = 8,
+    nine = 9,
+    zero = 0
+};
+
+
+
+
 int Day1::checkWordNumber(std::string &text, int i) {
     std::string sub = "";
     if (text[i] == 'o') { //one
@@ -50,56 +67,58 @@ int Day1::day() {
     std::string text;
     std::fstream file("./inputs/day1input.txt");
     int lines = 0;
+    
+    std::vector<std::string> wordNumbers;
 
-    int sum1 = 0;
-    int sum2 = 0;
     while (getline(file, text)) {
         lines++;
-
-        int tempsum1 = 0;
-        int tempsum2 = 0;
-
-        //sum1 cant use words for numbers but sum2 can.
-        bool worded = false;
-
-        for (int i = 0; i < text.size(); ++i) {
-            if (isdigit(text[i])) {
-                tempsum1 = atoi(&text[i]);                 //atoi grabs a whole number in a string from i->end of number,
-                while (tempsum1 >= 10) { tempsum1 /= 10; }        //such as "12345bca" -> 12345, rather than just 1.
-                tempsum1 *= 10;                            //but its fine working backwards, you'll get just 5.
-                if (!worded) { tempsum2 = tempsum1; }
-                break;
-            }
-            else if(!worded) { //check if its a wordnumber
-                int x = checkWordNumber(text, i);
-                if (x) { worded = true;  tempsum2 = x * 10; }
-            }
-        }
-
-        worded = false;
-        //now work backwards to get second number.
-        for (int i = text.size() - 1; i >= 0; --i) {
-            if (isdigit(text[i])) { 
-                int c = atoi(&text[i]);
-                tempsum1 += c;
-                if(!worded){ tempsum2 += c; }
-                break;
-            }
-            else if(!worded){ //check if its a wordnumber
-                int x = checkWordNumber(text, i);
-                if (x) { worded = true;  tempsum2 += x; }
-            }
-        }
-        sum1 += tempsum1;
-        sum2 += tempsum2;
+        wordNumbers.push_back(text);
     }
-    //should seperate the logic from the parsing
-    file.close();
 
+
+    int sum1 = 0, sum2 = 0;
+    for(std::string wordNumber : wordNumbers){
+        //sum1 cant use words for numbers but sum2 can.
+        bool numWordFound = false;
+        int wordSum1 = 0;
+        int wordSum2 = 0;
+        
+        //get the front number
+        for (int i = 0; i < wordNumber.size(); ++i) {
+            if (isdigit(wordNumber[i])) {
+                wordSum1 = atoi(&wordNumber[i]);                    //atoi grabs a whole number in a string from i->end of number,
+                while (wordSum1 >= 10) { wordSum1 /= 10; }          //such as "12345bca" -> 12345, rather than just 1.
+                wordSum1 *= 10;                                     //but its fine working backwards, you'll get just 5.
+
+                if (!numWordFound) { wordSum2 = wordSum1; }
+                break;
+            }
+            else if(!numWordFound) {    //check if its a wordnumber
+                int x = checkWordNumber(wordNumber, i);
+                if (x) { numWordFound = true;  wordSum2 = x * 10; }
+            }
+        }
+       
+        //get the back number
+        numWordFound = false;
+        for (int i = wordNumber.size() - 1; i >= 0; --i) {
+            if (isdigit(wordNumber[i])) {
+                int c = atoi(&wordNumber[i]);
+                wordSum1 += c;
+                if(!numWordFound){ wordSum2 += c; }
+                break;
+            }
+            else if(!numWordFound){     //check if its a wordnumber
+                int x = checkWordNumber(wordNumber, i);
+                if (x) { numWordFound = true;  wordSum2 += x; }
+            }
+        }
+
+        sum1 += wordSum1;
+        sum2 += wordSum2;
+    }
 
     std::lock_guard<std::mutex> guard(cout_mutex);
     std::cout << "Day 1:\t" << sum1 << "\tand " << sum2 << std::endl;
     return lines;
-};
-
-
+}
