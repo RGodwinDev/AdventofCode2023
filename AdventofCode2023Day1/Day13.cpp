@@ -5,8 +5,10 @@ int Day13::day() {
 	std::fstream file("./inputs/day13input.txt");
 	int lines = 0;
 	int sum1 = 0, sum2 = 0;
+
 	std::vector<std::string> mirror;
 	std::vector<std::vector<std::string>> mirrors;
+
 	while (getline(file, line)) {
 		lines++;
 		std::stringstream ss(line);
@@ -21,13 +23,13 @@ int Day13::day() {
 	mirrors.push_back(mirror); //get last one
 
 
-
-	//find reflections in each mirror
-
+	
+	//part 1, 0 errors allowed in reflection
 	std::vector<std::pair<int,int>> pairs; //need the pairs for part2
 	for (int i = 0; i < mirrors.size(); ++i) {
 		std::pair<int,int> a = std::make_pair(0, 0);
 
+		
 		a.first = findHori(&mirrors[i], 0, 0);
 		a.second = findVert(&mirrors[i], 0, 0);
 
@@ -35,6 +37,7 @@ int Day13::day() {
 		sum1 += (a.first * 100) + a.second;
 	}
 
+	//part 2, 1 error is allowed in a reflection, also make sure it's not the same line as part 1
 	for (int i = 0; i < mirrors.size(); i++) {
 		sum2 += findHori(&mirrors[i], 1, pairs[i].first) * 100;
 		sum2 += findVert(&mirrors[i], 1, pairs[i].second);
@@ -61,12 +64,12 @@ int Day13::findHori(std::vector<std::string>* mirror, int tolerance, int prev) {
 
 			for (int m = 0; m < mirror->at(j).size(); ++m) { //count errors for each wrong character
 				if (mirror->at(j)[m] != mirror->at(k)[m]) {
-					errors++;
+					if (++errors > tolerance) { break; }
 				}
 			}
 			j--; k++;
 		}
-		if ((j == -1 || k == mirror->size()) && errors <= tolerance) { //horizontal reflection confirmed
+		if ((j == -1 || k == mirror->size()) && errors <= tolerance) { //horizontal reflection confirmed within tolerance
 			return i + 1;
 		}
 	}
@@ -98,7 +101,7 @@ int Day13::findVert(std::vector<std::string>* mirror, int tolerance, int prev) {
 			else { break; }							//if a row breaks, no need to continue checking other rows. move on to next l.
 		}											
 		if (rowsReflected == mirror->size() && errors <= tolerance) {	
-			return l+1;								//if number of reflected rows is same as rows in mirror, the columns are reflected at l
+			return l+1;								//if number of reflected rows is same as rows in mirror, the columns are reflected at l within tolerance
 		}
 	}
 	return 0;
