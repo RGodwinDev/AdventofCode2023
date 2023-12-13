@@ -27,11 +27,11 @@ int Day13::day() {
 	//part 1, 0 errors allowed in reflection
 	std::vector<std::pair<int,int>> pairs; //need the pairs for part2
 	for (int i = 0; i < mirrors.size(); ++i) {
+
 		std::pair<int,int> a = std::make_pair(0, 0);
 
-		
-		a.first = findHori(&mirrors[i], 0, 0);
-		a.second = findVert(&mirrors[i], 0, 0);
+		a.first = findHori(&mirrors[i]);
+		a.second = findVert(&mirrors[i]);
 
 		pairs.push_back(a);
 		sum1 += (a.first * 100) + a.second;
@@ -47,8 +47,26 @@ int Day13::day() {
 	return lines;
 }
 
+int Day13::findHori(std::vector<std::string>* mirror) {
+	for (int i = 0; i < mirror->size() - 1; ++i) { //i is row, moving top to bottom
 
+		int j = i;
+		int k = i + 1;
 
+		while (j >= 0 && k < mirror->size()) { //j and k are moving thru the rows
+
+			if (mirror->at(j) != mirror->at(k)) {
+				break;
+			}
+			j--; k++;
+		}
+
+		if (j == -1 || k == mirror->size()) { //horizontal reflection confirmed
+			return i + 1;
+		}
+	}
+	return 0;
+}
 
 int Day13::findHori(std::vector<std::string>* mirror, int tolerance, int prev) {
 
@@ -76,7 +94,29 @@ int Day13::findHori(std::vector<std::string>* mirror, int tolerance, int prev) {
 	return 0;
 }
 
+int Day13::findVert(std::vector<std::string>* mirror) {
+	for (int l = 0; l < mirror->at(0).size() - 1; l++) {	//l is column, moving left to right
+		int rowsReflected = 0;
+		for (int i = 0; i < mirror->size(); i++) {			//i is row, moving top to bottom
+			int j = l, k = l + 1;
 
+			while (j >= 0 && k < mirror->at(i).size()) {	//j and k are moving thru i row to left and right
+				if (mirror->at(i)[j] != mirror->at(i)[k]) {
+					break;
+				}
+				j--; k++;
+			}
+			if (j == -1 || k == mirror->at(i).size()) {
+				rowsReflected++;					//if they reached a side, this row is reflected on column l
+			}
+			else { break; }							//if a row breaks, no need to continue checking other rows. move on to next l.
+		}
+		if (rowsReflected == mirror->size()) {
+			return l + 1;							//if number of reflected rows is same as rows in mirror, the columns are reflected at l
+		}
+	}
+	return 0;
+}
 
 
 int Day13::findVert(std::vector<std::string>* mirror, int tolerance, int prev) {

@@ -15,10 +15,14 @@ private:
 public:
 	int day();
 
-	//checks a single mirror for a horizontal reflection
+	//checks a single mirror for a horizontal reflection within tolerance
 	int findHori(std::vector<std::string>* mirror, int tolerance, int prev);
+	//checks a single mirror for a horizontal reflection with no tolerance for error
+	int findHori(std::vector<std::string>* mirror);
 
-	//checks a single mirror for a vertical reflection
+	//checks a single mirror for a vertical reflection within tolerance
 	int findVert(std::vector<std::string>* mirror, int tolerance, int prev);
+	//checks a single mirror for a vertical reflection with no tolerance for error
+	int findVert(std::vector<std::string>* mirror);
 };
 
