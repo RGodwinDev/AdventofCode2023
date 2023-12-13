@@ -7,14 +7,12 @@ int Day10::day() {
 	int lines = 0;
 	int sum1 = 0, sum2 = 0;
 
-	auto readStart = std::chrono::high_resolution_clock::now();
 	std::vector<std::string> pipeMap;
 	while (getline(file, line)) {
 		lines++;
 		pipeMap.push_back(line);
 	}
-	//parsing done
-	auto readEnd = std::chrono::high_resolution_clock::now();
+
 	// | is north/south
 	// - is east/west
 	// L is north/east
@@ -24,7 +22,6 @@ int Day10::day() {
 	// . is ground, no pipes lead to it
 	// S is starting position of animal
 
-	auto part1start = std::chrono::high_resolution_clock::now();
 	//find S
 	std::pair<int, int> startPos;
 	for (int i = 0; i < pipeMap.size(); ++i) {
@@ -39,29 +36,20 @@ int Day10::day() {
 	//pipePositions is in traverse order
 	std::vector<std::pair<int, int>> pipePositions;
 	int stepsToFurthest = part1Traverse(startPos, &pipeMap, &pipePositions);
-	auto part1end = std::chrono::high_resolution_clock::now();
 
-	auto sortStart = std::chrono::high_resolution_clock::now();
 	//sortedPipePos is in sorted order for binary search
 	std::vector<std::pair<int, int>> sortedPipePos = pipePositions;
 	
 	//note: sorting made the algo go from <10ms to in the 40-45ms range
-	//# of pipe positions just barely under 13.3k
+	//# of pipe positions just barely under 13.3k, binary search = ceil(log2(13.3k)) -> 14 steps
 	//we could give part1Traverse another vector, one for traverse order, and the other sorted order, sort upon insert.
 	//might make part1 twice as long but should make total time significantly shorter.
 	sort(sortedPipePos.begin(), sortedPipePos.end());
-	auto sortEnd = std::chrono::high_resolution_clock::now();
 
-	auto part2start = std::chrono::high_resolution_clock::now();
 	int possibleNests = part2Traverse(&pipeMap, &pipePositions, &sortedPipePos);
-	auto part2end = std::chrono::high_resolution_clock::now();
 
 
 	std::cout << "Day 10:\t" << stepsToFurthest << "\tand " << possibleNests << std::endl;
-	std::cout << "reading in lines: " << std::chrono::duration_cast<std::chrono::milliseconds>(readEnd - readStart) <<
-		" part1: " << std::chrono::duration_cast<std::chrono::milliseconds>(part1end - part1start) <<
-		" sorting: " << std::chrono::duration_cast<std::chrono::milliseconds>(sortEnd - sortStart) <<
-		" part2: " << std::chrono::duration_cast<std::chrono::milliseconds>(part2end - part2start) << std::endl;
 	return lines;
 }
 

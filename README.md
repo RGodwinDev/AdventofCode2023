@@ -183,3 +183,11 @@ Day 9 - Mirage Maintenance
 	Part 2
 		While looking forward is nice, we want to predict what has already happened!
 		Most of the logic is already done in part 1, we can just use it
+
+Day 10 - Pipe Maze
+
+Day 11 - Cosmic Expansion
+
+Day 12 - Hot Springs
+
+	This is the first puzzle that I truly don't know how to complete well.

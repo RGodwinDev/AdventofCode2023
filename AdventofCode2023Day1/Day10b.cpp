@@ -2,7 +2,9 @@
 
 
 int Day10b::day() {
-	HWND console_handle = GetConsoleWindow();
+	HWND hwnd = GetConsoleWindow();
+
+
 	std::string line;
 	std::fstream file("./inputs/day10input.txt");
 	int lines = 0;
@@ -14,7 +16,7 @@ int Day10b::day() {
 		pipeMap.push_back(line);
 	}
 	//parsing done
-
+	
 	// | is north/south
 	// - is east/west
 	// L is north/east
@@ -31,13 +33,14 @@ int Day10b::day() {
 		if (place != pipeMap[i].end()) {
 			//found S
 			startPos = std::make_pair(i, place - pipeMap[i].begin());
+			drawPair(startPos, startPos, std::make_tuple(255, 0, 0), hwnd);
 			break;
 		}
 	}
 
 	//pipePositions is in traverse order
 	std::vector<std::pair<int, int>> pipePositions;
-	int stepsToFurthest = part1Traverse(startPos, &pipeMap, &pipePositions);
+	int stepsToFurthest = part1Traverse(startPos, &pipeMap, &pipePositions, hwnd);
 
 	//sortedPipePos is in sorted order for binary search
 	std::vector<std::pair<int, int>> sortedPipePos = pipePositions;
@@ -46,16 +49,17 @@ int Day10b::day() {
 	//# of pipe positions just barely under 13.3k
 	sort(sortedPipePos.begin(), sortedPipePos.end());
 
-	int possibleNests = part2Traverse(&pipeMap, &pipePositions, &sortedPipePos);
+	int possibleNests = part2Traverse(&pipeMap, &pipePositions, &sortedPipePos, hwnd);
 
-	std::cout << "Day 10:\t" << stepsToFurthest << "\tand " << possibleNests << std::endl;
+	//std::cout << "Day 10:\t" << stepsToFurthest << "\tand " << possibleNests << std::endl;
 	return lines;
 }
 
 
 int Day10b::part1Traverse(std::pair<int, int> startPos,
 	std::vector<std::string>* pipeMap,
-	std::vector<std::pair<int, int>>* pipePositions) {
+	std::vector<std::pair<int, int>>* pipePositions,
+	HWND console_handle) {
 
 	std::pair<int, int> curPos = std::make_pair(-1, -1);
 	std::vector<char> east = { '-', 'J', '7' };
@@ -186,7 +190,8 @@ int Day10b::part1Traverse(std::pair<int, int> startPos,
 
 int Day10b::part2Traverse(std::vector<std::string>* pipeMap,
 	std::vector<std::pair<int, int>>* pipePositions,
-	std::vector<std::pair<int, int>>* sortedPipePos) {
+	std::vector<std::pair<int, int>>* sortedPipePos,
+	HWND console_handle) {
 	//any tile that isnt part of the loop can possibly be enclosed.
 	//find an edge of the maze
 	//once we do, we can decide what side of the loop is in/out
@@ -208,7 +213,7 @@ int Day10b::part2Traverse(std::vector<std::string>* pipeMap,
 
 			//binary search the pipe to make sure it is part of the pipe.
 			std::pair<int, int> curPos = std::make_pair(i, startPos.second);
-			posInPipe = pairBinarySearch(sortedPipePos, curPos);
+			posInPipe = pairBinarySearch(sortedPipePos, curPos, console_handle);
 
 			if (posInPipe != -1) { break; } //found the pipe :)
 		}
@@ -238,7 +243,8 @@ int Day10b::part2Traverse(std::vector<std::string>* pipeMap,
 		for (int i = pipePositions->at(posInPipe).first + 1;
 			i < pipeMap->size(); i++) {
 			if (pairBinarySearch(sortedPipePos,
-				std::make_pair(i, pipePositions->at(posInPipe).second)) == -1) {
+				std::make_pair(i, pipePositions->at(posInPipe).second),
+				console_handle) == -1) {
 				inside++;
 			}
 			else { break; } //piece of pipe found
@@ -276,7 +282,8 @@ int Day10b::part2Traverse(std::vector<std::string>* pipeMap,
 
 						//binary search pipe possible pipes, if -1 its not a piece of the pipe.
 						if (pairBinarySearch(sortedPipePos,
-							std::make_pair(i, pipePositions->at(curPos).second)) == -1) {
+							std::make_pair(i, pipePositions->at(curPos).second),
+							console_handle) == -1) {
 							inside++;
 						}
 						else { break; } //piece of pipe found
@@ -301,7 +308,8 @@ int Day10b::part2Traverse(std::vector<std::string>* pipeMap,
 					i < pipeMap->size(); i++) {
 					if (pipeMap->at(i)[pipePositions->at(curPos).second] != '.') {
 						if (pairBinarySearch(sortedPipePos,
-							std::make_pair(i, pipePositions->at(curPos).second)) == -1) {
+							std::make_pair(i, pipePositions->at(curPos).second),
+							console_handle) == -1) {
 							inside++;
 						}
 						else { break; }
@@ -327,7 +335,8 @@ int Day10b::part2Traverse(std::vector<std::string>* pipeMap,
 					i < pipeMap->size(); i++) {
 					if (pipeMap->at(i)[pipePositions->at(curPos).second] != '.') {
 						int a = pairBinarySearch(sortedPipePos,
-							std::make_pair(i, pipePositions->at(curPos).second));
+							std::make_pair(i, pipePositions->at(curPos).second),
+							console_handle);
 						if (a == -1) { inside++; }
 						else { break; } //piece of pipe found
 					}
@@ -346,22 +355,27 @@ int Day10b::part2Traverse(std::vector<std::string>* pipeMap,
 
 int Day10b::pairBinarySearch(
 	std::vector<std::pair<int, int>>* sortedPipePos,
-	std::pair<int, int> key) {
+	std::pair<int, int> key,
+	HWND console_handle) {
 
 	int l = 0, r = sortedPipePos->size() - 1;
 	while (l <= r) {
 		int m = l + ((r - l) / 2);
+		drawPair(sortedPipePos->at(m), sortedPipePos->at(m), std::make_tuple(255, 0, 50), console_handle);
 		if (sortedPipePos->at(m) == key) { return m; }
 		if (sortedPipePos->at(m) > key) { r = m - 1; }
 		else { l = m + 1; }
+		drawPair(sortedPipePos->at(m), sortedPipePos->at(m), std::make_tuple(255, 0, 0), console_handle);
 	}
 	return -1;
 }
 
 
-void Day10b::drawPair(std::pair<int, int>, std::string color, HWND console_handle) {
-	/*
-	myPen.CreatePen(PS_COSMETIC, 1, RGB(255, 255, 0));
-	HPEN hMyPen = (HPEN)myPen;
-	*/
+void Day10b::drawPair(std::pair<int, int> loc, std::pair<int, int> prev, std::tuple<int,int,int> color, HWND console_handle) {
+	HPEN pen = CreatePen(PS_SOLID, 3, RGB(loc.first, loc.second, get<2>(color)));
+	HDC device_context = GetDC(console_handle);
+	SelectObject(device_context, pen);
+	MoveToEx(device_context, prev.first*6 + 100, prev.second*6 + 100, 0); //moves pen to previous location
+	LineTo(device_context, loc.first*6 + 100, loc.second*6 + 100); //draws to location
+	ReleaseDC(console_handle, device_context);
 }

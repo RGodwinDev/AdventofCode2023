@@ -2,7 +2,7 @@
 
 int Day11::day() {
 	std::string line;
-	std::fstream file("./inputs/day11input.txt");
+	std::ifstream file("./inputs/day11input.txt");
 	int lines = 0;
 	long long sum1 = 0, sum2 = 0;
 
@@ -64,7 +64,7 @@ int Day11::day() {
 	* Calculate shortest distance between ALL galaxys.
 	*/
 
-	//shortest path between 2 galaxys = |y1 - y2| + |x1 - x2|works, but also need to add the warp distances
+	//shortest path between 2 galaxys = |y1 - y2| + |x1 - x2| works, but also need to add the warp distances
 	//O((g^2 / 2) * (log x + log y)) where g is # of galaxys, x is number of emptyRows, y is number of emptyColumns
 	for (int i = 0; i < galaxyLocations.size(); ++i) {
 		std::pair<int, int> a = galaxyLocations[i];

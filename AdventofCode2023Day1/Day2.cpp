@@ -2,30 +2,32 @@
 
 int Day2::day() {
 
-	std::string line;
-	std::fstream file("./inputs/day2input.txt");
+	std::string in;
+	std::ifstream file("./inputs/day2input.txt");
 
+
+	int lines = 0; //counts the lines in the file, thats it.
+	std::vector<std::string> input;
+	while (getline(file, in)) {
+		lines++;
+		input.push_back(in);
+	}
+	file.close();
+
+	//calculate the sum of good game ids, 
+	//and the sum of the powerset of all hands
 	int ids = 0, sum = 0;
 	int maxreds = 12, maxgreens = 13, maxblues = 14;
-
-	int lines = 0; //count the lines in the file, thats it.
-
-	while (getline(file, line)) {
-		lines++;
-
+	for(std::string line: input){
 		int reds = 0, greens = 0, blues = 0;
-		int gameid = stoi(line.substr(4,4)); //the gameid is always 4 into the line, and up to 4 in size.
+		int gameid = stoi(line.substr(4,4));
 
-		//use 2 pointers, find :, then find ; over and over.
 		int pos = find(line.begin(), line.end(), ':') - line.begin() + 1;
 		int pos2 = find(line.begin() + pos, line.end(), ';') - line.begin() + 1;
 
 		while (pos < line.size()-1) {
+			if (pos2 >= line.size()){ pos2 = line.size() - 1; }  
 
-			//last hand of a line doesnt have a ;, so go back one to stay in bounds.
-			if (pos2 >= line.size()){ pos2 = line.size() - 1; } 
-
-			//get a hand, put into stringstream
 			std::stringstream ss(line.substr(pos+1, (pos2 - pos) - 1));
 
 			std::string word;
@@ -37,21 +39,16 @@ int Day2::day() {
 				else if (word[0] == 'b') { blues = std::max(blues, n); }
 			}
 
-			//move positions to next.
 			pos = pos2;
 			pos2 = find(line.begin() + pos, line.end(), ';') - line.begin() + 1;
 		}
 		 
-		//if the game had under the max possible for each color, it gets counted
 		if (reds <= maxreds && greens <= maxgreens && blues <= maxblues) { ids += gameid; }
-		//sum of powerset of all games.
 		sum += reds * greens * blues;
 	}
-	//should seperate the parsing from the logic
-	file.close();
+	
 
 	std::lock_guard<std::mutex> guard(cout_mutex);
 	std::cout << "Day 2:\t" << ids << " \tand " << sum << std::endl;
-	//Day::cout_mutex.unlock();
 	return lines;
 }

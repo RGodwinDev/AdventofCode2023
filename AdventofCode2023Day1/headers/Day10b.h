@@ -6,6 +6,7 @@
 #include <fstream>
 #include <string>
 #include <Windows.h>
+#include <WinUser.h>
 
 
 /*
@@ -27,7 +28,8 @@ public:
 	//writes down the pipe positions in the given pipePositions.
 	int part1Traverse(std::pair<int, int> startPos,
 		std::vector<std::string>* pipeMap,
-		std::vector<std::pair<int, int>>* pipePositions);
+		std::vector<std::pair<int, int>>* pipePositions,
+		HWND console_handle);
 
 
 
@@ -36,16 +38,17 @@ public:
 	//might want a pipeMap class with the traverse methods in it.
 	int part2Traverse(std::vector<std::string>* pipeMap,
 		std::vector<std::pair<int, int>>* pipePositions,
-		std::vector<std::pair<int, int>>* sortedPipePos);
+		std::vector<std::pair<int, int>>* sortedPipePos,
+		HWND console_handle);
 
 
 
 	//searches for a pair<int,int> inside a sorted vector<pair<int,int>>
 	//returns position, or -1 if not found.
 	int pairBinarySearch(std::vector<std::pair<int, int>>* sortedPipePos,
-		std::pair<int, int> key);
+		std::pair<int, int> key, HWND console_handle);
 
-	void drawPair(std::pair<int, int>, std::string color, HWND console_handle);
+	void drawPair(std::pair<int, int> loc, std::pair<int, int> prev, std::tuple<int,int,int> color, HWND console_handle);
 
 };
 
