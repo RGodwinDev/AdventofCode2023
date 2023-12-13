@@ -4,7 +4,11 @@
 
 int main()
 {
-    std::cout << "Advent of code 2023 :)" << std::endl;
+    std::cout << "Advent of code 2023 :)" << std::endl << std::endl;
+    std::cout << "notes: " << std::endl;
+    std::cout << "\tday5b uses a vector of redblack trees to store the filters. Only part 1 is finished so far." << std::endl << std::endl;
+    std::cout << "\ti'm skipping day12 for now, my original solution was EXTREMELY brute force, estimated 41 days to finish lol" << std::endl << std::endl;
+    
 
     concurrency::concurrent_vector<int> lines;
     concurrency::concurrent_vector<Day*> days;
@@ -23,8 +27,8 @@ int main()
     //days.push_back(new Day10b());                 //attempt at creating a window and drawing the pipes
     days.push_back( new Day11() );
     //days.push_back( new Day12() );                //day12 is currently VERY brute force, do not run unless you dont want your computer for the next 2 months. Also it's not even correct LOL
-    /*
     days.push_back( new Day13() );
+    /*
     days.push_back( new Day14() );
     days.push_back( new Day15() );
     days.push_back( new Day16() );
@@ -65,7 +69,7 @@ int main()
 
 
     std::cout << std::endl << "-------Times for each day in milliseconds -------" << std::endl;
-    std::cout << "these times include reading from the input and running the algo." << std::endl << std::endl;
+    std::cout << "these times include reading from the input and running Part 1 and Part 2." << std::endl << std::endl;
 
     for (int i = 0; i < durations.size(); ++i) {
         std::cout << durations[i].first.substr(6) << ":\t" << 

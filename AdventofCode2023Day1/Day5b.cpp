@@ -104,7 +104,6 @@ int Day5b::day() {
 	
 	std::lock_guard<std::mutex> guard(cout_mutex);
 	std::cout << "Day 5b:\t" << *lowest1 << std::endl;
-	std::cout << "note: day5b uses a vector<redblacktree> for the filters. Only part1 is done so far." << std::endl;
 
 	return lines;
 }
