@@ -14,11 +14,15 @@ int Day15::day() {
 	int lines = 0;
 	int sum1 = 0, sum2 = 0;
 
+	std::vector<std::string> input;
 	while (getline(file, line)) {
 		lines++;
-
-
+		input.push_back(line);
 	}
+	for (size_t i = 0; i < input.size(); ++i) {
+		std::cout << input[i] << std::endl;
+	}
+
 
 
 	std::cout << "Day 15:\t" << sum1 << "\tand " << sum2 << std::endl;

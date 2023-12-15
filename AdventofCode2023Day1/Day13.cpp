@@ -118,7 +118,6 @@ int Day13::findVert(std::vector<std::string>* mirror) {
 	return 0;
 }
 
-
 int Day13::findVert(std::vector<std::string>* mirror, int tolerance, int prev) {
 	for (int l = 0; l < mirror->at(0).size() - 1; l++) {	//l is column, moving left to right
 		if (l+1 == prev) { continue; }

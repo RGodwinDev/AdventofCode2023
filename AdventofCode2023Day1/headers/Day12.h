@@ -16,7 +16,6 @@ private:
 public:
 	int day();
 	
-	bool picross(std::vector<int>* nums, std::string perm);
-	std::string getNextPermutation(std::string line, std::vector<int>* optionals);
+	bool picross(std::vector<int>* holes, std::string* perm);
 };
 

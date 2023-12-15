@@ -18,7 +18,7 @@ int main()
     days.push_back( new Day3() );
     days.push_back( new Day4() );
     days.push_back( new Day5() );
-    days.push_back( new Day5b() );                  //created redblack tree for the filters, part1 is good, part2 isnt even started.
+    days.push_back( new Day5b() );                  //created redblack tree for the filters, part1 is good, part2 requires merging of filters in the rbtree(not done yet)
     days.push_back( new Day6() );
     days.push_back( new Day7() );
     days.push_back( new Day8() );
@@ -26,11 +26,12 @@ int main()
     days.push_back(new Day10());
     //days.push_back(new Day10b());                 //attempt at creating a window and drawing the pipes
     days.push_back( new Day11() );
-    //days.push_back( new Day12() );                //day12 is currently VERY brute force, do not run unless you dont want your computer for the next 2 months. Also it's not even correct LOL
+    //days.push_back( new Day12() );   //day12 is still very brute force, but part 1 passes in about 45 seconds. Part 2 doesnt get past the first line in... a while. new strat needed.           
     days.push_back( new Day13() );
-    /*
     days.push_back( new Day14() );
+    
     days.push_back( new Day15() );
+    /*
     days.push_back( new Day16() );
     days.push_back( new Day17() );
     days.push_back( new Day18() );
