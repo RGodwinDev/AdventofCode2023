@@ -8,6 +8,7 @@ int main()
     std::cout << "notes: " << std::endl;
     std::cout << "\tday5b uses a vector of redblack trees to store the filters. Only part 1 is finished so far." << std::endl << std::endl;
     std::cout << "\ti'm skipping day12 for now, my original solution was EXTREMELY brute force, estimated 41 days to finish lol" << std::endl << std::endl;
+    std::cout << "\tday14 part1 is finshed, part2 i'll have to learn a bit more about detecting cycles, but everything else should be good" << std::endl << std::endl;
     
 
     concurrency::concurrent_vector<int> lines;
@@ -29,7 +30,6 @@ int main()
     //days.push_back( new Day12() );   //day12 is still very brute force, but part 1 passes in about 45 seconds. Part 2 doesnt get past the first line in... a while. new strat needed.           
     days.push_back( new Day13() );
     days.push_back( new Day14() );
-    
     days.push_back( new Day15() );
     /*
     days.push_back( new Day16() );
