@@ -19,7 +19,10 @@
     <Filter Include="Source Files\Days">
       <UniqueIdentifier>{f3bcc336-8add-4f9e-aba3-5ece17f4ec34}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\RBTree">
+    <Filter Include="Source Files\Days\Day15Classes">
+      <UniqueIdentifier>{f09e244e-ecc3-43fd-94c0-49bdec0ecb07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Days\Day5classes">
       <UniqueIdentifier>{24c2a7bd-ed54-408e-be59-76344f79864e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -109,13 +112,22 @@
       <Filter>Source Files\Days</Filter>
     </ClCompile>
     <ClCompile Include="d5RBtreeNode.cpp">
-      <Filter>Source Files\RBTree</Filter>
+      <Filter>Source Files\Days\Day5classes</Filter>
     </ClCompile>
     <ClCompile Include="d5RBTree.cpp">
-      <Filter>Source Files\RBTree</Filter>
+      <Filter>Source Files\Days\Day5classes</Filter>
     </ClCompile>
     <ClCompile Include="Day10b.cpp">
       <Filter>Source Files\Days</Filter>
+    </ClCompile>
+    <ClCompile Include="D15box.cpp">
+      <Filter>Source Files\Days\Day15Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="D15boxes.cpp">
+      <Filter>Source Files\Days\Day15Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="D15lense.cpp">
+      <Filter>Source Files\Days\Day15Classes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -287,6 +299,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="headers\Day10b.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\D15box.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\D15lense.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\D15boxes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

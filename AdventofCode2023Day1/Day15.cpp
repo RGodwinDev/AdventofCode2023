@@ -10,62 +10,37 @@ int Day15::day() {
 	while (getline(file, line)) {
 		input = line;
 	}
+
+	D15boxes boxes = D15boxes();
+
 	std::stringstream ss(input);
 	std::string s;
-	std::vector < std::map<std::string, int>> boxes(256); //part2 woo
-	std::vector <std::string> orderqueue;
-	while (getline(ss, s, ',')) {
+	
+	while (getline(ss, s, ',')) { //for each instruction...
 		lines++; 
-		sum1 += hash(s);
+		sum1 += hash(s); //part 1 hash the whole instruction, add to sum, done.
+
+		//part2, insert or remove the lense, per instruction = or -
 		auto equalsign = std::find(s.begin(), s.end(), '=');
-		if (equalsign != s.end()) {
-			std::string label = s.substr(0, equalsign - s.begin());
-			int box = hash(label);
-			int num = stoi(s.substr(equalsign - s.begin() + 1));
-			boxes[box][label] = num;
-			if (std::find(orderqueue.begin(), orderqueue.end(), label) == orderqueue.end()) {
-				orderqueue.push_back(label);
-			}
-		}
-		else { //operator is a -, remove the label from the box
+		if (equalsign != s.end()) {							// ==, insert/update lense
+			D15lense a = D15lense(s);
+			boxes.insertOrUpdate(a);
+		}	
+		else {												// -, remove the lense
 			std::string label = s.substr(0, s.size() - 1);
-			int box = hash(label);
-			boxes[box].erase(label);
-			int qitr = std::find(orderqueue.begin(), orderqueue.end(), label) - orderqueue.begin();
-			if (qitr != orderqueue.size()) {
-				orderqueue.erase(orderqueue.begin() + qitr);
-			}
-			
+			boxes.remove(label);			
 		}
+
 	}
+	sum2 = boxes.calcFocalPower();
 
-	std::vector<int> focuspowers(256, 0);
-	std::vector<int> boxCount(256);
-	for(int i = 0; i < orderqueue.size(); ++i){
-		//second is the box number, first is label
-		std::string label = orderqueue[i];
-		int box = hash(label);
-		if (boxes[box][label] > 0) {
-			boxCount[box]++;
-			long focuspower = box+1;
-			focuspower *= boxCount[box];
-			focuspower *= boxes[box][label];
-			focuspowers[box] += focuspower;
-		}
-	}
-
-
-
-
-
-	for (int i = 0; i < focuspowers.size(); ++i) {
-		sum2 += focuspowers[i];
-	}
 	std::cout << "Day 15:\t" << sum1 << "\tand " << sum2 << std::endl;
 	return lines;
 }
 
 
+
+//part 1 hash, part 2 uses the boxes.decideBox(label), which does the same thing.
 int Day15::hash(std::string s) {
 	int current = 0;
 	for (char c : s) {
@@ -75,4 +50,3 @@ int Day15::hash(std::string s) {
 	}
 	return current;
 }
-
