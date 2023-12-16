@@ -25,6 +25,9 @@
     <Filter Include="Source Files\Days\Day5classes">
       <UniqueIdentifier>{24c2a7bd-ed54-408e-be59-76344f79864e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Days\Day16Classes">
+      <UniqueIdentifier>{2032c74e-4b63-464e-bb57-724083dcb111}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AdventofCode2023.cpp">
@@ -128,6 +131,12 @@
     </ClCompile>
     <ClCompile Include="D15lense.cpp">
       <Filter>Source Files\Days\Day15Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="D16grid.cpp">
+      <Filter>Source Files\Days\Day16Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="D16tile.cpp">
+      <Filter>Source Files\Days\Day16Classes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -308,6 +317,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="headers\D15boxes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\D16tile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\D16grid.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
