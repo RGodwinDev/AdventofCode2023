@@ -1,5 +1,5 @@
 #include "./headers/D16tile.h"
-
+#include <iostream>
 D16tile::D16tile(char type) {
 	this->type = type;
 	this->energized = false;
@@ -23,4 +23,9 @@ bool D16tile::hasBeenHitFrom(char c) {
 
 void D16tile::addDirection(char c) {
 	this->directions.push_back(c);
+}
+
+void D16tile::deEnergize() {
+	this->energized = false;
+	this->directions.clear();
 }

@@ -26,5 +26,7 @@ public:
 
 	//add a direction to directions
 	void addDirection(char c);
+
+	void deEnergize();
 };
 

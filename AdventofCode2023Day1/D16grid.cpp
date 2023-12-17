@@ -2,6 +2,7 @@
 
 
 D16grid::D16grid(std::vector<std::string>* input) {
+	this->energized = 0;
 	for(int i = 0; i < input->size(); ++i){
 		this->grid.push_back({});
 		for (char c : input->at(i)) {
@@ -15,15 +16,11 @@ D16tile* D16grid::getTile(int a, int b) {
 }
 
 int D16grid::countEnergized() { //O(n), this could be O(1) if we kept a count somehow
-	int energy = 0;
-	for(int i = 0; i < this->grid.size(); ++i){
-		for (int j = 0; j < this->grid[i].size(); ++j) {
-			if (getTile(i, j)->isEnergized()) {
-				energy++;
-			}
-		}
-	}
-	return energy;
+	return this->energized;
+}
+
+std::pair<int, int> D16grid::getGridSize() {
+	return std::make_pair(this->grid.size(), this->grid[0].size());
 }
 
 std::vector<std::tuple<int, int, char>> D16grid::beam(std::tuple<int, int, char> beam) {
@@ -34,11 +31,15 @@ std::vector<std::tuple<int, int, char>> D16grid::beam(std::tuple<int, int, char>
 		get<1>(beam) < 0 || 
 		get<0>(beam) >= this->grid.size() || 
 		get<1>(beam) >= this->grid[0].size()) {
+
 		return {};
 	}
 
 	//get the tile and energize it.
 	D16tile* tile = this->getTile(get<0>(beam), get<1>(beam));
+	if (!tile->isEnergized()) {
+		this->energized++;
+	}
 	tile->energize();
 	
 	//ask if tile has been hit from this direction before
@@ -226,4 +227,13 @@ std::vector<std::tuple<int, int, char>> D16grid::beam(std::tuple<int, int, char>
 		return {};
 	}
 
+}
+
+void D16grid::deEnergize() {
+	for (int i = 0; i < this->grid.size(); ++i) {
+		for (int j = 0; j < this->grid[0].size(); ++j) {
+			this->getTile(i, j)->deEnergize();
+		}
+	}
+	this->energized = 0;
 }
