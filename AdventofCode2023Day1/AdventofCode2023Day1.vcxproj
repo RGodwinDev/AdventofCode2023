@@ -135,6 +135,9 @@
     <ClCompile Include="D15lense.cpp" />
     <ClCompile Include="D16grid.cpp" />
     <ClCompile Include="D16tile.cpp" />
+    <ClCompile Include="D17Graph.cpp" />
+    <ClCompile Include="D17Vertex.cpp" />
+    <ClCompile Include="D19part.cpp" />
     <ClCompile Include="d5RBTree.cpp" />
     <ClCompile Include="d5RBtreeNode.cpp" />
     <ClCompile Include="Day.cpp" />
@@ -200,6 +203,9 @@
     <ClInclude Include="headers\D15lense.h" />
     <ClInclude Include="headers\D16grid.h" />
     <ClInclude Include="headers\D16tile.h" />
+    <ClInclude Include="headers\D17Graph.h" />
+    <ClInclude Include="headers\D17Vertex.h" />
+    <ClInclude Include="headers\D19part.h" />
     <ClInclude Include="headers\d5RBTree.h" />
     <ClInclude Include="headers\d5RBtreeNode.h" />
     <ClInclude Include="headers\Day.h" />

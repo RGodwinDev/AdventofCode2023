@@ -28,6 +28,12 @@
     <Filter Include="Source Files\Days\Day16Classes">
       <UniqueIdentifier>{2032c74e-4b63-464e-bb57-724083dcb111}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Days\Day17Classes">
+      <UniqueIdentifier>{2fcee8d7-be5e-4166-8f33-8dfeb48f3936}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Days\Day18Classes">
+      <UniqueIdentifier>{a6c0b83b-c9e0-4a09-aff3-712279da9da5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AdventofCode2023.cpp">
@@ -137,6 +143,15 @@
     </ClCompile>
     <ClCompile Include="D16tile.cpp">
       <Filter>Source Files\Days\Day16Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="D17Graph.cpp">
+      <Filter>Source Files\Days\Day17Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="D17Vertex.cpp">
+      <Filter>Source Files\Days\Day17Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="D19part.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -323,6 +338,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="headers\D16grid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\D17Vertex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\D17Graph.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\D19part.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

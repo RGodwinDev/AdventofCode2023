@@ -31,11 +31,11 @@ int main()
     days.push_back( new Day13() );
     days.push_back( new Day14() );
     days.push_back( new Day15() );
-    days.push_back( new Day16() );
-    /*
+    //days.push_back( new Day16() );
     days.push_back( new Day17() );
     days.push_back( new Day18() );
     days.push_back( new Day19() );
+    /*
     days.push_back( new Day20() );
     days.push_back( new Day21() );
     days.push_back( new Day22() );
