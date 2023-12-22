@@ -8,11 +8,23 @@ ignore the 'Day1', all of the days are in this project.
 Ran on an AMD FX-8350, cpu from 2012
 ![alt text](https://github.com/FinalFlashLight/AdventofCode2023/blob/master/AdventofCode2023Day1/screenshots/ssday15.png)
 
-Day1 - Trebuchet?!
+Day1 - Trebuchet?! **
 
-Day2 - Cube Conundrum
+	Part 1
+		find the first digit from left and right side of each string, and put them together.
+		example string: "four8seven2one" would result in 8 and 2, making 82.
+		I just scanned the string from the left, until I found a digit with isdigit()
+		And then scanned it from the right.
 
-Day3 - Gear Ratios
+	Part 2
+		Same thing but this time, words also count as numbers.
+		For the same example string, "four8seven2one", the result would be 4 and 1, making 41.
+		This time when I scanned, if the char was not a digit 
+		I checked if the substring starting at the char was equal to a word number.
+
+Day2 - Cube Conundrum **
+
+Day3 - Gear Ratios **
 
 	..../ <- we check all the characters around a number, 
 	.123.    if it's not another digit and not a '.', we assume it is a symbol.
@@ -27,7 +39,7 @@ Day3 - Gear Ratios
 	at each position, if the vector has at least 2 numbers, 
 	we multiply them together and add the product to sum2
 
-Day4 - Scratchcards
+Day4 - Scratchcards **
 
 	Part 1
 	    Card   1: 30 48 49 69  1 86 94 68 12 85 | 86 57 89  8 81 85 82 68  1 22 90  2 74 12 30 45 69 92 62  4 94 48 47 64 49
@@ -43,7 +55,7 @@ Day4 - Scratchcards
 		Copied cards are scored exactly the same as original cards.
 		Add up how many cards we end up with TOTAL.
 
-Day5 - If You Give A Seed A Fertilizer
+Day5 - If You Give A Seed A Fertilizer **
 
 	Part 1
 		transform a seed thru several filters, and return the smallest one after transforming.
@@ -114,29 +126,22 @@ Day 5b - If you Give A Seed A Fertilizer (RBTree edition)
 		seed range merging after all the ranges ran thru a filter.
 
 
-Day 6 - Wait For It
+Day 6 - Wait For It **
 	
-	significantly easier than yesterday.
 	Part 1
-		You enter a boat race! But the boats have a ramp up time.
-		Every millisecond you wait to launch your boat, 
-		your boat will go faster by 1 millimeter per millisecond!
-
 		The goal of the race is to go as far as possible in the time given.
-		Youre given a paper with times for each race, and the best distance someones gotten in that race.
 		Count how many ways you can beat each race, and multiply them together.
 
 	Part 2
-		Jokes on you! The times and distances on the paper was actually a single race!
+		The times and distances on the paper was actually a single race!
 		Calculate the ways to win that one race.
-
 		I just brute forced both part1 and part2, although I know there is an O(1) solution out there.
 
 	I changed from bruteforce to using the quadratic formula everyone else was using.
 	It now runs about 1ms instead of ~125ms.
 	I also implemented parsing from a file instead of hard coding the numbers in.
 
-Day 7 - Camel Cards
+Day 7 - Camel Cards **
 
 	Part 1
 		This one has a few parts to it. First is the obvious, parse the file.
@@ -168,9 +173,22 @@ Day 7 - Camel Cards
 		Besides that tho the logic is basically the same from Part1.
 		We do have to make another vector of hands though to run Part1 and Part2 at the same time.
 
-Day 8 - Haunted Wasteland
+Day 8 - Haunted Wasteland **
+	
+	Part 1
+		A map traversal, we check the map for our location, and go left or right, depending on the directions we're given.
+		Start at AAA and count how many steps until we end up at ZZZ.
+		All locations went into a map<string, pair<string,string>>, where the key was current location,
+		and the pair was the left/right next location. Just traverse until we get to ZZZ.
 
-Day 9 - Mirage Maintenance
+	Part 2
+		We start at every node that ends with A, and want to know when ALL ghosts are on nodes that end with Z.
+		I looked at the solution thread to figure out we use Least Common Multiple(LCM) for this.
+		Calculate each ghosts A to Z distance, then calculate the LCM of all those distances.
+		While the LCM works and is the answer, 
+		it's technically flawed because there is a possibility all the ghosts just happen to land on Zs before the LCM.
+
+Day 9 - Mirage Maintenance **
 
 	Part 1
 		We have several sequences of numbers, 
@@ -182,21 +200,92 @@ Day 9 - Mirage Maintenance
 
 	Part 2
 		While looking forward is nice, we want to predict what has already happened!
-		Most of the logic is already done in part 1, we can just use it
+		Most of the logic is already done in part 1, just work backwards instead.
 
-Day 10 - Pipe Maze
+	Edit: removed attempts at concurrency, they weren't going anywhere lol.
+
+Day 10 - Pipe Maze **
 
 	Part 1
 
+	Part 2
 
-Day 11 - Cosmic Expansion
+Day 11 - Cosmic Expansion **
 
-Day 12 - Hot Springs
+	Part 1
 
-	This is the first puzzle that I truly don't know how to complete well.
+	Part 2
 
-Day 13 - Point of Incidence
+Day 12 - Hot Springs *
 
-Day 14 - Parabolic Reflector Dish
+	Part 1
+		I brute forced by checking every combination of optionals and checking if each combo was valid.
+		Takes about 45 seconds.
+	
+	Part 2
+		LOL, The brute force method ran for a good while and didn't even get past the first line.
 
-Day 15 - Lens Library
+Day 13 - Point of Incidence **
+
+	Part 1
+		Find the reflection in each mirror and sum the location of each reflection line.
+		This is very similar to checking if a string is a palindrome. 
+		Except we're checking if rows/columns are the same until the edge.
+
+	Part 2
+		Very similar to part 1, but we can change one character from # to . or . to #, creating a new line.
+		I used part 1, but allowed 1 error in the palindrome to exist.
+		Also the line must be a new reflection line, not the same from part 1.
+
+Day 14 - Parabolic Reflector Dish *
+
+	Part 1
+		Pretty easy, just make a tiltNorth function that rolls rocks upwards, then calculate the weight.
+		
+	Part 2
+		Now create a spincycle() that tilts north->west->south->east. Do it 1 billion times...
+		Creating spincycle was actually easy, but running 1 billion times would take my computer over a month.
+		I know the answer has to do with detecting a cycle,
+		and then calculating where in the cycle we will be after 1 billion times.
+
+Day 15 - Lens Library **
+
+Day 16 - The Floor Will Be Lava **
+
+Day 17 - Clumsy Crucible
+
+	Part 1
+		This is pathfinding with the restriction that we can move max 3 times in a direction before having to turn.
+
+Day 18 - Lavaduct Lagoon
+
+	Part 1
+		This problem is very similar to Day 10 imo. We just want the area within the edges.
+		Haven't gotten around to finishing this one yet.
+
+Day 19 - Aplenty *
+	
+	Part 1
+		I created a map of filters, then added the parts to a partqueue
+		All the parts start with the "in" filter
+		Any parts accepted by the filter go in an accepted pile.
+		Any parts requiring further filtering go back in the part queue.
+		Any rejected parts just get thrown away. I had a rejection pile but it didn't get used.
+		The answer is the sum of values from all the accepted parts.
+
+	Part 2
+		Dealing with ranges, similar to Day5. 
+		All the values for each part can be between 1 and 4000.
+		Calculate how many possible part value combinations are accepted.
+
+Day 20 - Pulse Propagation
+
+Day 21 - Step Counter
+
+Day 22 - Sand Slabs
+
+Day 23 - 
+
+Day 24 - 
+
+Day 25 -

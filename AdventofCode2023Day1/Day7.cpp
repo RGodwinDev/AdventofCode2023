@@ -1,6 +1,4 @@
 #include "./headers/Day7.h"
-#include <execution>
-
 
 int Day7::day() {
 	std::string line;
@@ -76,9 +74,7 @@ int Day7::day() {
 		sum2 += (get<2>(hands2[i]) * (i + 1));
 	}
 
-	std::lock_guard<std::mutex> guard(cout_mutex);
 	std::cout << "Day 7:\t" << sum1 << "\tand " << sum2 << std::endl;
-	//Day::cout_mutex.unlock();
 	return lines;
 }
 

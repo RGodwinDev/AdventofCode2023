@@ -9,6 +9,7 @@ int main()
     std::cout << "\tday5b uses a vector of redblack trees to store the filters. Only part 1 is finished so far." << std::endl << std::endl;
     std::cout << "\ti'm skipping day12 for now, my original solution was EXTREMELY brute force, estimated 41 days to finish lol" << std::endl << std::endl;
     std::cout << "\tday14 part1 is finshed, part2 i'll have to learn a bit more about detecting cycles, but everything else should be good" << std::endl << std::endl;
+    std::cout << "\tday16 takes 16 seconds, just add 16 seconds to final time." << std::endl << std::endl;
     
 
     concurrency::concurrent_vector<int> lines;
@@ -31,18 +32,16 @@ int main()
     days.push_back( new Day13() );
     days.push_back( new Day14() );
     days.push_back( new Day15() );
-    //days.push_back( new Day16() );
+    //days.push_back( new Day16() );    //day16 takes 16seconds T-T, another method would be needed to shorten this.
     days.push_back( new Day17() );
     days.push_back( new Day18() );
     days.push_back( new Day19() );
-    /*
     days.push_back( new Day20() );
     days.push_back( new Day21() );
     days.push_back( new Day22() );
     days.push_back( new Day23() );
     days.push_back( new Day24() );
     days.push_back( new Day25() );
-    */
 
 
     std::cout << "-------- results for each day --------" << std::endl;

@@ -42,21 +42,14 @@ int Day6::day() {
 
 	/*
 	* PART 1
-	* just brute force these
-	* changed to descriminant of a quadratic trinomial.
-	* sqrt(pow(time,2) - 4 * distance);
+	*
 	*/
 	for (int i = 0; i < time.size(); ++i) {
 
-		//O(1) method
-		
+		//Quadrilaterals method
 		double d = sqrt((time[i] * time[i]) - (4 * distance[i]));
 		int count = (floor((time[i] + d) / 2) - ceil((time[i] - d)/2)) + 1;
 		sum1 *= count;
-
-
-
-
 
 		//bruteforce method
 		//for (int timeheld = 0; timeheld < time[i]; timeheld++) {
@@ -100,26 +93,10 @@ int Day6::day() {
 		}
 	}
 
-	//trying the O(1) way I found. descriminant of a quadratic trinomial.
 	double d = sqrt((time2 * time2) - (4 * distance2));
 	sum2 = (floor((time2 + d) / 2) - ceil((time2 - d) / 2)) + 1;
 
-	/*
-	//surely we can just brute force it again Kappa
-	for (int timeheld = 0; timeheld < time2; timeheld++) {
-		if (timeheld * (time2 - timeheld) > distance2) {
-			sum2++;
-		}
-		else if (sum2 > 0) { //past our winning range, saves a little time but it's O(n/2) at best.
-			break;
-		}
-	}
-	*/
-	//wait... that worked. BUT I know there is an O(1) approach out there.
-
-	std::lock_guard<std::mutex> guard(cout_mutex);
 	std::cout << "Day 6:\t" << sum1 << "\tand " << sum2 << std::endl;
-	//Day::cout_mutex.unlock();
 
 	return lines;
 }

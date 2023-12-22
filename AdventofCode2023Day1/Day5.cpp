@@ -211,9 +211,6 @@ int Day5::day() {
 	lowest2 = seedranges[0].first != 0 ? seedranges[0].first : seedranges[1].first;
 
 
-	std::lock_guard<std::mutex> guard(cout_mutex);
 	std::cout << "Day 5:\t" << lowest1 << "\tand " << lowest2 << std::endl;
-
-
 	return lines;
 }

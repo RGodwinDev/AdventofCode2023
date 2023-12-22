@@ -6,9 +6,6 @@
 #include <vector>
 #include <sstream>
 #include <numeric>
-#include <execution>
-#include <concurrent_vector.h>
-
 
 /*
 Mirage Maintenance

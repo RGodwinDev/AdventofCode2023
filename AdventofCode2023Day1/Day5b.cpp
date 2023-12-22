@@ -102,8 +102,6 @@ int Day5b::day() {
 	//we can get the element by just pointing to it
 	std::vector<long long>::iterator lowest1 = std::min_element(seeds.begin(), seeds.end());
 	
-	std::lock_guard<std::mutex> guard(cout_mutex);
 	std::cout << "Day 5b:\t" << *lowest1 << std::endl;
-
 	return lines;
 }

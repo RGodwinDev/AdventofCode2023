@@ -34,6 +34,9 @@
     <Filter Include="Source Files\Days\Day18Classes">
       <UniqueIdentifier>{a6c0b83b-c9e0-4a09-aff3-712279da9da5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Days\Day19Classes">
+      <UniqueIdentifier>{7b5751ee-4473-476a-b526-56ea72c3355b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AdventofCode2023.cpp">
@@ -52,9 +55,6 @@
       <Filter>Source Files\Days</Filter>
     </ClCompile>
     <ClCompile Include="Day4.cpp">
-      <Filter>Source Files\Days</Filter>
-    </ClCompile>
-    <ClCompile Include="Day5.cpp">
       <Filter>Source Files\Days</Filter>
     </ClCompile>
     <ClCompile Include="Day6.cpp">
@@ -84,22 +84,7 @@
     <ClCompile Include="Day14.cpp">
       <Filter>Source Files\Days</Filter>
     </ClCompile>
-    <ClCompile Include="Day15.cpp">
-      <Filter>Source Files\Days</Filter>
-    </ClCompile>
-    <ClCompile Include="Day16.cpp">
-      <Filter>Source Files\Days</Filter>
-    </ClCompile>
-    <ClCompile Include="Day17.cpp">
-      <Filter>Source Files\Days</Filter>
-    </ClCompile>
-    <ClCompile Include="Day18.cpp">
-      <Filter>Source Files\Days</Filter>
-    </ClCompile>
     <ClCompile Include="Day21.cpp">
-      <Filter>Source Files\Days</Filter>
-    </ClCompile>
-    <ClCompile Include="Day19.cpp">
       <Filter>Source Files\Days</Filter>
     </ClCompile>
     <ClCompile Include="Day20.cpp">
@@ -115,9 +100,6 @@
       <Filter>Source Files\Days</Filter>
     </ClCompile>
     <ClCompile Include="Day25.cpp">
-      <Filter>Source Files\Days</Filter>
-    </ClCompile>
-    <ClCompile Include="Day5b.cpp">
       <Filter>Source Files\Days</Filter>
     </ClCompile>
     <ClCompile Include="d5RBtreeNode.cpp">
@@ -151,7 +133,28 @@
       <Filter>Source Files\Days\Day17Classes</Filter>
     </ClCompile>
     <ClCompile Include="D19part.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Days\Day19Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Day19.cpp">
+      <Filter>Source Files\Days\Day19Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Day18.cpp">
+      <Filter>Source Files\Days\Day18Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Day17.cpp">
+      <Filter>Source Files\Days\Day17Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Day16.cpp">
+      <Filter>Source Files\Days\Day16Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Day15.cpp">
+      <Filter>Source Files\Days\Day15Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Day5.cpp">
+      <Filter>Source Files\Days\Day5classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Day5b.cpp">
+      <Filter>Source Files\Days\Day5classes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
