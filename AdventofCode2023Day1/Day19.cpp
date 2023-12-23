@@ -51,12 +51,21 @@ int Day19::day() {
 	}
 
 	//now process the parts thru the filters, adding to accepted
+	sum1 = calcPart1(&partqueue, &filters);
+	
+	std::cout << "Day 19:\t" << sum1 << "\tand " << sum2 << std::endl;
+	return lines;
+}
+
+
+
+int Day19::calcPart1(std::queue<std::pair<D19part, std::string>>* partqueue, std::map<std::string, std::vector<std::tuple<char, char, int, std::string>>>* filters) {
 	std::vector<D19part> accepted;
 
-	while (!partqueue.empty()) {
-		D19part p = partqueue.front().first;
-		std::string filterName = partqueue.front().second;
-		partqueue.pop();
+	while (!partqueue->empty()) {
+		D19part p = partqueue->front().first;
+		std::string filterName = partqueue->front().second;
+		partqueue->pop();
 
 		//put values of the part variables into a map
 		//it shortens the next part significantly
@@ -66,34 +75,34 @@ int Day19::day() {
 		partVarMap['a'] = p.a;
 		partVarMap['s'] = p.s;
 
-		std::vector<std::tuple<char, char, int, std::string>> filter = filters[filterName];
+		std::vector<std::tuple<char, char, int, std::string>> filter = filters->at(filterName);
 
-		for(std::tuple<char, char, int, std::string> f : filter){
+		for (std::tuple<char, char, int, std::string> f : filter) {
 			if (get<1>(f) == '=') { //last instruction, just do it
-				if (get<3>(f) == "A") {	accepted.push_back(p); }		//accepted, add to accepted vector.
+				if (get<3>(f) == "A") { accepted.push_back(p); }		//accepted, add to accepted vector.
 				else if (get<3>(f) == "R") {}							//rejected, do nothing, rejected vector never got used.
-				else { partqueue.push(std::make_pair(p, get<3>(f))); }	//put back into the partqueue with the filter name.
+				else { partqueue->push(std::make_pair(p, get<3>(f))); }	//put back into the partqueue with the filter name.
 				break;
 			}
 			else if (get<1>(f) == '<') {
-				if (partVarMap[get<0>(f)] < get<2>(f)){
-					if (get<3>(f) == "A") {	accepted.push_back(p); }
+				if (partVarMap[get<0>(f)] < get<2>(f)) {
+					if (get<3>(f) == "A") { accepted.push_back(p); }
 					else if (get<3>(f) == "R") {}
-					else { partqueue.push(std::make_pair(p, get<3>(f))); }
+					else { partqueue->push(std::make_pair(p, get<3>(f))); }
 					break;
 				}
 			}
 			else if (get<1>(f) == '>') {
 				if (partVarMap[get<0>(f)] > get<2>(f)) {
-					if (get<3>(f) == "A") {	accepted.push_back(p); }
+					if (get<3>(f) == "A") { accepted.push_back(p); }
 					else if (get<3>(f) == "R") {}
-					else { partqueue.push(std::make_pair(p, get<3>(f))); }
+					else { partqueue->push(std::make_pair(p, get<3>(f))); }
 					break;
 				}
 			}
 		}
 	}
-	for (D19part p : accepted) { sum1 += p.getSumValues(); }
-	std::cout << "Day 19:\t" << sum1 << "\tand " << sum2 << std::endl;
-	return lines;
+	int sum = 0;
+	for (D19part p : accepted) { sum += p.getSumValues(); }
+	return sum;
 }

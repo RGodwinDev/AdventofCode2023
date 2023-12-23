@@ -1,6 +1,8 @@
 # AdventofCode2023
 https://adventofcode.com/2023
 
+Stars achieved so far 12/22/23 - 31/44
+
 The main() is in AdventofCode2023Day1/AdventofCode2023.cpp
 
 ignore the 'Day1', all of the days are in this project.
@@ -207,8 +209,24 @@ Day 9 - Mirage Maintenance **
 Day 10 - Pipe Maze **
 
 	Part 1
+		First thing I do is find 'S' to get a start position.
+		From there I traverse the pipe until we get back to 'S', counting steps along the way.
+		Then it's a simple steps/2. +1 if odd.
 
 	Part 2
+		Now we want to know the area inside the pipe.
+		For this I made a second vector of the pipe, but sorted. This allows us to binary search the pipe later.
+		We now have 2 vectors of the pipe, one in traversal order, and the other in sorted order.
+		From here we need to find the pipe. From the top of the map, go down until we run into a piece of the pipe.
+		Now we know this piece of pipe is above another piece of the pipe, because the pipe is a circle.
+		So to find the area, we just look below this piece of the pipe. 
+		check if this area is part of the pipe, and if it's not it's confirmed within the pipes boundarys.
+		Keep going until we run into the pipe again.
+
+		We ONLY need to check below the pipe when moving WEST, 
+		otherwise we would be counting the same squares multiple times.
+		Once we make the loop once, we're done.
+
 
 Day 11 - Cosmic Expansion **
 
@@ -248,9 +266,24 @@ Day 14 - Parabolic Reflector Dish *
 		I know the answer has to do with detecting a cycle,
 		and then calculating where in the cycle we will be after 1 billion times.
 
-Day 15 - Lens Library **
+Day 15 - Lens Library ** 
 
 Day 16 - The Floor Will Be Lava **
+	
+	This could have been smarter, but this works.
+	Part 1
+		I did part 1 by creating a grid<tile>. 
+		Then I shoot a beam into the grid at 0,0 going east.
+		Any tiles it hits get marked as energized.
+		Any time we hit a splitter, we add another beam to the beam queue.
+		If a beam goes out of bounds or runs into an energized tile from a direction
+		that it's been hit from before, the beam is killed.
+		Keep going until the beam queue is empty.
+		Afterwards, we count how many tiles are energized.
+
+	Part 2
+		Same as part 1, but for each possible starting position we make a copy of the original grid, 
+		then traverse it from the respective start position and count the energized tiles.
 
 Day 17 - Clumsy Crucible
 
@@ -260,7 +293,7 @@ Day 17 - Clumsy Crucible
 Day 18 - Lavaduct Lagoon
 
 	Part 1
-		This problem is very similar to Day 10 imo. We just want the area within the edges.
+		This problem feels similar to Day 10. We just want the area within the edges.
 		Haven't gotten around to finishing this one yet.
 
 Day 19 - Aplenty *
@@ -277,6 +310,7 @@ Day 19 - Aplenty *
 		Dealing with ranges, similar to Day5. 
 		All the values for each part can be between 1 and 4000.
 		Calculate how many possible part value combinations are accepted.
+		I feel like this one is doable, haven't gotten to it.
 
 Day 20 - Pulse Propagation
 
@@ -284,7 +318,7 @@ Day 21 - Step Counter
 
 Day 22 - Sand Slabs
 
-Day 23 - 
+Day 23 - A Long Walk
 
 Day 24 - 
 

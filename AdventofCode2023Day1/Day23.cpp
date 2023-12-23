@@ -1,13 +1,5 @@
-#include <iostream>
-#include <fstream>
-#include <string>
 #include "./headers/Day23.h"
 
-
-/*
-
-https://adventofcode.com/2023/day/23
-*/
 int Day23::day() {
 	std::string line;
 	std::fstream file("./inputs/day23input.txt");

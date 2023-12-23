@@ -17,5 +17,8 @@ private:
 
 public:
     int day();
+
+    int calcPart1(std::queue<std::pair<D19part, std::string>>* partqueue, 
+        std::map<std::string, std::vector<std::tuple<char, char, int, std::string>>>* filters);
 };
 
