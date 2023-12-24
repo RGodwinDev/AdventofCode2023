@@ -438,5 +438,17 @@
     <Image Include="screenshots\ssday9.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="screenshots\ssday11.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="screenshots\ssday13.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="screenshots\ssday15.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="screenshots\ssday19.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
