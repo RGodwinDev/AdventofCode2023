@@ -138,6 +138,7 @@
     <ClCompile Include="D17Graph.cpp" />
     <ClCompile Include="D17Vertex.cpp" />
     <ClCompile Include="D19part.cpp" />
+    <ClCompile Include="D19partRanges.cpp" />
     <ClCompile Include="d5RBTree.cpp" />
     <ClCompile Include="d5RBtreeNode.cpp" />
     <ClCompile Include="Day.cpp" />
@@ -206,6 +207,7 @@
     <ClInclude Include="headers\D17Graph.h" />
     <ClInclude Include="headers\D17Vertex.h" />
     <ClInclude Include="headers\D19part.h" />
+    <ClInclude Include="headers\D19partRanges.h" />
     <ClInclude Include="headers\d5RBTree.h" />
     <ClInclude Include="headers\d5RBtreeNode.h" />
     <ClInclude Include="headers\Day.h" />

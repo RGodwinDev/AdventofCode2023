@@ -310,7 +310,24 @@ Day 19 - Aplenty *
 		Dealing with ranges, similar to Day5. 
 		All the values for each part can be between 1 and 4000.
 		Calculate how many possible part value combinations are accepted.
-		I feel like this one is doable, haven't gotten to it.
+
+		There's 3 basic things we check for on each filter.
+		A range is fully less/greater than the compare.
+		A range is partially less/greater than the compare.
+		A range is not in the compare at all.
+
+		If a range is fully less or greater than the compare,
+		We accept/reject or give the range to another filter.
+
+		If a range is partially less or greater than the compare,
+		we break the range into 2, 
+		accept/reject/give the range that is inside the compare
+		and put the range outside the compare back into the queue at the same filter.
+
+		If a range is fully outside the compare, 
+		it continues onto the next instruction until we get to the last instruction in the filter.
+		
+		If we get to the last instruction, we accept/reject/give the range, per the instruction.
 
 Day 20 - Pulse Propagation
 

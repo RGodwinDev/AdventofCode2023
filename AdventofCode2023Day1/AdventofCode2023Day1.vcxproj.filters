@@ -213,6 +213,9 @@
     <ClCompile Include="Day25.cpp">
       <Filter>Source Files\Days\Day25Classes</Filter>
     </ClCompile>
+    <ClCompile Include="D19partRanges.cpp">
+      <Filter>Source Files\Days\Day19Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="inputs\day1input.txt">
@@ -407,6 +410,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="headers\D19part.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="headers\D19partRanges.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

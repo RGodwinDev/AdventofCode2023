@@ -5,6 +5,7 @@
 #include <string>
 #include <map>
 #include "D19part.h"
+#include "D19partRanges.h"
 #include <queue>
 
 /*
@@ -20,5 +21,7 @@ public:
 
     int calcPart1(std::queue<std::pair<D19part, std::string>>* partqueue, 
         std::map<std::string, std::vector<std::tuple<char, char, int, std::string>>>* filters);
+
+    uint64_t calcPart2(std::map<std::string, std::vector<std::tuple<char, char, int, std::string>>>* filters);
 };
 
