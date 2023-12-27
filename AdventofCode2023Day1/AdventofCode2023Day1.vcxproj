@@ -240,6 +240,7 @@
     <ClInclude Include="headers\Day9.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="screenshots\AOC2023times32.png" />
     <Image Include="screenshots\ssday11.png" />
     <Image Include="screenshots\ssday122723.png" />
     <Image Include="screenshots\ssday13.png" />

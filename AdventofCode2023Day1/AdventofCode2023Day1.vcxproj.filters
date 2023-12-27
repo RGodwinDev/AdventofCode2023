@@ -453,5 +453,8 @@
     <Image Include="screenshots\ssday122723.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="screenshots\AOC2023times32.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
