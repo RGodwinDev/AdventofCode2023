@@ -6,7 +6,7 @@ D15boxes::D15boxes() {
 }
 
 int D15boxes::decideBox(std::string label) {
-	//hash the label, should be between 0-255
+	//hash the label, will be between 0-255
 	int current = 0;
 	for (char c : label) {
 		current += c - 0;

@@ -1,14 +1,15 @@
 # AdventofCode2023
 https://adventofcode.com/2023
 
-Stars achieved so far 12/22/23 - 31/44
+12/25/23 Stars achieved - 32/50
+![alt text](https://github.com/FinalFlashLight/AdventofCode2023/blob/master/AdventofCode2023Day1/screenshots/AOC2023times32.png)
 
 The main() is in AdventofCode2023Day1/AdventofCode2023.cpp
 
 ignore the 'Day1', all of the days are in this project.
 
 Ran on an AMD FX-8350, cpu from 2012
-![alt text](https://github.com/FinalFlashLight/AdventofCode2023/blob/master/AdventofCode2023Day1/screenshots/ssday19.png)
+![alt text](https://github.com/FinalFlashLight/AdventofCode2023/blob/master/AdventofCode2023Day1/screenshots/ssday122723.png)
 
 Day1 - Trebuchet?! **
 
@@ -268,6 +269,41 @@ Day 14 - Parabolic Reflector Dish *
 
 Day 15 - Lens Library ** 
 
+	This whole problem is basically creating a hash map.
+	example of input
+	dm=4,rx=5,hh-,kms=8,qrqh=5,ptxhg-
+
+	Part 1
+		An easy hash function on each input instruction, add hashes together and return.
+			
+		int Day15::hash(std::string s) {
+			int current = 0;
+			for (char c : s) {
+				current += c - 0;
+				current *= 17;
+				current %= 256;
+			}
+			return current;
+		}
+
+	Part 2
+		All the lenses start on the shelf and we are inserting/removing them to/from boxes.
+		The instructions are divided up, 
+		left chars are what lense.
+		= is adding/updating a lense to a focal power, the number.
+		- is removing the lense from its box.
+		To get what box we add a lense to, we hash just the label of the lense.
+
+		I wrote 3 classes
+
+		A lense class, which knows its label and focalLength.
+
+		A Box class, which has a vector of lenses. 
+		getBoxPower() sums the focalLength * position in box of the lenses inside it.
+
+		Boxes class, which has a vector<box>(256).
+		calcFocalPower() sums the boxPower * position in boxes of all the boxes.
+
 Day 16 - The Floor Will Be Lava **
 	
 	This could have been smarter, but this works.
@@ -289,6 +325,7 @@ Day 17 - Clumsy Crucible
 
 	Part 1
 		This is pathfinding with the restriction that we can move max 3 times in a direction before having to turn.
+		I'll come back to this later, but first thing that came to mind was using djikstras.
 
 Day 18 - Lavaduct Lagoon
 
@@ -296,7 +333,7 @@ Day 18 - Lavaduct Lagoon
 		This problem feels similar to Day 10. We just want the area within the edges.
 		Haven't gotten around to finishing this one yet.
 
-Day 19 - Aplenty *
+Day 19 - Aplenty **
 	
 	Part 1
 		I created a map of filters, then added the parts to a partqueue
@@ -337,6 +374,6 @@ Day 22 - Sand Slabs
 
 Day 23 - A Long Walk
 
-Day 24 - 
+Day 24 - Never Tell Me The Odds
 
-Day 25 -
+Day 25 - Snowverload

@@ -241,6 +241,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="screenshots\ssday11.png" />
+    <Image Include="screenshots\ssday122723.png" />
     <Image Include="screenshots\ssday13.png" />
     <Image Include="screenshots\ssday15.png" />
     <Image Include="screenshots\ssday19.png" />

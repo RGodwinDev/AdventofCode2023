@@ -5,7 +5,7 @@
 #include <string>
 
 /*
-
+Snowverload
 https://adventofcode.com/2023/day/25
 */
 class Day25 : public Day
